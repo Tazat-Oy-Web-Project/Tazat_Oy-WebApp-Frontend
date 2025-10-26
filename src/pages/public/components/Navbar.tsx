@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
-import BrandLogo from "../../assets/icons/brang-logo.jpg";
+import BrandLogo from "../../../assets/icons/brang-logo.jpg";
 
 
 function NavbarComponent(){

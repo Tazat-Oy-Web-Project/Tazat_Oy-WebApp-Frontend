@@ -1,5 +1,5 @@
-import { FooterComponent } from "../components/Footer";
-import NavbarComponent from "../components/Navbar";
+import { FooterComponent } from "./components/Footer";
+import NavbarComponent from "./components/Navbar";
 
 function Home(){
     return(

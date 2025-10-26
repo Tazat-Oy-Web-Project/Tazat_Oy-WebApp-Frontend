@@ -1,19 +1,26 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import About from './pages/About'
-import Services from './pages/Services/Services'
-import Gallery from './pages/Gallery'
-import Contact from './pages/Contact'
-import Careers from './pages/Careers'
-import Quote from './pages/Quote'
+// Importing public pages
+import Home from './pages/public/Home'
+import About from './pages/public/About'
+import Services from './pages/public/Services'
+import Gallery from './pages/public/Gallery'
+import Contact from './pages/public/Contact'
+import Careers from './pages/public/Careers'
+import Quote from './pages/public/Quote'
+// Importing staff pages
+import StaffDashboard from './pages/staff/StaffDashboard'
+import StaffNews from './pages/staff/StaffNews'
+import StaffTraining from './pages/staff/StaffTraining'
+import StaffProfile from './pages/staff/StaffProfile'
+
 
 function App() {
 
   return (
     <div>
       <Routes>
-        {/* Define your routes here */}
+        {/* Public routes here */}
         <Route path="/" element={<Home />} />        
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
@@ -21,6 +28,13 @@ function App() {
         <Route path="/blog" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/quote" element={<Quote />} />
+
+        {/* Staff routes here */}
+        <Route path="/staff/" element={<StaffDashboard />} />
+        <Route path="/staff/news" element={<StaffNews />} />
+        <Route path="/staff/training" element={<StaffTraining />} />
+        <Route path="/staff/profile" element={<StaffProfile />} />
+
       </Routes>
     </div>
   )
