@@ -1,9 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 // Importing public pages
-import Home from './pages/public/Home'
+import Home from './pages/public/Home/Home'
 import About from './pages/public/About'
-import Services from './pages/public/Services'
+import Services from './pages/public/Services/Services'
 import Gallery from './pages/public/Gallery'
 import Contact from './pages/public/Contact'
 import Careers from './pages/public/Careers'
