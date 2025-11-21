@@ -7,7 +7,7 @@ function StaffDashboard() {
             <StaffNavbar navItemName="Dashboard" />
             <div className="flex flex-row min-h-screen">
 
-                <div className="flex flex-col min-h-screen w-[100%] md:w-[60%] lg:w-[70%] xl:w-[75%] 2xl:w-[80%]">
+                <div className="flex flex-col min-h-screen w-full md:w-[60%] lg:w-[70%] xl:w-[75%] 2xl:w-[80%]">
 
                     {/** Announcements Part **/}
                     <div className="flex-1 bg-amber-600 w-full">
