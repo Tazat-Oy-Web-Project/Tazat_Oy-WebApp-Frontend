@@ -7,7 +7,7 @@ import Services from './pages/public/Services/Services'
 import Gallery from './pages/public/Gallery'
 import Contact from './pages/public/Contact'
 import Careers from './pages/public/Careers'
-import Quote from './pages/public/Quote'
+import Quote from './pages/public/Quote/Quote'
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'
 import StaffNews from './pages/staff/StaffNews'
