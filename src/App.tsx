@@ -5,7 +5,7 @@ import Home from './pages/public/Home/Home'
 import About from './pages/public/About'
 import Services from './pages/public/Services/Services'
 import Gallery from './pages/public/Gallery'
-import Contact from './pages/public/Contact'
+import Contact from './pages/public/Contact/Contact'
 import Careers from './pages/public/Careers'
 import Quote from './pages/public/Quote/Quote'
 // Importing staff pages
