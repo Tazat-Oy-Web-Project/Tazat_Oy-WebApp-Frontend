@@ -15,8 +15,8 @@
  
   object-fit: cover;
   object-position: bottom;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+  margin-bottom: 0 ;
+  padding-bottom: 0 ;
   
 ansform: scale(1.05);
 }
@@ -24,7 +24,9 @@ ansform: scale(1.05);
 /* Desktop: overlap hero image with red bar */
 @media (min-width: 768px) {
   .heroImage {
-    margin-bottom: -100px !important;
+    margin-bottom: -100px ;
   }
 }
-  padding-bottom: -100px !important;
+  padding-bottom: -100px ;
+
+  /*End of HeroBanner.module.css 
