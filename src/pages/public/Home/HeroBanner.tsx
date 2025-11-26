@@ -37,7 +37,7 @@ export default function HeroBanner() {
         {/* RIGHT IMAGE */}
         <div className={`${styles.heroImageWrapper} relative md:w-1/2 flex justify-center md:justify-end mt-10 md:mt-0 z-20`}>
           <img
-            src="src/assets/icons/HeroBannerTazatOy-removebg-preview (1).png"
+            src="/heroBannertaza.png"
             alt="Professional Cleaning Team"
             className={styles.heroImage}
           />
