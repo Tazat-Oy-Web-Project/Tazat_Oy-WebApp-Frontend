@@ -8,7 +8,7 @@ import Services from './pages/public/Services/Services'
 import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
 import Contact from './pages/public/Contact/Contact'
-import Careers from './pages/public/Careers'
+import Careers from './pages/public/Careers/Careers'
 import Quote from './pages/public/Quote/Quote'
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'

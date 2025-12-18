@@ -1,0 +1,173 @@
+interface CareersApplicationFormProps {
+    form: {
+        fullName: string;
+        email: string;
+        phone: string;
+        city: string;
+        role: string;
+        availability: string;
+        message: string;
+        consent: boolean;
+    };
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+
+function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplicationFormProps) {
+
+
+    return (
+        <section id="apply" className="mt-12 scroll-mt-24">
+            {/** --------------------------------------------------------------------------------------- 
+                Section Header 
+            --------------------------------------------------------------------------------------- **/}
+            <div className="mb-6">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Apply Now</h2>
+                <p className="mt-2 text-base text-slate-600">
+                    Fill the form and a reply will be sent as soon as possible.
+                </p>
+            </div>
+
+            {/** --------------------------------------------------------------------------------------- 
+                Application Form 
+            --------------------------------------------------------------------------------------- **/}
+            <form
+                onSubmit={onSubmit}
+                className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm"
+            >
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">
+                            Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            name="fullName"
+                            value={form.fullName}
+                            onChange={onChange}
+                            required
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder="e.g., Ryan Wickramaratne"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">
+                            Email <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={onChange}
+                            required
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder="name@email.com"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">Phone</label>
+                        <input
+                            name="phone"
+                            value={form.phone}
+                            onChange={onChange}
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder="+358 ..."
+                        />
+                    </div>
+
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">City</label>
+                        <input
+                            name="city"
+                            value={form.city}
+                            onChange={onChange}
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder="e.g., Oulu"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">
+                            Interested Role <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                            name="role"
+                            value={form.role}
+                            onChange={onChange}
+                            required
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                        >
+                            <option>Cleaner</option>
+                            <option>Team Lead (Cleaning)</option>
+                            <option>Office Support</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="text-sm font-semibold text-slate-700">
+                            Availability
+                        </label>
+                        <input
+                            name="availability"
+                            value={form.availability}
+                            onChange={onChange}
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder="e.g., Weekdays 9–15 / Weekends / Evenings"
+                        />
+                    </div>
+                </div>
+
+                <div className="mt-5">
+                    <label className="text-sm font-semibold text-slate-700">
+                        Message <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={onChange}
+                        required
+                        rows={5}
+                        className="mt-2 w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                        placeholder="Short intro + any experience + why this role is interesting..."
+                    />
+                </div>
+
+                <div className="mt-5 flex items-start gap-3">
+                    <input
+                        id="consent"
+                        name="consent"
+                        type="checkbox"
+                        checked={form.consent}
+                        onChange={onChange}
+                        className="mt-1 h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
+                        required
+                    />
+                    <label htmlFor="consent" className="text-sm text-slate-600">
+                        I consent to be contacted regarding this application. <span className="text-red-500">*</span>
+                    </label>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-xs text-slate-500">
+                        By submitting, the information is used only for recruitment purposes.
+                    </p>
+                    <button
+                        type="submit"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-orange-500 to-yellow-500 px-8 py-3 text-sm font-bold text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                        Submit Application
+                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+    );
+}
+
+export default CareersApplicationForm;
