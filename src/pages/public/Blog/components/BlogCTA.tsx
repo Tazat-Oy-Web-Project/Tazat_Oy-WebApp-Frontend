@@ -1,8 +1,14 @@
-function BlogCTA() {
+import { useNavigate } from 'react-router-dom';
 
+function BlogCTA() {
+    const navigate = useNavigate();
+
+    const handleBookNow = () => {
+        navigate('/quote');
+    };
 
     return (
-        <div className="mt-6 overflow-hidden rounded-2xl bg-blue-600 shadow-sm">
+        <div className="mt-6 overflow-hidden rounded-2xl bg-linear-to-r from-amber-500 to-orange-500 shadow-sm">
             <div className="p-5 text-white">
                 {/* CTA Header */}
                 <div className="flex items-center gap-2">
@@ -22,7 +28,7 @@ function BlogCTA() {
                 </p>
 
                 {/* Book Now Button */}
-                <button className="mt-4 w-full rounded-xl bg-white px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-white/95">
+                <button onClick={handleBookNow} className="mt-4 w-full rounded-xl bg-white px-4 py-2 text-sm font-semibold text-amber-700 hover:bg-white/95  hover:cursor-pointer">
                     Book Now
                 </button>
             </div>

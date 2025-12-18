@@ -55,7 +55,7 @@ function BlogHero({ query, onQueryChange }: BlogHeroProps) {
                             />
                         </div>
                         {/* Search Button */}
-                        <button className="ml-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 active:bg-blue-800">
+                        <button className="ml-2 rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 active:bg-amber-800">
                             Search
                         </button>
                     </div>

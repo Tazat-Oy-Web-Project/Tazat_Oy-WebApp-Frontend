@@ -85,7 +85,7 @@ function Quote(){
             
             
             
-            <div className="flex flex-col justify-start items-center min-h-screen bg-linear-to-b from-gray-50 via-amber-50 to-orange-50 w-full">
+            <div className="flex flex-col justify-start items-center min-h-screen bg-linear-to-b from-gray-50 via-amber-50 to-orange-50 w-full -mt-8">
 
                 {/** --------------------------------------------------------------------------------------- 
                     1.0 Header Part 

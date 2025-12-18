@@ -25,9 +25,9 @@ function NavbarComponent() {
     return (
         <>
             {/** Making the whole Navbar Sticky that stays at top when scrolling */}
-            <nav className="sticky top-0 z-50 backdrop-blur-md">
+            <nav className="sticky top-0 z-50">
                 {/** This is the Main Full navbar container */}
-                <div className="bg-linear-to-r from-white via-orange-50/40 to-yellow-50/40 py-3 md:py-5 lg:py-7 shadow-lg border-b-2 border-orange-200/30 backdrop-blur-xl">
+                <div className="bg-linear-to-r from-white via-orange-50 to-yellow-50 py-3 md:py-5 lg:py-7 shadow-lg border-b-2 border-orange-200/30">
                     {/** Whele Contents part (logo + navigation links + Get Quote button). This container takes for full width of the screen*/}
                     <div className="bg-amber-0 w-full px-4 sm:px-6 lg:px-8 2xl:px-12">
                         {/** Now the actual contents part: Brand on left, Nav links in center (desktop), Actions on right */}

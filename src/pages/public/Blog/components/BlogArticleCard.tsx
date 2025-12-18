@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 interface Article {
     id: number;
     tag: string;
@@ -17,9 +20,10 @@ function BlogArticleCard({ article }: BlogArticleCardProps) {
 
 
     return (
-        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <Link to={`/blog/${article.id}`} className="block">
+            <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md cursor-pointer">
             {/* Article Image */}
-            <div className="aspect-[16/9] overflow-hidden bg-slate-100">
+            <div className="aspect-video overflow-hidden bg-slate-100">
                 <img
                     src={article.image}
                     alt={article.title}
@@ -47,11 +51,12 @@ function BlogArticleCard({ article }: BlogArticleCardProps) {
                 <p className="mt-2 text-sm text-slate-600">{article.excerpt}</p>
                 
                 {/* Read More Button */}
-                <button className="mt-3 text-sm font-semibold text-blue-700 hover:text-blue-800">
+                <div className="mt-3 text-sm font-semibold text-amber-700 hover:text-amber-800">
                     Read more
-                </button>
+                </div>
             </div>
-        </article>
+            </article>
+        </Link>
     );
 }
 
