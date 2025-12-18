@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function StaffNavbar({navItemName}: {navItemName: string}) {
 
-    const [navItem, setNavItem] = useState(navItemName);  //Current active nav item name
+    const [navItem] = useState(navItemName);  //Current active nav item name
     console.log("Current nav item is: " + navItem);
 
     const [menuClicked, setMenuClicked] = useState(false);  //If this is true, close icon shows. If false, hamburger menu shows.
