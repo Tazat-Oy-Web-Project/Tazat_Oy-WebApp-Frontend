@@ -1,10 +1,12 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
+import ScrollToTop from './pages/public/components/ScrollToTop'
 // Importing public pages
 import Home from './pages/public/Home/Home'
 import About from './pages/public/About'
 import Services from './pages/public/Services/Services'
 import Blog from './pages/public/Blog/Blog'
+import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
 import Contact from './pages/public/Contact/Contact'
 import Careers from './pages/public/Careers'
 import Quote from './pages/public/Quote/Quote'
@@ -19,6 +21,7 @@ function App() {
 
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         {/* Public routes here */}
         <Route path="/" element={<Home />} />        
@@ -26,6 +29,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogArticleDetailPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/quote" element={<Quote />} />
 
