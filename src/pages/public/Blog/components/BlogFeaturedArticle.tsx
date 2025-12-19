@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 interface Article {
@@ -17,6 +18,7 @@ interface BlogFeaturedArticleProps {
 
 
 function BlogFeaturedArticle({ article }: BlogFeaturedArticleProps) {
+    const { language } = useLanguage();
 
 
     return (
@@ -47,7 +49,7 @@ function BlogFeaturedArticle({ article }: BlogFeaturedArticleProps) {
         </p>
 
         <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800">
-          Read full article
+          {language === "en" ? "Read full article" : "Lue koko artikkeli"}
           <span aria-hidden="true">→</span>
         </div>
       </div>

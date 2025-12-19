@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 interface Article {
@@ -17,6 +18,7 @@ interface BlogArticleCardProps {
 
 
 function BlogArticleCard({ article }: BlogArticleCardProps) {
+    const { language } = useLanguage();
 
 
     return (
@@ -52,7 +54,7 @@ function BlogArticleCard({ article }: BlogArticleCardProps) {
                 
                 {/* Read More Button */}
                 <div className="mt-3 text-sm font-semibold text-amber-700 hover:text-amber-800">
-                    Read more
+                    {language === "en" ? "Read more" : "Lue lisää"}
                 </div>
             </div>
             </article>

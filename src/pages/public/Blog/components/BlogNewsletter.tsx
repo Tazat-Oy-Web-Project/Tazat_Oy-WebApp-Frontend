@@ -1,4 +1,7 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 function BlogNewsletter() {
+    const { language } = useLanguage();
 
 
     return (
@@ -13,24 +16,24 @@ function BlogNewsletter() {
                     </svg>
                 </div>
                 {/* Title */}
-                <h3 className="text-sm font-extrabold text-slate-900">Weekly Tips</h3>
+                <h3 className="text-sm font-extrabold text-slate-900">{language === "en" ? "Weekly Tips" : "Viikottaiset Vinkit"}</h3>
             </div>
 
             {/* Description */}
             <p className="mt-3 text-sm text-slate-600">
-                Get free cleaning checklists and exclusive discounts sent to the inbox.
+                {language === "en" ? "Get free cleaning checklists and exclusive discounts sent to the inbox." : "Saat ilmaiset siivouslistat ja yksinomaiset alennukset sähköpostiisi."}
             </p>
 
             {/* Subscription Form */}
             <div className="mt-4 space-y-3">
                 {/* Email Input */}
                 <input
-                    placeholder="Email address"
+                    placeholder={language === "en" ? "Email address" : "Sähköpostiosoite"}
                     className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-amber-300 focus:ring-2 focus:ring-amber-100"
                 />
                 {/* Subscribe Button */}
                 <button className="w-full rounded-xl bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 active:bg-amber-800">
-                    Subscribe
+                    {language === "en" ? "Subscribe" : "Tilaa"}
                 </button>
             </div>
         </div>

@@ -1,5 +1,8 @@
+import { useLanguage } from "../../../context/LanguageContext";
 
 function ProgressBar(){
+    const { language } = useLanguage();
+
     return(
         <div className="flex flex-row justify-center items-center gap-2 bg-white py-8 px-4 w-full max-w-6xl mt-8 rounded-xl shadow-md border border-gray-100">
             {/* Step 1 */}
@@ -8,7 +11,7 @@ function ProgressBar(){
                         <p className="text-white">1</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Contact</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Contact" : "Yhteystiedot"}</p>
                     </div>
                 </div>
 
@@ -21,7 +24,7 @@ function ProgressBar(){
                         <p className="text-white">2</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Service</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Service" : "Palvelu"}</p>
                     </div>
                 </div>
 
@@ -34,7 +37,7 @@ function ProgressBar(){
                         <p className="text-white">3</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Property</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Property" : "Kohde"}</p>
                     </div>
                 </div>
 
@@ -47,7 +50,7 @@ function ProgressBar(){
                         <p className="text-white">4</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Frequency</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Frequency" : "Tiheys"}</p>
                     </div>
                 </div>
 
@@ -60,7 +63,7 @@ function ProgressBar(){
                         <p className="text-white">5</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Requirements</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Requirements" : "Vaatimukset"}</p>
                     </div>
                 </div>
 
@@ -73,7 +76,7 @@ function ProgressBar(){
                         <p className="text-white">6</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Schedule</p>
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">{language === "en" ? "Schedule" : "Aikataulu"}</p>
                     </div>
                 </div>
         </div>

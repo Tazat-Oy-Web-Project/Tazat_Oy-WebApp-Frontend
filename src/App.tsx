@@ -1,5 +1,6 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
+import { LanguageProvider } from './pages/context/LanguageContext'
 import ScrollToTop from './pages/public/components/ScrollToTop'
 // Importing public pages
 import Home from './pages/public/Home/Home'
@@ -20,7 +21,7 @@ import StaffProfile from './pages/staff/StaffProfile'
 function App() {
 
   return (
-    <div>
+    <LanguageProvider>
       <ScrollToTop />
       <Routes>
         {/* Public routes here */}
@@ -40,7 +41,7 @@ function App() {
         <Route path="/staff/profile" element={<StaffProfile />} />
 
       </Routes>
-    </div>
+    </LanguageProvider>
   )
 }
 

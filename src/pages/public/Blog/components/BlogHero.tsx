@@ -1,3 +1,5 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 interface BlogHeroProps {
     query: string;
     onQueryChange: (value: string) => void;
@@ -5,6 +7,7 @@ interface BlogHeroProps {
 
 
 function BlogHero({ query, onQueryChange }: BlogHeroProps) {
+    const { language } = useLanguage();
 
 
     return (
@@ -21,13 +24,14 @@ function BlogHero({ query, onQueryChange }: BlogHeroProps) {
         <div className="mx-auto max-w-2xl text-center text-white">
                     {/* Title */}
                     <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                        News &amp; Cleaning Tips
+                        {language === "en" ? "News & Cleaning Tips" : "Uutiset & Siivousvinkit"}
                     </h1>
                     
                     {/* Subtitle */}
                     <p className="mt-3 text-sm text-white/80 sm:text-base">
-                        Stay updated with the latest cleaning advice, offers, and company updates
-                        to keep spaces sparkling.
+                        {language === "en" 
+                            ? "Stay updated with the latest cleaning advice, offers, and company updates to keep spaces sparkling."
+                            : "Pysy ajan tasalla uusimmista siivousneuvoista, tarjouksista ja yrityksen päivityksistä."}
                     </p>
 
                     {/* Search Bar */}
@@ -50,13 +54,13 @@ function BlogHero({ query, onQueryChange }: BlogHeroProps) {
                             <input
                                 value={query}
                                 onChange={(e) => onQueryChange(e.target.value)}
-                                placeholder="Search for tips, tricks, and news..."
+                                placeholder={language === "en" ? "Search for tips, tricks, and news..." : "Etsi vinkkejä ja uutisia..."}
                                 className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
                             />
                         </div>
                         {/* Search Button */}
                         <button className="ml-2 rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 active:bg-amber-800">
-                            Search
+                            {language === "en" ? "Search" : "Hae"}
                         </button>
                     </div>
                 </div>

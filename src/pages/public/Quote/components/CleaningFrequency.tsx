@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 
 function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrinter: (frequency:string, customFrequency:string) => void }){
+    const { language } = useLanguage();
 
 
     // ---- Cleaning Frequency (Radio Button) State Management ---- //
@@ -19,13 +21,13 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
     return(
         <>
             <div className="mb-6 border-l-4 border-amber-600 pl-4 mt-10">
-                <h2 className="text-3xl font-bold text-gray-800 mb-1">Cleaning Frequency</h2>
-                <p className="text-sm text-gray-600">How often do you need cleaning services?</p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-1">{language === "en" ? "Cleaning Frequency" : "Siivouksen Tiheys"}</h2>
+                <p className="text-sm text-gray-600">{language === "en" ? "How often do you need cleaning services?" : "Kuinka usein tarvitset siivouspalveluita?"}</p>
             </div>
 
             <div className="w-full mb-6">
                 <label className="text-base font-semibold text-gray-700 mb-3 block">
-                    Select Frequency <span className="text-red-500">*</span>
+                    {language === "en" ? "Select Frequency" : "Valitse Tiheys"} <span className="text-red-500">*</span>
                 </label>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -49,8 +51,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             required
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">One-time</span>
-                            <span className="text-xs text-gray-600">Single cleaning service</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "One-time" : "Kertaluontoinen"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Single cleaning service" : "Yksittäinen siivouspalvelu"}</span>
                         </div>
                     </label>
 
@@ -72,8 +74,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             className="w-5 h-5 text-amber-600 focus:ring-amber-500 focus:ring-2"
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Daily</span>
-                            <span className="text-xs text-gray-600">Every business day</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Daily" : "Päivittäin"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Every business day" : "Joka arkipäivä"}</span>
                         </div>
                     </label>
 
@@ -95,8 +97,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             className="w-5 h-5 text-amber-600 focus:ring-amber-500 focus:ring-2"
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Weekly</span>
-                            <span className="text-xs text-gray-600">Once per week</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Weekly" : "Viikoittain"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Once per week" : "Kerran viikossa"}</span>
                         </div>
                     </label>
 
@@ -118,8 +120,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             className="w-5 h-5 text-amber-600 focus:ring-amber-500 focus:ring-2"
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Bi-Weekly</span>
-                            <span className="text-xs text-gray-600">Every two weeks</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Bi-Weekly" : "Joka toinen viikko"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Every two weeks" : "Kahden viikon välein"}</span>
                         </div>
                     </label>
 
@@ -141,8 +143,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             className="w-5 h-5 text-amber-600 focus:ring-amber-500 focus:ring-2"
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Monthly</span>
-                            <span className="text-xs text-gray-600">Once per month</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Monthly" : "Kuukausittain"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Once per month" : "Kerran kuukaudessa"}</span>
                         </div>
                     </label>
 
@@ -164,8 +166,8 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                             className="w-5 h-5 text-amber-600 focus:ring-amber-500 focus:ring-2"
                         /> 
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Custom</span>
-                            <span className="text-xs text-gray-600">Specify below</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Custom" : "Mukautettu"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Specify below" : "Tarkenna alla"}</span>
                         </div>
                     </label>
 
@@ -175,7 +177,7 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                 {selectedFrequency === 'custom' && (
                     <div className="mt-4">
                         <label className="text-base font-semibold text-gray-700 mb-2 block">
-                            Specify Custom Frequency
+                            {language === "en" ? "Specify Custom Frequency" : "Tarkenna Mukautettu Tiheys"}
                         </label>
                         <input
                             className="border-2 border-gray-300 rounded-lg w-full px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition duration-200"
@@ -186,9 +188,9 @@ function CleaningFrequency({ cleaningFrequencyPrinter }: { cleaningFrequencyPrin
                                 setCustomFrequency(event.target.value);
                                 handleFrequencyChange();
                             }}
-                            placeholder="e.g., Twice a week, Every 3 days, etc."
+                            placeholder={language === "en" ? "e.g., Twice a week, Every 3 days, etc." : "esim. Kahdesti viikossa, Joka 3. päivä, jne."}
                         />
-                        <span className="text-xs text-gray-500 mt-1 block">Describe your preferred cleaning schedule</span>
+                        <span className="text-xs text-gray-500 mt-1 block">{language === "en" ? "Describe your preferred cleaning schedule" : "Kuvaile toivomasi siivousaikataulu"}</span>
                     </div>
                 )}
             </div>

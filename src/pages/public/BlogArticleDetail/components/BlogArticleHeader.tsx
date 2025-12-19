@@ -1,3 +1,5 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 interface BlogArticleHeaderProps {
     title: string;
     tag: string;
@@ -6,6 +8,7 @@ interface BlogArticleHeaderProps {
 
 
 function BlogArticleHeader({ title, tag, date }: BlogArticleHeaderProps) {
+    const { language } = useLanguage();
 
 
     return (
@@ -27,7 +30,7 @@ function BlogArticleHeader({ title, tag, date }: BlogArticleHeaderProps) {
                     
                     {/* Article Date */}
                     <p className="text-sm text-gray-600">
-                        Published on {date}
+                        {language === "en" ? "Published on" : "Julkaistu"} {date}
                     </p>
                 </div>
             </div>

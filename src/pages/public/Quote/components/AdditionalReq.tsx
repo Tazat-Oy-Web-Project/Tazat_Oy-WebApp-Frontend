@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorCleaning:boolean, windowCleaning:boolean, sanitization:boolean, wasteRemoval:boolean, carpetCleaning:boolean, kitchenCleaning:boolean, toiletCleaning:boolean) => void }){
+    const { language } = useLanguage();
 
     // ---- Additional Requirements (Checkboxes) State Management ---- //
 
@@ -38,13 +40,13 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
     return(
         <>
             <div className="mb-6 border-l-4 border-amber-600 pl-4 mt-10">
-                <h2 className="text-3xl font-bold text-gray-800 mb-1">Additional Requirements</h2>
-                <p className="text-sm text-gray-600">Select any additional services you need</p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-1">{language === "en" ? "Additional Requirements" : "Lisävaatimukset"}</h2>
+                <p className="text-sm text-gray-600">{language === "en" ? "Select any additional services you need" : "Valitse tarvitsemasi lisäpalvelut"}</p>
             </div>
 
             <div className="w-full mb-6">
                 <label className="text-base font-semibold text-gray-700 mb-3 block">
-                    Select Services <span className="text-red-500">*</span>
+                    {language === "en" ? "Select Services" : "Valitse Palvelut"} <span className="text-red-500">*</span>
                 </label>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -63,8 +65,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Floor Cleaning & Mopping</span>
-                            <span className="text-xs text-gray-600">Deep floor cleaning service</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Floor Cleaning & Mopping" : "Lattioiden Puhdistus"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Deep floor cleaning service" : "Syväpuhdistuspalvelu lattioille"}</span>
                         </div>
                     </label>
 
@@ -82,8 +84,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Window Cleaning</span>
-                            <span className="text-xs text-gray-600">Interior and exterior windows</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Window Cleaning" : "Ikkunoiden Pesu"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Interior and exterior windows" : "Sisä- ja ulkoikkunat"}</span>
                         </div>
                     </label>
 
@@ -101,8 +103,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Sanitization</span>
-                            <span className="text-xs text-gray-600">High-touch surface disinfection</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Sanitization" : "Desinfiointi"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "High-touch surface disinfection" : "Kosketuspintojen desinfiointi"}</span>
                         </div>
                     </label>
 
@@ -120,8 +122,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Waste Removal</span>
-                            <span className="text-xs text-gray-600">Trash collection and disposal</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Waste Removal" : "Jätteiden Poisto"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Trash collection and disposal" : "Roskien keräys ja hävitys"}</span>
                         </div>
                     </label>
 
@@ -139,8 +141,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Carpet Cleaning</span>
-                            <span className="text-xs text-gray-600">Deep carpet and upholstery</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Carpet Cleaning" : "Mattojen Puhdistus"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Deep carpet and upholstery" : "Mattojen ja verhoilun syväpuhdistus"}</span>
                         </div>
                     </label>
 
@@ -158,8 +160,8 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Kitchen/Cafeteria Cleaning</span>
-                            <span className="text-xs text-gray-600">Food prep areas and appliances</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Kitchen/Cafeteria Cleaning" : "Keittiö/Ruokala Siivous"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Food prep areas and appliances" : "Ruoanvalmistustilat ja laitteet"}</span>
                         </div>
                     </label>
 
@@ -177,14 +179,14 @@ function AdditionalReq({ additionalReqPrinter }: { additionalReqPrinter: (floorC
                             className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 focus:ring-2 mt-0.5"
                         />
                         <div className="ml-3">
-                            <span className="text-base font-semibold text-gray-800 block">Toilet/Bathroom Cleaning</span>
-                            <span className="text-xs text-gray-600">Restroom sanitization</span>
+                            <span className="text-base font-semibold text-gray-800 block">{language === "en" ? "Toilet/Bathroom Cleaning" : "WC/Kylpyhuone Siivous"}</span>
+                            <span className="text-xs text-gray-600">{language === "en" ? "Restroom sanitization" : "Saniteettitilojen desinfiointi"}</span>
                         </div>
                     </label>
                         
                 </div>
 
-                <p className="text-xs text-gray-500 mt-4">You can select multiple services as needed</p>
+                <p className="text-xs text-gray-500 mt-4">{language === "en" ? "You can select multiple services as needed" : "Voit valita useita palveluita tarpeen mukaan"}</p>
 
             </div>
         

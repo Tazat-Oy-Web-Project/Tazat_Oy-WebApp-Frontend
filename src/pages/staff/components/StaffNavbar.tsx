@@ -54,7 +54,7 @@ function StaffNavbar({navItemName}: {navItemName: string}) {
                         </div>
                     </Link>
                     <Link to="/staff/">
-                        <div className="bg-gradient-to-r from-gray-600 to-orange-500 bg-clip-text text-transparent transition-colors duration-500 hover:from-red-600 hover:to-amber-200 hover:cursor-pointer">
+                        <div className="bg-linear-to-r from-gray-600 to-orange-500 bg-clip-text text-transparent transition-colors duration-500 hover:from-red-600 hover:to-amber-200 hover:cursor-pointer">
                             <h1 className="md:text-[20px] lg:text-[23px] font-bold tracking-tight ">Tazat Oy</h1>
                         </div>      
                     </Link>  
@@ -71,7 +71,7 @@ function StaffNavbar({navItemName}: {navItemName: string}) {
                 </div>
 
                 {/*Nav Elements*/}
-                <div className="flex flex-row flex-[8] justify-center h-full mx-auto">
+                <div className="flex flex-row flex-8 justify-center h-full mx-auto">
                     <div className="hidden md:flex justify-center items-center md:px-0 lg:px-10 w-[25%]">
                         <Link to="/staff/">
                             <nav className={`font-bold md:text-lg lg:text-xl font-sans antialiased tracking-tight hover:border-b-3 border-amber-600 hover:cursor-pointer ${navItem === "Dashboard" ? "border-b-3" : ""}`}>

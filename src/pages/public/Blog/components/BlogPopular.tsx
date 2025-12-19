@@ -1,3 +1,5 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 interface PopularPost {
     title: string;
     minutes: number;
@@ -9,12 +11,13 @@ interface BlogPopularProps {
 
 
 function BlogPopular({ popular }: BlogPopularProps) {
+    const { language } = useLanguage();
 
 
     return (
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             {/* Popular Posts Title */}
-            <h3 className="text-sm font-extrabold text-slate-900">Most Popular</h3>
+            <h3 className="text-sm font-extrabold text-slate-900">{language === "en" ? "Most Popular" : "Suosituimmat"}</h3>
             
             {/* Popular Posts List */}
             <div className="mt-3 space-y-3">
@@ -31,7 +34,7 @@ function BlogPopular({ popular }: BlogPopularProps) {
                             <p className="truncate text-sm font-semibold text-slate-900">
                                 {p.title}
                             </p>
-                            <p className="text-xs text-slate-500">{p.minutes} min read</p>
+                            <p className="text-xs text-slate-500">{p.minutes} {language === "en" ? "min read" : "min lukuaika"}</p>
                         </div>
                     </button>
                 ))}

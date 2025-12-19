@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 function BlogArticleTopBar() {
+    const { language } = useLanguage();
 
 
     return (
@@ -25,7 +27,7 @@ function BlogArticleTopBar() {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Back to Blog
+                    {language === "en" ? "Back to Blog" : "Takaisin Blogiin"}
                 </Link>
             </div>
         </header>

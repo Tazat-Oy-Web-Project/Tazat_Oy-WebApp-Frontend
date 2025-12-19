@@ -1,3 +1,5 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 interface Category {
     name: string;
     count: number;
@@ -11,6 +13,7 @@ interface BlogCategoriesProps {
 
 
 function BlogCategories({ categories, selectedCategory, onCategorySelect }: BlogCategoriesProps) {
+    const { language } = useLanguage();
 
 
     // ---- Handle Category Click ---- //
@@ -28,13 +31,13 @@ function BlogCategories({ categories, selectedCategory, onCategorySelect }: Blog
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             {/* Categories Title */}
             <div className="flex items-center justify-between">
-                <h3 className="text-sm font-extrabold text-slate-900">Categories</h3>
+                <h3 className="text-sm font-extrabold text-slate-900">{language === "en" ? "Categories" : "Kategoriat"}</h3>
                 {selectedCategory && (
                     <button 
                         onClick={() => onCategorySelect(null)}
                         className="text-xs text-amber-600 hover:text-amber-700 font-medium"
                     >
-                        Clear
+                        {language === "en" ? "Clear" : "Tyhjennä"}
                     </button>
                 )}
             </div>

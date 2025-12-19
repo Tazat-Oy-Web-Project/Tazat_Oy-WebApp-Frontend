@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from "../../../context/LanguageContext";
 
 function BlogCTA() {
     const navigate = useNavigate();
+    const { language } = useLanguage();
 
     const handleBookNow = () => {
         navigate('/quote');
@@ -19,17 +21,17 @@ function BlogCTA() {
                         </svg>
                     </div>
                     {/* Title */}
-                    <h3 className="text-sm font-extrabold">Need a Hand?</h3>
+                    <h3 className="text-sm font-extrabold">{language === "en" ? "Need a Hand?" : "Tarvitsetko Apua?"}</h3>
                 </div>
 
                 {/* Description */}
                 <p className="mt-3 text-sm text-white/85">
-                    Book a professional cleaning service today and get 20% off the first visit.
+                    {language === "en" ? "Book a professional cleaning service today and get 20% off the first visit." : "Varaa ammattimainen siivouspalvelu tänään ja saat 20% alennuksen ensimmäisestä käynnistä."}
                 </p>
 
                 {/* Book Now Button */}
                 <button onClick={handleBookNow} className="mt-4 w-full rounded-xl bg-white px-4 py-2 text-sm font-semibold text-amber-700 hover:bg-white/95  hover:cursor-pointer">
-                    Book Now
+                    {language === "en" ? "Book Now" : "Varaa Nyt"}
                 </button>
             </div>
         </div>

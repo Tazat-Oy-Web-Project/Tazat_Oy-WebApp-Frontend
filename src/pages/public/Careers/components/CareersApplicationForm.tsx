@@ -1,3 +1,5 @@
+import { useLanguage } from "../../../context/LanguageContext";
+
 interface CareersApplicationFormProps {
     form: {
         fullName: string;
@@ -15,6 +17,7 @@ interface CareersApplicationFormProps {
 
 
 function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplicationFormProps) {
+    const { language } = useLanguage();
 
 
     return (
@@ -23,9 +26,11 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                 Section Header 
             --------------------------------------------------------------------------------------- **/}
             <div className="mb-6">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Apply Now</h2>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">{language === "en" ? "Apply Now" : "Hae Nyt"}</h2>
                 <p className="mt-2 text-base text-slate-600">
-                    Fill the form and a reply will be sent as soon as possible.
+                    {language === "en" 
+                        ? "Fill the form and a reply will be sent as soon as possible."
+                        : "Täytä lomake ja vastaamme mahdollisimman pian."}
                 </p>
             </div>
 
@@ -39,7 +44,7 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div>
                         <label className="text-sm font-semibold text-slate-700">
-                            Full Name <span className="text-red-500">*</span>
+                            {language === "en" ? "Full Name" : "Koko Nimi"} <span className="text-red-500">*</span>
                         </label>
                         <input
                             name="fullName"
@@ -47,13 +52,13 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                             onChange={onChange}
                             required
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                            placeholder="e.g., Ryan Wickramaratne"
+                            placeholder={language === "en" ? "e.g., Ryan Wickramaratne" : "esim. Matti Meikäläinen"}
                         />
                     </div>
 
                     <div>
                         <label className="text-sm font-semibold text-slate-700">
-                            Email <span className="text-red-500">*</span>
+                            {language === "en" ? "Email" : "Sähköposti"} <span className="text-red-500">*</span>
                         </label>
                         <input
                             name="email"
@@ -62,12 +67,12 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                             onChange={onChange}
                             required
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                            placeholder="name@email.com"
+                            placeholder={language === "en" ? "name@email.com" : "nimi@sahkoposti.fi"}
                         />
                     </div>
 
                     <div>
-                        <label className="text-sm font-semibold text-slate-700">Phone</label>
+                        <label className="text-sm font-semibold text-slate-700">{language === "en" ? "Phone" : "Puhelin"}</label>
                         <input
                             name="phone"
                             value={form.phone}
@@ -78,19 +83,19 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                     </div>
 
                     <div>
-                        <label className="text-sm font-semibold text-slate-700">City</label>
+                        <label className="text-sm font-semibold text-slate-700">{language === "en" ? "City" : "Kaupunki"}</label>
                         <input
                             name="city"
                             value={form.city}
                             onChange={onChange}
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                            placeholder="e.g., Oulu"
+                            placeholder={language === "en" ? "e.g., Oulu" : "esim. Oulu"}
                         />
                     </div>
 
                     <div>
                         <label className="text-sm font-semibold text-slate-700">
-                            Interested Role <span className="text-red-500">*</span>
+                            {language === "en" ? "Interested Role" : "Kiinnostava Tehtävä"} <span className="text-red-500">*</span>
                         </label>
                         <select
                             name="role"
@@ -99,30 +104,30 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                             required
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                         >
-                            <option>Cleaner</option>
-                            <option>Team Lead (Cleaning)</option>
-                            <option>Office Support</option>
-                            <option>Other</option>
+                            <option>{language === "en" ? "Cleaner" : "Siivooja"}</option>
+                            <option>{language === "en" ? "Team Lead (Cleaning)" : "Tiiminvetäjä (Siivous)"}</option>
+                            <option>{language === "en" ? "Office Support" : "Toimistotuki"}</option>
+                            <option>{language === "en" ? "Other" : "Muu"}</option>
                         </select>
                     </div>
 
                     <div>
                         <label className="text-sm font-semibold text-slate-700">
-                            Availability
+                            {language === "en" ? "Availability" : "Saatavuus"}
                         </label>
                         <input
                             name="availability"
                             value={form.availability}
                             onChange={onChange}
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                            placeholder="e.g., Weekdays 9–15 / Weekends / Evenings"
+                            placeholder={language === "en" ? "e.g., Weekdays 9–15 / Weekends / Evenings" : "esim. Arkipäivisin 9–15 / Viikonloput / Illat"}
                         />
                     </div>
                 </div>
 
                 <div className="mt-5">
                     <label className="text-sm font-semibold text-slate-700">
-                        Message <span className="text-red-500">*</span>
+                        {language === "en" ? "Message" : "Viesti"} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                         name="message"
@@ -131,7 +136,9 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         required
                         rows={5}
                         className="mt-2 w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                        placeholder="Short intro + any experience + why this role is interesting..."
+                        placeholder={language === "en" 
+                            ? "Short intro + any experience + why this role is interesting..."
+                            : "Lyhyt esittely + mahdollinen kokemus + miksi tämä tehtävä kiinnostaa..."}
                     />
                 </div>
 
@@ -146,19 +153,23 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         required
                     />
                     <label htmlFor="consent" className="text-sm text-slate-600">
-                        I consent to be contacted regarding this application. <span className="text-red-500">*</span>
+                        {language === "en" 
+                            ? "I consent to be contacted regarding this application."
+                            : "Suostun yhteydenottoon tämän hakemuksen osalta."} <span className="text-red-500">*</span>
                     </label>
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-xs text-slate-500">
-                        By submitting, the information is used only for recruitment purposes.
+                        {language === "en"
+                            ? "By submitting, the information is used only for recruitment purposes."
+                            : "Lähettämällä tiedot käytetään vain rekrytointitarkoituksiin."}
                     </p>
                     <button
                         type="submit"
                         className="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-orange-500 to-yellow-500 px-8 py-3 text-sm font-bold text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                     >
-                        Submit Application
+                        {language === "en" ? "Submit Application" : "Lähetä Hakemus"}
                         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />

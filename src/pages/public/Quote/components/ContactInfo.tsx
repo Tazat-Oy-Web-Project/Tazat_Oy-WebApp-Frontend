@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useLanguage } from "../../../context/LanguageContext";
 
 
 function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string, company:string, email:string, phone:string) => void }){
+    const { language } = useLanguage();
     
     // ---- Contact Information State Management ---- //
 
@@ -19,8 +21,8 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
     return(
         <>
             <div className="mb-6 border-l-4 border-amber-600 pl-4">
-                <h2 className="text-3xl font-bold text-gray-800 mb-1">Contact Information</h2>
-                <p className="text-sm text-gray-600">Please provide your contact details so we can get back to you</p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-1">{language === "en" ? "Contact Information" : "Yhteystiedot"}</h2>
+                <p className="text-sm text-gray-600">{language === "en" ? "Please provide your contact details so we can get back to you" : "Anna yhteystietosi, jotta voimme ottaa sinuun yhteyttä"}</p>
             </div>
             
             {/* Row 1 */}
@@ -29,7 +31,7 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                 {/* Name Input Field */}
                 <div className="flex flex-col">
                     <label className="text-base font-semibold text-gray-700 mb-2">
-                        Full Name <span className="text-red-500">*</span>
+                        {language === "en" ? "Full Name" : "Koko Nimi"} <span className="text-red-500">*</span>
                     </label>
                     <input
                         className="border-2 border-gray-300 rounded-lg w-full px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition duration-200"
@@ -38,16 +40,16 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         onBlur={handleBlur}
-                        placeholder="Ryan Wick"
+                        placeholder={language === "en" ? "Ryan Wick" : "Matti Meikäläinen"}
                         required
                     />
-                    <span className="text-xs text-gray-500 mt-1">Enter your first and last name</span>
+                    <span className="text-xs text-gray-500 mt-1">{language === "en" ? "Enter your first and last name" : "Syötä etu- ja sukunimesi"}</span>
                 </div>
 
                 {/* Company Name Input Field */}
                 <div className="flex flex-col">
                     <label className="text-base font-semibold text-gray-700 mb-2">
-                        Company Name <span className="text-gray-400 text-sm font-normal">(Optional)</span>
+                        {language === "en" ? "Company Name" : "Yrityksen Nimi"} <span className="text-gray-400 text-sm font-normal">({language === "en" ? "Optional" : "Valinnainen"})</span>
                     </label>
                     <input
                         className="border-2 border-gray-300 rounded-lg w-full px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition duration-200"
@@ -56,9 +58,9 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                         onBlur={handleBlur}
-                        placeholder="ABC Corporation"
+                        placeholder={language === "en" ? "ABC Corporation" : "ABC Oy"}
                     />
-                    <span className="text-xs text-gray-500 mt-1">Leave blank if individual request</span>
+                    <span className="text-xs text-gray-500 mt-1">{language === "en" ? "Leave blank if individual request" : "Jätä tyhjäksi jos yksityishenkilö"}</span>
                 </div>                    
                 
             </div>
@@ -69,7 +71,7 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                 {/* Email Input Field */}
                 <div className="flex flex-col">
                     <label className="text-base font-semibold text-gray-700 mb-2">
-                        Email Address <span className="text-red-500">*</span>
+                        {language === "en" ? "Email Address" : "Sähköpostiosoite"} <span className="text-red-500">*</span>
                     </label>
                     <input
                         className="border-2 border-gray-300 rounded-lg w-full px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition duration-200"
@@ -78,16 +80,16 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         onBlur={handleBlur}
-                        placeholder="ryan.wick@example.com"
+                        placeholder={language === "en" ? "ryan.wick@example.com" : "matti@esimerkki.fi"}
                         required
                     />
-                    <span className="text-xs text-gray-500 mt-1">We'll send the quote to this email</span>
+                    <span className="text-xs text-gray-500 mt-1">{language === "en" ? "We'll send the quote to this email" : "Lähetämme tarjouksen tähän sähköpostiin"}</span>
                 </div>
 
                 {/* Phone Input Field */}
                 <div className="flex flex-col">
                     <label className="text-base font-semibold text-gray-700 mb-2">
-                        Phone Number <span className="text-red-500">*</span>
+                        {language === "en" ? "Phone Number" : "Puhelinnumero"} <span className="text-red-500">*</span>
                     </label>
                     <input
                         className="border-2 border-gray-300 rounded-lg w-full px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition duration-200"
@@ -99,7 +101,7 @@ function ContactInfo({ contactInfoPrinter }: { contactInfoPrinter: (name:string,
                         placeholder="+358 40 123 4567"
                         required
                     />
-                    <span className="text-xs text-gray-500 mt-1">Include country code if outside Finland</span>
+                    <span className="text-xs text-gray-500 mt-1">{language === "en" ? "Include country code if outside Finland" : "Lisää maatunnus jos ulkomailla"}</span>
                 </div>                    
                 
             </div>

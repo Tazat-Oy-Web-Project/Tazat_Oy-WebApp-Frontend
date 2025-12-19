@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import { articles } from "../Blog/articlesData";
 import BlogArticleHeader from "./components/BlogArticleHeader";
 import BlogArticleTopBar from "./components/BlogArticleTopBar";
+import { useLanguage } from "../../context/LanguageContext";
 
 
 function BlogArticleDetailPage() {
+    const { language } = useLanguage();
 
     // ---- Get Article ID from URL ---- //
     const { id } = useParams();
@@ -62,17 +64,17 @@ function BlogArticleDetailPage() {
                             {/* Placeholder for full content */}
                             <div className="mt-6 pt-6 border-t border-slate-200">
                                 <p className="text-slate-600">
-                                    Full article content will be displayed here...
+                                    {language === "en" ? "Full article content will be displayed here..." : "Koko artikkelin sisältö näytetään tässä..."}
                                 </p>
                             </div>
                         </div>
                     ) : (
                         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
                             <h1 className="text-3xl font-bold text-slate-900 mb-4">
-                                Article Not Found
+                                {language === "en" ? "Article Not Found" : "Artikkelia Ei Löydy"}
                             </h1>
                             <p className="text-slate-600">
-                                The article you're looking for doesn't exist.
+                                {language === "en" ? "The article you're looking for doesn't exist." : "Etsimääsi artikkelia ei ole olemassa."}
                             </p>
                         </div>
                     )}
