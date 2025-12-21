@@ -16,6 +16,19 @@ import StaffDashboard from './pages/staff/StaffDashboard'
 import StaffNews from './pages/staff/StaffNews'
 import StaffTraining from './pages/staff/StaffTraining'
 import StaffProfile from './pages/staff/StaffProfile'
+// Importing admin pages
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminPosts from './pages/admin/AdminPosts'
+import AdminPostEditor from './pages/admin/AdminPostEditor'
+import AdminNews from './pages/admin/AdminNews'
+import AdminAnnouncements from './pages/admin/AdminAnnouncements'
+import AdminJobs from './pages/admin/AdminJobs'
+import AdminJobEditor from './pages/admin/AdminJobEditor'
+import AdminApplications from './pages/admin/AdminApplications'
+import AdminQuotes from './pages/admin/AdminQuotes'
+import AdminTraining from './pages/admin/AdminTraining'
+import AdminUsers from './pages/admin/AdminUsers'
+import AdminProfile from './pages/admin/AdminProfile'
 
 
 function App() {
@@ -39,6 +52,23 @@ function App() {
         <Route path="/staff/news" element={<StaffNews />} />
         <Route path="/staff/training" element={<StaffTraining />} />
         <Route path="/staff/profile" element={<StaffProfile />} />
+
+        {/* Admin routes here (now under /staff/admin/) */}
+        <Route path="/staff/admin" element={<AdminDashboard />} />
+        <Route path="/staff/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/staff/admin/posts" element={<AdminPosts />} />
+        <Route path="/staff/admin/posts/new" element={<AdminPostEditor />} />
+        <Route path="/staff/admin/posts/:id" element={<AdminPostEditor />} />
+        <Route path="/staff/admin/news" element={<AdminNews />} />
+        <Route path="/staff/admin/announcements" element={<AdminAnnouncements />} />
+        <Route path="/staff/admin/jobs" element={<AdminJobs />} />
+        <Route path="/staff/admin/jobs/new" element={<AdminJobEditor />} />
+        <Route path="/staff/admin/jobs/:id" element={<AdminJobEditor />} />
+        <Route path="/staff/admin/applications" element={<AdminApplications />} />
+        <Route path="/staff/admin/quotes" element={<AdminQuotes />} />
+        <Route path="/staff/admin/training" element={<AdminTraining />} />
+        <Route path="/staff/admin/users" element={<AdminUsers />} />
+        <Route path="/staff/admin/profile" element={<AdminProfile />} />
 
       </Routes>
     </LanguageProvider>
