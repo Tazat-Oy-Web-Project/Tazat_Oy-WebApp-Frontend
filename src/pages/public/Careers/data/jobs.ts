@@ -1,0 +1,52 @@
+export const jobsList = [
+    {
+        id: 1,
+        title : "Office Cleaner",
+        description: ["Flexible hours", "Competitive pay", "Friendly work environment"],
+        featuredImageFileId: "https://plus.unsplash.com/premium_photo-1663011218145-c1d0c3ba3542?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",  //unplash image url
+        location: "Helsinki, Finland",
+        type: "Part-time",
+        status: "Open",
+        createdAt: "2024-01-15",
+    },
+    {
+        id: 2,
+        title : "Warehouse Cleaner",
+        description: ["Night shifts available", "Health benefits", "Team-oriented"],
+        featuredImageFileId: "https://images.unsplash.com/photo-1627905646269-7f034dcc5738?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+        location: "Espoo, Finland",
+        type: "Full-time",
+        status: "Open",
+        createdAt: "2024-02-10",
+    },
+    {
+        id: 3,
+        title : "Industrial Cleaner",
+        description: ["Specialized training provided", "Safety-focused", "Growth opportunities"],
+        featuredImageFileId: "https://plus.unsplash.com/premium_photo-1663011218145-c1d0c3ba3542?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        location: "Tampere, Finland",
+        type: "Contract",
+        status: "Closed",
+        createdAt: "2023-12-05",
+    },
+    {
+        id: 4,
+        title : "Residential Cleaner",
+        description: ["Flexible scheduling", "Competitive wages", "Supportive team"],
+        featuredImageFileId: "https://plus.unsplash.com/premium_photo-1663011218145-c1d0c3ba3542?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        location: "Vantaa, Finland",
+        type: "Part-time",
+        status: "Open",
+        createdAt: "2024-03-20",
+    },
+    {
+        id: 5,
+        title : "Commercial Cleaner",
+        description: ["Day and night shifts", "Health insurance", "Career advancement"],
+        featuredImageFileId: "https://images.unsplash.com/photo-1627905646269-7f034dcc5738?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        location: "Oulu, Finland",
+        type: "Full-time",
+        status: "Open",
+        createdAt: "2024-04-12",
+    }
+];

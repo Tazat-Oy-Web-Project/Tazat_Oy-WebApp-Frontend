@@ -1,22 +1,8 @@
 import { useLanguage } from "../../../context/LanguageContext";
 
-interface CareersApplicationFormProps {
-    form: {
-        fullName: string;
-        email: string;
-        phone: string;
-        city: string;
-        role: string;
-        availability: string;
-        message: string;
-        consent: boolean;
-    };
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}
 
-
-function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplicationFormProps) {
+function CareersApplicationForm({ formObject, onFullNameChange, onEmailChange, onPhoneChange, onCityChange, onAvailabilityChange, onMessageChange, onConsentChange, onSubmit, selectedJobId }: any) {
+    
     const { language } = useLanguage();
 
 
@@ -48,8 +34,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         </label>
                         <input
                             name="fullName"
-                            value={form.fullName}
-                            onChange={onChange}
+                            value={formObject.fullName}
+                            onChange={onFullNameChange}
                             required
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                             placeholder={language === "en" ? "e.g., Ryan Wickramaratne" : "esim. Matti Meikäläinen"}
@@ -63,8 +49,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         <input
                             name="email"
                             type="email"
-                            value={form.email}
-                            onChange={onChange}
+                            value={formObject.email}
+                            onChange={onEmailChange}
                             required
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                             placeholder={language === "en" ? "name@email.com" : "nimi@sahkoposti.fi"}
@@ -75,8 +61,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         <label className="text-sm font-semibold text-slate-700">{language === "en" ? "Phone" : "Puhelin"}</label>
                         <input
                             name="phone"
-                            value={form.phone}
-                            onChange={onChange}
+                            value={formObject.phone}
+                            onChange={onPhoneChange}
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                             placeholder="+358 ..."
                         />
@@ -86,29 +72,25 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         <label className="text-sm font-semibold text-slate-700">{language === "en" ? "City" : "Kaupunki"}</label>
                         <input
                             name="city"
-                            value={form.city}
-                            onChange={onChange}
+                            value={formObject.city}
+                            onChange={onCityChange}
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                             placeholder={language === "en" ? "e.g., Oulu" : "esim. Oulu"}
                         />
                     </div>
-
+                    {/* Interested Role part should be changed. the field should be locked and when somebody clicks on apply this job from available jobs, the job id automatically pasted here*/}
                     <div>
                         <label className="text-sm font-semibold text-slate-700">
                             {language === "en" ? "Interested Role" : "Kiinnostava Tehtävä"} <span className="text-red-500">*</span>
                         </label>
-                        <select
+                        <input
                             name="role"
-                            value={form.role}
-                            onChange={onChange}
+                            value={`${formObject.role.title} (${formObject.role.id})`}
                             required
-                            className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
-                        >
-                            <option>{language === "en" ? "Cleaner" : "Siivooja"}</option>
-                            <option>{language === "en" ? "Team Lead (Cleaning)" : "Tiiminvetäjä (Siivous)"}</option>
-                            <option>{language === "en" ? "Office Support" : "Toimistotuki"}</option>
-                            <option>{language === "en" ? "Other" : "Muu"}</option>
-                        </select>
+                            readOnly
+                            className="mt-2 w-full rounded-xl border border-slate-300 bg-slate-100 px-4 py-3 text-sm text-slate-600 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
+                            placeholder={language === "en" ? "Select a job above to auto-fill" : "Valitse tehtava ylla tayttaa automaattisesti"}
+                        />
                     </div>
 
                     <div>
@@ -117,8 +99,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         </label>
                         <input
                             name="availability"
-                            value={form.availability}
-                            onChange={onChange}
+                            value={formObject.availability}
+                            onChange={onAvailabilityChange}
                             className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
                             placeholder={language === "en" ? "e.g., Weekdays 9–15 / Weekends / Evenings" : "esim. Arkipäivisin 9–15 / Viikonloput / Illat"}
                         />
@@ -131,8 +113,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                     </label>
                     <textarea
                         name="message"
-                        value={form.message}
-                        onChange={onChange}
+                        value={formObject.message}
+                        onChange={onMessageChange}
                         required
                         rows={5}
                         className="mt-2 w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200"
@@ -147,8 +129,8 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
                         id="consent"
                         name="consent"
                         type="checkbox"
-                        checked={form.consent}
-                        onChange={onChange}
+                        checked={formObject.consent}
+                        onChange={onConsentChange}
                         className="mt-1 h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
                         required
                     />
@@ -182,3 +164,6 @@ function CareersApplicationForm({ form, onChange, onSubmit }: CareersApplication
 }
 
 export default CareersApplicationForm;
+
+
+

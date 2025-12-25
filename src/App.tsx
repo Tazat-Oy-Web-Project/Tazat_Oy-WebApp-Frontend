@@ -10,6 +10,7 @@ import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
 import Contact from './pages/public/Contact/Contact'
 import Careers from './pages/public/Careers/Careers'
+import CareersJobs from './pages/public/Careers/CareersJobs'
 import Quote from './pages/public/Quote/Quote'
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'
@@ -29,6 +30,7 @@ import AdminQuotes from './pages/admin/AdminQuotes'
 import AdminTraining from './pages/admin/AdminTraining'
 import AdminUsers from './pages/admin/AdminUsers'
 import AdminProfile from './pages/admin/AdminProfile'
+import AdminContacts from './pages/admin/AdminContacts'
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/careers/jobs" element={<CareersJobs />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogArticleDetailPage />} />
         <Route path="/contact" element={<Contact />} />
@@ -66,6 +69,7 @@ function App() {
         <Route path="/staff/admin/jobs/:id" element={<AdminJobEditor />} />
         <Route path="/staff/admin/applications" element={<AdminApplications />} />
         <Route path="/staff/admin/quotes" element={<AdminQuotes />} />
+        <Route path="/staff/admin/contacts" element={<AdminContacts />} />
         <Route path="/staff/admin/training" element={<AdminTraining />} />
         <Route path="/staff/admin/users" element={<AdminUsers />} />
         <Route path="/staff/admin/profile" element={<AdminProfile />} />

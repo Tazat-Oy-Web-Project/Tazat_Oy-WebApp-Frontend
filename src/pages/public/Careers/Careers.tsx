@@ -5,6 +5,7 @@ import CareersHero from "./components/CareersHero";
 import CareersWhyWorkWithUs from "./components/CareersWhyWorkWithUs";
 import CareersOpenRoles from "./components/CareersOpenRoles";
 import CareersApplicationForm from "./components/CareersApplicationForm";
+import { jobsList } from "./data/jobs";
 
 
 function Careers() {
@@ -16,29 +17,32 @@ function Careers() {
     email: "",
     phone: "",
     city: "",
-    role: "Cleaner",
+    role: { title: "", id: "" },
     availability: "",
     message: "",
     consent: false,
   });
 
-
-  // ---- Handle Form Input Changes ---- //
-  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-    setForm((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
-  };
+  const onFullNameChange = (e:any) => setForm(prev => ({ ...prev, fullName: e.target.value }));
+  const onEmailChange = (e:any) => setForm(prev => ({ ...prev, email: e.target.value }));
+  const onPhoneChange = (e:any) => setForm(prev => ({ ...prev, phone: e.target.value }));
+  const onCityChange = (e:any) => setForm(prev => ({ ...prev, city: e.target.value }));
+  const onAvailabilityChange = (e:any) => setForm(prev => ({ ...prev, availability: e.target.value }));
+  const onMessageChange = (e:any) => setForm(prev => ({ ...prev, message: e.target.value }));
+  const onConsentChange = (e:any) => setForm(prev => ({ ...prev, consent: e.target.checked }));
 
 
   // ---- Handle Form Submission ---- //
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (event: any) => {
+    event.preventDefault();
     // UI only: connect to backend/email service later
     console.log("Application form:", form);
     alert("Thanks! Application submitted (demo).");
   };
 
+  const onApplyRole = (jobTitle: any, jobId: any) => {
+    setForm((prev) => ({ ...prev, role: { title: jobTitle, id: jobId } }));
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -64,15 +68,24 @@ function Careers() {
         {/** --------------------------------------------------------------------------------------- 
             3.2 Open Roles Section 
         --------------------------------------------------------------------------------------- **/}
-        <CareersOpenRoles />
+        <CareersOpenRoles
+          jobs={jobsList}
+          onApplyRole={onApplyRole}
+        />
 
         {/** --------------------------------------------------------------------------------------- 
             3.3 Application Form Section 
         --------------------------------------------------------------------------------------- **/}
         <CareersApplicationForm 
-          form={form} 
-          onChange={onChange} 
-          onSubmit={onSubmit} 
+          formObject={form} 
+          onFullNameChange={onFullNameChange}
+          onEmailChange={onEmailChange}
+          onPhoneChange={onPhoneChange}
+          onCityChange={onCityChange}
+          onAvailabilityChange={onAvailabilityChange}
+          onMessageChange={onMessageChange}
+          onConsentChange={onConsentChange}
+          onSubmit={onSubmit}
         />
       </main>
 

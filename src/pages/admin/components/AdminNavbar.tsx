@@ -20,6 +20,7 @@ export default function AdminNavbar() {
         if (path.includes("jobs")) return "Job Postings";
         if (path.includes("applications")) return "Applications";
         if (path.includes("quotes")) return "Quotes";
+        if (path.includes("contacts")) return "Contact Requests";
         if (path.includes("training")) return "Training";
         if (path.includes("users")) return "Users";
         if (path.includes("profile")) return "Profile";
