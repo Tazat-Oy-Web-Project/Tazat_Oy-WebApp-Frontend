@@ -4,7 +4,7 @@ export default function AdminNavbar() {
 
     // useLocation() gives information about the current URL extracted from App.tsx routes when user navigates
     const location = useLocation();
-    console.log("All admin navbar location info:", location);
+    //console.log("All admin navbar location info:", location);
 
     // Function to determine Page Title on navbar based on current route
     const getPageTitle = () => {

@@ -1,7 +1,7 @@
 import { useLanguage } from "../../../context/LanguageContext";
 
 
-function CareersApplicationForm({ formObject, onFullNameChange, onEmailChange, onPhoneChange, onCityChange, onAvailabilityChange, onMessageChange, onConsentChange, onSubmit, selectedJobId }: any) {
+function CareersApplicationForm({ formObject, onFullNameChange, onEmailChange, onPhoneChange, onCityChange, onAvailabilityChange, onMessageChange, onConsentChange, onSubmit }: any) {
     
     const { language } = useLanguage();
 

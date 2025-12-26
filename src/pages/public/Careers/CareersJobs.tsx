@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { jobsList } from "./data/jobs";
 import CareersApplicationForm from "./components/CareersApplicationForm";
 
 
 export default function CareersJobs() {
-
-    const [selectedJobId, setSelectedJobId] = useState(null);
-
-
 
     // ---- Form State Management ---- //
     const [form, setForm] = useState({
@@ -84,7 +80,6 @@ export default function CareersJobs() {
                 onMessageChange={onMessageChange}
                 onConsentChange={onConsentChange}
                 onSubmit={onSubmit} 
-                selectedJobId={selectedJobId}
             />
 
         </div>

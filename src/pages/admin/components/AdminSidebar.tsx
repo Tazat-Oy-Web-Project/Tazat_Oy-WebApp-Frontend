@@ -1,27 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 
-interface NavItem {
-    label: string;              // Text shown in sidebar (e.g. "Dashboard")
-    path: string;               // Route path (e.g. "/admin/dashboard")
-    icon: React.ReactNode;      // SVG icon JSX
-}
-
-interface NavGroup {
-    section: string;            // Section title (e.g. "Content", "Careers")
-    items: NavItem[];           // Links inside that section
-}
-
 export default function AdminSidebar() {
 
     // useLocation() gives information about the current URL extracted from App.tsx routes when user navigates
     const location = useLocation(); 
-    console.log("All admin sidebar location info:", location);
+    //console.log("All admin sidebar location info:", location);
 
     
     // Define navigation groups and their items to use in JSX below
     // This Array has 5 Objects representing 5 sections in the sidebar: Overview, Content, Careers, Requests, Staff
-    // ✅ This design is powerful because: To add a new sidebar link, just add an item here!
-    const navGroups: NavGroup[] = [
+    // This design is powerful because: To add a new sidebar link, just add an item here!
+    const navGroups = [
         {
             section: "Overview",
             items: [
