@@ -26,6 +26,7 @@ import AdminNews from './pages/admin/AdminNews'
 import AdminAnnouncements from './pages/admin/AdminAnnouncements'
 import AdminJobs from './pages/admin/Careers-Section/AdminJobs/AdminJobs'
 import AdminJobEditor from './pages/admin/Careers-Section/AdminJobEditor/AdminJobEditor'
+import AdminJobDetails from './pages/admin/Careers-Section/AdminJobDetails'
 import AdminApplications from './pages/admin/AdminApplications'
 import AdminQuotes from './pages/admin/AdminQuotes'
 import AdminTraining from './pages/admin/AdminTraining'
@@ -69,6 +70,7 @@ function App() {
         <Route path="/staff/admin/jobs" element={<AdminJobs />} />
         <Route path="/staff/admin/jobs/new" element={<AdminJobEditor />} />
         <Route path="/staff/admin/jobs/:id" element={<AdminJobEditor />} />
+        <Route path="/staff/admin/jobs/details/:id" element={<AdminJobDetails />} />
         <Route path="/staff/admin/applications" element={<AdminApplications />} />
         <Route path="/staff/admin/quotes" element={<AdminQuotes />} />
         <Route path="/staff/admin/contacts" element={<AdminContacts />} />
