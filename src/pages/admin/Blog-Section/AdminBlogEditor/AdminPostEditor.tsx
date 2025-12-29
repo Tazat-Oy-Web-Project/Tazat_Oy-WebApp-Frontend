@@ -4,26 +4,28 @@ import AdminFooter from "../../components/AdminFooter";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import featuredImagesDb from "./data/imageDb";
-import postsList from "../data/postsList";
 import { FaNewspaper, FaTag, FaImage, FaArrowLeft, FaCheck } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
 
 export default function AdminPostEditor() {
+
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [postForm, setPostForm] = useState({
-        category : "",
+        categoryId : "",
         title : "",
         content : "",
-        postImage : "img1",
+        featuredImageId : "blog-img-1",
         postImageURL : "",
     })
 
     console.log("Post Form is: ", postForm)
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        
         // Simple validation
-        if (!postForm.category) {
+        if (!postForm.categoryId) {
             alert('Please select a category');
             return;
         }
@@ -36,9 +38,45 @@ export default function AdminPostEditor() {
             return;
         }
 
-        postsList.push(postForm);
-        alert('Post published successfully!');
-        navigate('/staff/admin/posts');
+        setIsSubmitting(true);
+
+        try {
+            fetch('http://localhost:3000/blogPosts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    categoryId: postForm.categoryId,
+                    title: postForm.title,
+                    content: postForm.content,
+                    featuredImageId: postForm.featuredImageId,
+                    postImageURL: postForm.postImageURL,
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to create post');
+                    }
+                    return response.json();
+                })
+                .then(response => {
+                    console.log('Post created:', response);
+                    alert('Post published successfully!');
+                    navigate('/staff/admin/posts');
+                })
+                .catch(error => {
+                    console.error('Error creating post:', error);
+                    alert('Failed to publish post. Please try again.');
+                })
+                .finally(() => {
+                    setIsSubmitting(false);
+                });
+        }
+        catch (error) {
+            console.error('Error during submission:', error);
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -70,8 +108,8 @@ export default function AdminPostEditor() {
                                 <FaTag className="mr-2" /> Category
                             </h2>
                             <select
-                                value={postForm.category}
-                                onChange={(e)=> setPostForm({...postForm, category: e.target.value})}
+                                value={postForm.categoryId}
+                                onChange={(e)=> setPostForm({...postForm, categoryId: e.target.value})}
                                 className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
                             >
                                 <option value="">Select a Category</option>
@@ -122,13 +160,13 @@ export default function AdminPostEditor() {
                                             src={element.url}
                                             alt={`Image ${element.id}`}
                                             className={`w-full h-24 object-cover rounded-lg border-4 cursor-pointer transition-all ${
-                                                postForm.postImage === element.id 
+                                                postForm.featuredImageId === element.id 
                                                     ? 'border-green-500 ring-2 ring-green-300 scale-105' 
                                                     : 'border-slate-300 hover:border-blue-400'
                                             }`}
-                                            onClick={() => setPostForm({...postForm, postImage: element.id, postImageURL: element.url})}
+                                            onClick={() => setPostForm({...postForm, featuredImageId: element.id, postImageURL: element.url})}
                                         />
-                                        {postForm.postImage === element.id && (
+                                        {postForm.featuredImageId === element.id && (
                                             <div className="absolute top-1 right-1 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
                                                 <FaCheck />
                                             </div>
@@ -141,10 +179,15 @@ export default function AdminPostEditor() {
                         {/* =================================================================   SUBMIT BUTTON */}
                         <div className="pt-6 border-t border-slate-200">
                             <button 
-                                className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
+                                className={`w-full py-4 text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center ${
+                                    isSubmitting 
+                                        ? 'bg-gray-400 cursor-not-allowed' 
+                                        : 'bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+                                }`}
                                 onClick={handleSubmit}
+                                disabled={isSubmitting}
                             >
-                                <FaCheck className="mr-2" /> Publish Post
+                                <FaCheck className="mr-2" /> {isSubmitting ? 'Publishing...' : 'Publish Post'}
                             </button>
                         </div>
                     </div>
