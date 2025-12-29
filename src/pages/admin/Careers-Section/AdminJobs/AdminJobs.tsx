@@ -3,7 +3,6 @@ import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import jobsList from "../data/jobsList";
 import { FaPlus, FaSearch, FaTrash, FaMapMarkerAlt } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 
@@ -11,23 +10,63 @@ export default function AdminJobs() {
 
     const navigate = useNavigate();
 
-    const [fetchedJobList, setFetchedJobList] = useState([])
+    const [loading, setLoading] = useState(true)                // Loading state for fetch operation   
+
+    const [fetchedJobList, setFetchedJobList] = useState([])    // Jobs fetched from backend stored here
+    const [allJobs, setAllJobs] = useState([])                  // All jobs for search reset here -> example: when search bar is cleared we can go back to this full list
+
+    
+
+    // ===============  1) When Page Loads, fetch all job postings from backend
 
     useEffect(() => {
-        console.log("jobsList from DB: ", jobsList);
-        setFetchedJobList(jobsList)
-    }, [jobsList]);
 
+        try {
+
+            setLoading(true); 
+
+            fetch('http://localhost:3000/jobPosts')
+
+                .then(response => response.json())
+
+                .then(response => {
+
+                    console.log("Fetched Jobs: ", response);
+
+                    setAllJobs(response);
+                    setFetchedJobList(response);
+                });        
+
+                
+            
+        } 
+        
+        catch (error) {
+            console.error('Error fetching jobs:', error);
+            alert('Failed to load jobs');
+
+        } 
+        
+        finally {
+            setLoading(false);
+        }
+
+    }, []);
+
+
+
+
+    // ===============  2) Search Functionality
 
     const handleSearch = (event: any) => {
         const searchValue = event.target.value.toLowerCase();
 
         if (!searchValue) {
-            setFetchedJobList(jobsList);
+            setFetchedJobList(allJobs);
             return;
         }
 
-        const filtered = jobsList.filter((job: any) => 
+        const filtered = allJobs.filter((job: any) => 
             job.jobTitle?.toLowerCase().includes(searchValue) || 
             job.jobLocation?.toLowerCase().includes(searchValue) ||
             job.jobDescription?.some((desc: any) => desc?.toLowerCase().includes(searchValue))
@@ -37,24 +76,43 @@ export default function AdminJobs() {
     }
 
 
-    const handleDeleteJob = (jobData: any) => {
-        if (!jobData || !jobData.jobTitle) {
+    // ===============  3) Delete Job Functionality
+
+    const handleDeleteJob = async (jobId: any) => {
+        if (!jobId) {
             alert('Invalid job data');
             return;
         }
 
-        if (!window.confirm(`Delete "${jobData.jobTitle}"?`)) {
+        if (!window.confirm(`Delete job with ID "${jobId}"?`)) {
             return;
         }
 
-        const jobIndex = jobsList.findIndex((job: any) => 
-            job.jobTitle === jobData.jobTitle && job.jobLocation === jobData.jobLocation
-        );
+        try {
+            
+            fetch(`http://localhost:3000/jobPosts/${jobId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete job');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    const updatedJobs = allJobs.filter((job: any) => job.id !== jobId);
+                    setAllJobs(updatedJobs);
+                    setFetchedJobList(updatedJobs);
+                    alert('Job deleted successfully');
+                })
+                .catch(error => {
+                    console.error('Error deleting job:', error);
+                    alert('Failed to delete job');
+                });
 
-        if (jobIndex !== -1) {
-            jobsList.splice(jobIndex, 1);
-            setFetchedJobList(jobsList.filter(() => true));
-            alert('Job deleted successfully');
+        } catch (error) {
+            console.error('Error deleting job:', error);
+            alert('Failed to delete job');
         }
     }
 
@@ -95,7 +153,12 @@ export default function AdminJobs() {
 
                     {/* ================================================================= Job Postings List */}
                     <div>
-                        {fetchedJobList.length === 0 ? (
+                        {loading ? (
+                            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
+                                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                                <p className="text-slate-500">Loading jobs...</p>
+                            </div>
+                        ) : fetchedJobList.length === 0 ? (
                             <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
                                 <MdWork className="text-6xl text-slate-300 mx-auto mb-4" />
                                 <h3 className="text-xl font-semibold text-slate-700 mb-2">No job postings found</h3>
@@ -110,7 +173,7 @@ export default function AdminJobs() {
                         ) : (
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {fetchedJobList.map((element: any, index: number) => (
-                                    <div key={index} className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                    <div key={element.id || index} className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                                         
                                         {/* Job Image Header */}
                                         {element.jobPostImageURL && (
@@ -169,7 +232,7 @@ export default function AdminJobs() {
                                             <div className="pt-4 border-t border-slate-200">
                                                 <button
                                                     className="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2"
-                                                    onClick={() => handleDeleteJob(element)}
+                                                    onClick={() => handleDeleteJob(element.id)}
                                                 >
                                                     <FaTrash /> Delete Job
                                                 </button>

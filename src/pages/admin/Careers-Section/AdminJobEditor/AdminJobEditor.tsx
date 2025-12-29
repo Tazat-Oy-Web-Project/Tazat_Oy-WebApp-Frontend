@@ -4,17 +4,17 @@ import AdminFooter from "../../components/AdminFooter";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import featuredImagesDb from "./data/imagesDb";
-import jobsList from "../data/jobsList";
 import { FaBriefcase, FaMapMarkerAlt, FaClock, FaCircle, FaImage, FaArrowLeft, FaCheck } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
 
 export default function AdminJobEditor() {
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [jobApplicationForm, setJobApplicationForm] = useState<any>({
         jobTitle : "",
         jobDescription : [],
-        jobPostImage: "img1",
+        jobPostImageId: "",
         jobPostImageURL: "", //if URL exist
         jobLocation: "",
         jobType : [],
@@ -43,7 +43,7 @@ export default function AdminJobEditor() {
         setJobApplicationForm({...jobApplicationForm, jobLocation : e.target.value})
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         // Simple validation
         if (!jobApplicationForm.jobTitle) {
             alert('Please enter a job title');
@@ -66,9 +66,49 @@ export default function AdminJobEditor() {
             return;
         }
 
-        jobsList.push(jobApplicationForm);
-        alert('Job posted successfully!');
-        navigate('/staff/admin/jobs');
+        setIsSubmitting(true);
+
+        try {
+            fetch('http://localhost:3000/jobPosts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    jobTitle: jobApplicationForm.jobTitle,
+                    jobDescription: jobApplicationForm.jobDescription,
+                    jobPostImageId: jobApplicationForm.jobPostImageId,
+                    jobPostImageURL: jobApplicationForm.jobPostImageURL,
+                    jobLocation: jobApplicationForm.jobLocation,
+                    jobType: jobApplicationForm.jobType,
+                    jobStatus: jobApplicationForm.jobStatus
+                })
+            })
+
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to create job posting');
+                    }
+                    return response.json();
+                })
+                .then(response => {
+                    console.log('Job created:', response);
+                    alert('Job posted successfully!');
+                    navigate('/staff/admin/jobs');
+                })
+                .catch(error => {
+                    console.error('Error creating job:', error);
+                    alert('Failed to create job posting');
+                })
+                .finally(() => {
+                    setIsSubmitting(false);
+                });
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to create job posting');
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -173,13 +213,13 @@ export default function AdminJobEditor() {
                                             src={element.url}
                                             alt={`Image ${element.id}`}
                                             className={`w-full h-24 object-cover rounded-lg border-4 cursor-pointer transition-all ${
-                                                jobApplicationForm.jobPostImage === element.id 
+                                                jobApplicationForm.jobPostImageId === element.id 
                                                     ? 'border-green-500 ring-2 ring-green-300 scale-105' 
                                                     : 'border-slate-300 hover:border-blue-400'
                                             }`}
-                                            onClick={() => setJobApplicationForm({...jobApplicationForm, jobPostImage: element.id, jobPostImageURL: element.url})}
+                                            onClick={() => setJobApplicationForm({...jobApplicationForm, jobPostImageId: element.id, jobPostImageURL: element.url})}
                                         />
-                                        {jobApplicationForm.jobPostImage === element.id && (
+                                        {jobApplicationForm.jobPostImageId === element.id && (
                                             <div className="absolute top-1 right-1 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
                                                 <FaCheck />
                                             </div>
@@ -321,10 +361,11 @@ export default function AdminJobEditor() {
                         {/* =================================================================   SUBMIT BUTTON */}
                         <div className="pt-6 border-t border-slate-200">
                             <button 
-                                className="w-full py-4 bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
+                                className="w-full py-4 bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                                 onClick={handleSubmit}
+                                disabled={isSubmitting}
                             >
-                                <FaCheck className="mr-2" /> Submit Job Posting
+                                <FaCheck className="mr-2" /> {isSubmitting ? 'Publishing...' : 'Submit Job Posting'}
                             </button>
                         </div>
                     </div>
