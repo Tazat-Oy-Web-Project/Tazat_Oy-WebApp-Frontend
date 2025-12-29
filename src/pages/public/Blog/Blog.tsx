@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import NavbarComponent from "../components/Navbar";
 import BlogHero from "./components/BlogHero";
 import BlogFeaturedArticle from "./components/BlogFeaturedArticle";
@@ -6,10 +6,35 @@ import BlogArticleCard from "./components/BlogArticleCard";
 import BlogNewsletter from "./components/BlogNewsletter";
 import BlogCategories from "./components/BlogCategories";
 import BlogCTA from "./components/BlogCTA";
-import { articles } from "./articlesData";
 
 
 function Blog(){
+
+    const [loading, setLoading] = useState(true);
+    const [articles, setArticles] = useState<any[]>([]);
+
+    // ---- Fetch Blog Posts from Backend ---- //
+    useEffect(() => {
+        try {
+            setLoading(true);
+            
+            fetch('http://localhost:3000/blogPosts')
+                .then(response => response.json())
+                .then(response => {
+                    console.log("Fetched Blog Posts for Public:", response);
+                    setArticles(response);
+                })
+                .catch(error => {
+                    console.error('Error fetching blog posts:', error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } catch (error) {
+            console.error('Error:', error);
+            setLoading(false);
+        }
+    }, []);
 
     // ---- Search Query State Management ---- //
     const [query, setQuery] = useState("");
@@ -29,18 +54,18 @@ function Blog(){
 
       // Filter by selected category if one is selected
       if (selectedCategory) {
-        results = results.filter((element) => 
-          element.tag.toLowerCase() === selectedCategory.toLowerCase()
+        results = results.filter((element: any) => 
+          element.categoryId?.toLowerCase() === selectedCategory.toLowerCase()
         );
       }
 
       // Filter by search query if provided
       if (searchQuery) {
-        results = results.filter((element) => {
+        results = results.filter((element: any) => {
           const searchableContent = [
             element.title,
-            element.excerpt,
-            element.tag
+            element.content,
+            element.categoryId
           ].join(' | ').toLowerCase();
 
           return searchableContent.includes(searchQuery);
@@ -107,15 +132,28 @@ function Blog(){
                                 <h2 className="text-lg font-bold text-slate-900">Latest Articles</h2>
                             </div>
 
-                            {/* Featured Article Card */}
-                            {featured ? <BlogFeaturedArticle article={featured} /> : null}
+                            {/* Loading State */}
+                            {loading ? (
+                                <div className="mt-6 flex justify-center items-center py-12">
+                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+                                </div>
+                            ) : filtered.length === 0 ? (
+                                <div className="mt-6 text-center py-12 bg-white rounded-2xl border border-slate-200">
+                                    <p className="text-slate-600">No articles found</p>
+                                </div>
+                            ) : (
+                                <>
+                                    {/* Featured Article Card */}
+                                    {featured ? <BlogFeaturedArticle article={featured} /> : null}
 
-                            {/* Article Cards Grid */}
-                            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                {rest.map((element) => (
-                                    <BlogArticleCard key={element.id} article={element} />
-                                ))}
-                            </div>
+                                    {/* Article Cards Grid */}
+                                    <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        {rest.map((element: any) => (
+                                            <BlogArticleCard key={element.id} article={element} />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </section>
 
                         {/* 3.2 Right Column - Sidebar Widgets */}

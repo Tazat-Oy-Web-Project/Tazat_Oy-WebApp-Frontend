@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { articles } from "../Blog/articlesData";
 import BlogArticleHeader from "./components/BlogArticleHeader";
 import BlogArticleTopBar from "./components/BlogArticleTopBar";
 import { useLanguage } from "../../context/LanguageContext";
@@ -12,8 +11,33 @@ function BlogArticleDetailPage() {
     // ---- Get Article ID from URL ---- //
     const { id } = useParams();
 
-    // ---- Find Article by ID ---- //
-    const article = articles.find((a) => a.id === Number(id));
+    const [loading, setLoading] = useState(true);
+    const [article, setArticle] = useState<any>(null);
+
+    // ---- Fetch Article from Backend ---- //
+    useEffect(() => {
+        if (!id) return;
+
+        try {
+            setLoading(true);
+            
+            fetch('http://localhost:3000/blogPosts')
+                .then(response => response.json())
+                .then(response => {
+                    const foundArticle = response.find((a: any) => a.id === id);
+                    setArticle(foundArticle);
+                })
+                .catch(error => {
+                    console.error('Error fetching article:', error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } catch (error) {
+            console.error('Error:', error);
+            setLoading(false);
+        }
+    }, [id]);
 
 
     // ---- Always Start at Top on Article Open ---- //
@@ -37,8 +61,8 @@ function BlogArticleDetailPage() {
                 {article ? (
                     <BlogArticleHeader
                         title={article.title}
-                        tag={article.tag}
-                        date={article.date}
+                        tag={article.categoryId}
+                        date={article.createdAt?._seconds ? new Date(article.createdAt._seconds * 1000).toLocaleDateString() : 'Unknown date'}
                     />
                 ) : null}
 
@@ -46,25 +70,27 @@ function BlogArticleDetailPage() {
                     3.0 Article Content 
                 --------------------------------------------------------------------------------------- **/}
                 <main className="mx-auto max-w-4xl px-4 py-8">
-                    {article ? (
+                    {loading ? (
+                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-12 text-center">
+                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-orange-600 mx-auto mb-4"></div>
+                            <p className="text-slate-500">{language === "en" ? "Loading article..." : "Ladataan artikkelia..."}</p>
+                        </div>
+                    ) : article ? (
                         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
 
                             {/* Article Image */}
-                            <img
-                                src={article.image}
-                                alt={article.title}
-                                className="w-full h-64 object-cover rounded-lg mb-6"
-                            />
+                            {article.postImageURL && (
+                                <img
+                                    src={article.postImageURL}
+                                    alt={article.title}
+                                    className="w-full h-64 object-cover rounded-lg mb-6"
+                                />
+                            )}
 
-                            {/* Article Excerpt */}
-                            <p className="text-lg text-slate-700 leading-relaxed">
-                                {article.excerpt}
-                            </p>
-
-                            {/* Placeholder for full content */}
-                            <div className="mt-6 pt-6 border-t border-slate-200">
-                                <p className="text-slate-600">
-                                    {language === "en" ? "Full article content will be displayed here..." : "Koko artikkelin sisältö näytetään tässä..."}
+                            {/* Article Content */}
+                            <div className="prose prose-slate max-w-none">
+                                <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
+                                    {article.content}
                                 </p>
                             </div>
                         </div>

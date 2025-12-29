@@ -10,7 +10,8 @@ import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
 import Contact from './pages/public/Contact/Contact'
 import Careers from './pages/public/Careers/Careers'
-import CareersJobs from './pages/public/Careers/CareersJobs'
+import CareersJobs from './pages/public/Careers/CareersJobsList'
+import JobArticleDetailPage from './pages/public/Careers/JobArticleDetail/JobArticleDetailPage'
 import Quote from './pages/public/Quote/Quote'
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'
@@ -45,6 +46,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/careers/jobs" element={<CareersJobs />} />
+        <Route path="/careers/jobs/:id" element={<JobArticleDetailPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogArticleDetailPage />} />
         <Route path="/contact" element={<Contact />} />

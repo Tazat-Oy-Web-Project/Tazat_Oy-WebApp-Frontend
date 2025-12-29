@@ -1,14 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavbarComponent from "../components/Navbar";
 import { FooterComponent } from "../components/Footer";
 import CareersHero from "./components/CareersHero";
 import CareersWhyWorkWithUs from "./components/CareersWhyWorkWithUs";
 import CareersOpenRoles from "./components/CareersOpenRoles";
 import CareersApplicationForm from "./components/CareersApplicationForm";
-import { jobsList } from "./data/jobs";
 
 
 function Careers() {
+
+  const [loading, setLoading] = useState(true);
+  const [jobs, setJobs] = useState([]);
+
+  // ---- Fetch Jobs from Backend ---- //
+  useEffect(() => {
+
+    try {
+
+      setLoading(true);
+      
+      fetch('http://localhost:3000/jobPosts')
+
+        .then(response => response.json())
+
+        .then(response => {
+
+          console.log("Fetched Jobs for Public:", response);
+          setJobs(response);
+          
+        })
+        .catch(error => {
+          console.error('Error fetching jobs:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error('Error:', error);
+      setLoading(false);
+    }
+  }, []);
 
 
   // ---- Form State Management ---- //
@@ -69,7 +100,8 @@ function Careers() {
             3.2 Open Roles Section 
         --------------------------------------------------------------------------------------- **/}
         <CareersOpenRoles
-          jobs={jobsList}
+          jobs={jobs}
+          loading={loading}
           onApplyRole={onApplyRole}
         />
 
