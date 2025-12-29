@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { FaBriefcase, FaMapMarkerAlt, FaClock, FaArrowLeft, FaTrash } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
-import AdminNavbar from "../components/AdminNavbar";
-import AdminSidebar from "../components/AdminSidebar";
-import AdminFooter from "../components/AdminFooter";
+import AdminNavbar from "../../components/AdminNavbar";
+import AdminSidebar from "../../components/AdminSidebar";
+import AdminFooter from "../../components/AdminFooter";
 
 
 function AdminJobDetails() {

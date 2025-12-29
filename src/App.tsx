@@ -22,11 +22,12 @@ import StaffProfile from './pages/staff/StaffProfile'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminPosts from './pages/admin/Blog-Section/AdminBlogs/AdminPosts'
 import AdminPostEditor from './pages/admin/Blog-Section/AdminBlogEditor/AdminPostEditor'
+import AdminBlogDetails from './pages/admin/Blog-Section/AdminBlogDetails/AdminBlogDetails'
 import AdminNews from './pages/admin/AdminNews'
 import AdminAnnouncements from './pages/admin/AdminAnnouncements'
 import AdminJobs from './pages/admin/Careers-Section/AdminJobs/AdminJobs'
 import AdminJobEditor from './pages/admin/Careers-Section/AdminJobEditor/AdminJobEditor'
-import AdminJobDetails from './pages/admin/Careers-Section/AdminJobDetails'
+import AdminJobDetails from './pages/admin/Careers-Section/AdminJobDetails/AdminJobDetails'
 import AdminApplications from './pages/admin/AdminApplications'
 import AdminQuotes from './pages/admin/AdminQuotes'
 import AdminTraining from './pages/admin/AdminTraining'
@@ -65,6 +66,7 @@ function App() {
         <Route path="/staff/admin/posts" element={<AdminPosts />} />
         <Route path="/staff/admin/posts/new" element={<AdminPostEditor />} />
         <Route path="/staff/admin/posts/:id" element={<AdminPostEditor />} />
+        <Route path="/staff/admin/posts/details/:id" element={<AdminBlogDetails />} />
         <Route path="/staff/admin/news" element={<AdminNews />} />
         <Route path="/staff/admin/announcements" element={<AdminAnnouncements />} />
         <Route path="/staff/admin/jobs" element={<AdminJobs />} />

@@ -1,9 +1,9 @@
 import AdminNavbar from "../../components/AdminNavbar";
 import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaPlus, FaSearch, FaTrash, FaTag } from "react-icons/fa";
+import { FaPlus, FaSearch, FaTrash, FaTag, FaChevronLeft, FaChevronRight, FaEye } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
 
 export default function AdminPosts() {
@@ -14,7 +14,9 @@ export default function AdminPosts() {
     const [fetchedPostList, setFetchedPostList] = useState([])  // Posts fetched from backend stored here
     const [allPosts, setAllPosts] = useState([])                // All posts for search reset here -> example: when search bar is cleared we can go back to this full list
 
-    
+    // ===============  Pagination State
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 6; // 2 rows × 3 columns
 
 
     // ===============  1) When Page Loads, fetch all blog posts from backend
@@ -127,6 +129,28 @@ export default function AdminPosts() {
     }
 
 
+    // ===============  4) Pagination Logic
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = fetchedPostList.slice(indexOfFirstPost, indexOfLastPost);
+    const totalPages = Math.ceil(fetchedPostList.length / postsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+
 
 
     
@@ -186,9 +210,10 @@ export default function AdminPosts() {
                                 </button>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                {fetchedPostList.map((element: any, index: number) => (
-                                    <div key={element.id || index} className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                                {currentPosts.map((element: any, index: number) => (
+                                    <div key={element.id || index} className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
                                         
                                         {/* Post Image Header */}
                                         {element.postImageURL && (
@@ -202,7 +227,7 @@ export default function AdminPosts() {
                                         )}
 
                                         {/* Post Content */}
-                                        <div className="p-6">
+                                        <div className="p-6 flex flex-col flex-1">
                                             {/* Category Badge */}
                                             <div className="flex items-center gap-2 mb-3">
                                                 <FaTag className="text-blue-600" />
@@ -212,15 +237,21 @@ export default function AdminPosts() {
                                             </div>
 
                                             {/* Title */}
-                                            <h3 className="text-2xl font-bold text-slate-900 mb-3">{element.title}</h3>
+                                            <h3 className="text-2xl font-bold text-slate-900 mb-3 line-clamp-2">{element.title}</h3>
 
                                             {/* Content Preview */}
-                                            <p className="text-slate-600 mb-4 line-clamp-3">
+                                            <p className="text-slate-600 mb-4 line-clamp-3 flex-1">
                                                 {element.content}
                                             </p>
 
                                             {/* Actions */}
-                                            <div className="pt-4 border-t border-slate-200">
+                                            <div className="pt-4 border-t border-slate-200 flex flex-col gap-2 mt-auto">
+                                                <Link
+                                                    to={`/staff/admin/posts/details/${element.id}`}
+                                                    className="w-full inline-flex items-center justify-center gap-2 rounded-lg border-2 border-blue-500 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-all duration-200"
+                                                >
+                                                    <FaEye /> Read More
+                                                </Link>
                                                 <button
                                                     className="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2"
                                                     onClick={() => handleDeletePost(element.id)}
@@ -232,6 +263,36 @@ export default function AdminPosts() {
                                     </div>
                                 ))}
                             </div>
+
+                            {/* =============   PAGINATION ============= */}
+                            {totalPages > 1 && (
+                                <div className="mt-10 flex items-center justify-center gap-4">
+                                    <button
+                                        onClick={handlePrevPage}
+                                        disabled={currentPage === 1}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-blue-500 bg-white text-blue-600 font-semibold hover:bg-blue-50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                                    >
+                                        <FaChevronLeft />
+                                        Previous
+                                    </button>
+
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm font-medium text-slate-600">
+                                            Page {currentPage} of {totalPages}
+                                        </span>
+                                    </div>
+
+                                    <button
+                                        onClick={handleNextPage}
+                                        disabled={currentPage === totalPages}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-blue-500 bg-white text-blue-600 font-semibold hover:bg-blue-50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                                    >
+                                        Next
+                                        <FaChevronRight />
+                                    </button>
+                                </div>
+                            )}
+                            </>
                         )}
                     </div>
                 </main>
