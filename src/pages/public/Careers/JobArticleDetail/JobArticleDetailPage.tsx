@@ -5,6 +5,8 @@ import { MdWork } from "react-icons/md";
 import CareersApplicationForm from "../components/CareersApplicationForm";
 import { useLanguage } from "../../../context/LanguageContext";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function JobArticleDetailPage() {
 
@@ -22,7 +24,7 @@ function JobArticleDetailPage() {
 
         setLoading(true);
         
-        fetch(`http://localhost:3000/jobPosts/${id}`)
+        fetch(`${API_BASE_URL}/jobPosts/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Job not found');

@@ -1,16 +1,20 @@
 import AdminNavbar from "../../components/AdminNavbar";
 import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import featuredImagesDb from "./data/imageDb";
 import { FaNewspaper, FaTag, FaImage, FaArrowLeft, FaCheck } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function AdminPostEditor() {
 
     const navigate = useNavigate();
+    const { id } = useParams();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [postForm, setPostForm] = useState({
         categoryId : "",
@@ -21,6 +25,38 @@ export default function AdminPostEditor() {
     })
 
     console.log("Post Form is: ", postForm)
+
+    // Fetch existing blog post if editing
+    useEffect(() => {
+        if (!id) return; // Creating new post, no need to fetch
+
+        setLoading(true);
+        
+        fetch(`${API_BASE_URL}/blogPosts/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Blog post not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setPostForm({
+                    categoryId: data.categoryId || "",
+                    title: data.title || "",
+                    content: data.content || "",
+                    featuredImageId: data.featuredImageId || "blog-img-1",
+                    postImageURL: data.postImageURL || "",
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching blog post:', error);
+                alert('Failed to load blog post. Please try again.');
+                navigate('/staff/admin/posts');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [id]);
 
     const handleSubmit = async () => {
         
@@ -41,8 +77,11 @@ export default function AdminPostEditor() {
         setIsSubmitting(true);
 
         try {
-            fetch('http://localhost:3000/blogPosts', {
-                method: 'POST',
+            const url = id ? `${API_BASE_URL}/blogPosts/${id}` : `${API_BASE_URL}/blogPosts`;
+            const method = id ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -56,18 +95,18 @@ export default function AdminPostEditor() {
             })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Failed to create post');
+                        throw new Error(id ? 'Failed to update post' : 'Failed to create post');
                     }
                     return response.json();
                 })
                 .then(response => {
-                    console.log('Post created:', response);
-                    alert('Post published successfully!');
+                    console.log(id ? 'Post updated:' : 'Post created:', response);
+                    alert(id ? 'Post updated successfully!' : 'Post published successfully!');
                     navigate('/staff/admin/posts');
                 })
                 .catch(error => {
-                    console.error('Error creating post:', error);
-                    alert('Failed to publish post. Please try again.');
+                    console.error(id ? 'Error updating post:' : 'Error creating post:', error);
+                    alert(id ? 'Failed to update post. Please try again.' : 'Failed to publish post. Please try again.');
                 })
                 .finally(() => {
                     setIsSubmitting(false);
@@ -95,11 +134,16 @@ export default function AdminPostEditor() {
                 
                 <main className="flex-1 px-4 py-4 lg:px-8 pb-8 max-w-5xl mx-auto w-full">
                     <div className="mb-8">
-                        <h1 className="text-4xl font-extrabold text-slate-900">Blog Post Editor</h1>
-                        <p className="mt-2 text-lg text-slate-600">Create or edit blog posts</p>
+                        <h1 className="text-4xl font-extrabold text-slate-900">{id ? 'Edit Blog Post' : 'Create Blog Post'}</h1>
+                        <p className="mt-2 text-lg text-slate-600">{id ? 'Update your blog post' : 'Create a new blog post'}</p>
                     </div>
 
                     {/* ========================== FORM AREA  ==========================*/}
+                    {loading ? (
+                        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8 text-center">
+                            <p className="text-slate-600">Loading blog post...</p>
+                        </div>
+                    ) : (
                     <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
 
                         {/* =============   CATEGORY SELECT ============= */}
@@ -188,10 +232,11 @@ export default function AdminPostEditor() {
                                 onClick={handleSubmit}
                                 disabled={isSubmitting}
                             >
-                                <FaCheck className="mr-2" /> {isSubmitting ? 'Publishing...' : 'Publish Post'}
+                                <FaCheck className="mr-2" /> {isSubmitting ? (id ? 'Updating...' : 'Publishing...') : (id ? 'Update Post' : 'Publish Post')}
                             </button>
                         </div>
                     </div>
+                    )}
                 </main>
 
                 <AdminFooter />

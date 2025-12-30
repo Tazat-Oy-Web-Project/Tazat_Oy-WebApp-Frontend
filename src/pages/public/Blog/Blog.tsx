@@ -8,6 +8,8 @@ import BlogCategories from "./components/BlogCategories";
 import BlogCTA from "./components/BlogCTA";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Blog(){
 
@@ -19,7 +21,7 @@ function Blog(){
         try {
             setLoading(true);
             
-            fetch('http://localhost:3000/blogPosts')
+            fetch(`${API_BASE_URL}/blogPosts`)
                 .then(response => response.json())
                 .then(response => {
                     console.log("Fetched Blog Posts for Public:", response);

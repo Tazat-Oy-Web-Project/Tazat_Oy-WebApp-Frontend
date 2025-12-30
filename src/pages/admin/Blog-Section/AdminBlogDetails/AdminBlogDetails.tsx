@@ -6,6 +6,8 @@ import AdminNavbar from "../../components/AdminNavbar";
 import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function AdminBlogDetails() {
     const { id } = useParams();
@@ -20,7 +22,7 @@ function AdminBlogDetails() {
 
         setLoading(true);
         
-        fetch(`http://localhost:3000/blogPosts/${id}`)
+        fetch(`${API_BASE_URL}/blogPosts/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Post not found');
@@ -51,7 +53,7 @@ function AdminBlogDetails() {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/blogPosts/${post.id}`, {
+            const response = await fetch(`${API_BASE_URL}/blogPosts/${post.id}`, {
                 method: 'DELETE'
             });
 

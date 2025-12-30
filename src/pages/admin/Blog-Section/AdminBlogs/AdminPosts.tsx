@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { FaPlus, FaSearch, FaTrash, FaTag, FaChevronLeft, FaChevronRight, FaEye } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function AdminPosts() {
     const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ export default function AdminPosts() {
 
             setLoading(true); 
 
-            fetch('http://localhost:3000/blogPosts')
+            fetch(`${API_BASE_URL}/blogPosts`)
 
                 .then(response => response.json())
 
@@ -121,7 +123,7 @@ export default function AdminPosts() {
         }
 
         try {
-            fetch(`http://localhost:3000/blogPosts/${postId}`, {
+            fetch(`${API_BASE_URL}/blogPosts/${postId}`, {
                 method: 'DELETE'
             })
 

@@ -6,6 +6,8 @@ import AdminFooter from "./components/AdminFooter";
 import { FaBriefcase, FaNewspaper } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function AdminDashboard() {
 
@@ -24,11 +26,11 @@ export default function AdminDashboard() {
                 setLoading(true);
 
                 // Fetch blog posts count
-                const blogResponse = await fetch('http://localhost:3000/blogPosts');
+                const blogResponse = await fetch(`${API_BASE_URL}/blogPosts`);
                 const blogPosts = await blogResponse.json();
 
                 // Fetch job posts count
-                const jobResponse = await fetch('http://localhost:3000/jobPosts');
+                const jobResponse = await fetch(`${API_BASE_URL}/jobPosts`);
                 const jobPosts = await jobResponse.json();
 
                 setStats({

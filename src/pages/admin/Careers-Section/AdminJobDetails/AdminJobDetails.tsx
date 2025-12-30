@@ -6,6 +6,8 @@ import AdminNavbar from "../../components/AdminNavbar";
 import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function AdminJobDetails() {
     const { id } = useParams();
@@ -20,7 +22,7 @@ function AdminJobDetails() {
 
         setLoading(true);
         
-        fetch(`http://localhost:3000/jobPosts/${id}`)
+        fetch(`${API_BASE_URL}/jobPosts/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Job not found');
@@ -51,7 +53,7 @@ function AdminJobDetails() {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/jobPosts/${job.id}`, {
+            const response = await fetch(`${API_BASE_URL}/jobPosts/${job.id}`, {
                 method: 'DELETE'
             });
 

@@ -4,6 +4,8 @@ import BlogArticleHeader from "./components/BlogArticleHeader";
 import BlogArticleTopBar from "./components/BlogArticleTopBar";
 import { useLanguage } from "../../context/LanguageContext";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function BlogArticleDetailPage() {
     const { language } = useLanguage();
@@ -21,7 +23,7 @@ function BlogArticleDetailPage() {
         try {
             setLoading(true);
             
-            fetch('http://localhost:3000/blogPosts')
+            fetch(`${API_BASE_URL}/blogPosts`)
                 .then(response => response.json())
                 .then(response => {
                     const foundArticle = response.find((a: any) => a.id === id);

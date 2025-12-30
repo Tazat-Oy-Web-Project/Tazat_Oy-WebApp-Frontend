@@ -7,6 +7,8 @@ import featuredImagesDb from "./data/imagesDb";
 import { FaBriefcase, FaMapMarkerAlt, FaClock, FaCircle, FaImage, FaArrowLeft, FaCheck } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function AdminJobEditor() {
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +71,7 @@ export default function AdminJobEditor() {
         setIsSubmitting(true);
 
         try {
-            fetch('http://localhost:3000/jobPosts', {
+            fetch(`${API_BASE_URL}/jobPosts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

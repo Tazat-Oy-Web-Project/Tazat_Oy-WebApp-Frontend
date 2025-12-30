@@ -6,6 +6,8 @@ import CareersWhyWorkWithUs from "./components/CareersWhyWorkWithUs";
 import CareersOpenRoles from "./components/CareersOpenRoles";
 import CareersApplicationForm from "./components/CareersApplicationForm";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Careers() {
 
@@ -19,7 +21,7 @@ function Careers() {
 
       setLoading(true);
       
-      fetch('http://localhost:3000/jobPosts')
+      fetch(`${API_BASE_URL}/jobPosts`)
 
         .then(response => response.json())
 

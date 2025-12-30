@@ -5,6 +5,8 @@ import { MdWork } from "react-icons/md";
 import CareersApplicationForm from "./components/CareersApplicationForm";
 import { useLanguage } from "../../context/LanguageContext";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function CareersJobs() {
 
@@ -23,7 +25,7 @@ export default function CareersJobs() {
 
             setLoading(true);   // Set loading to true before fetch
             
-            fetch('http://localhost:3000/jobPosts')
+            fetch(`${API_BASE_URL}/jobPosts`)
 
                 .then(response => response.json())
 

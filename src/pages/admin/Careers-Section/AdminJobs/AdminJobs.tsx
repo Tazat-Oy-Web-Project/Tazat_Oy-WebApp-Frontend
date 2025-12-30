@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { FaPlus, FaSearch, FaTrash, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaEye, FaFilter } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function AdminJobs() {
 
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ export default function AdminJobs() {
 
             setLoading(true); 
 
-            fetch('http://localhost:3000/jobPosts')
+            fetch(`${API_BASE_URL}/jobPosts`)
 
                 .then(response => response.json())
 
@@ -134,7 +136,7 @@ export default function AdminJobs() {
 
         try {
             
-            fetch(`http://localhost:3000/jobPosts/${jobId}`, {
+            fetch(`${API_BASE_URL}/jobPosts/${jobId}`, {
                 method: 'DELETE'
             })
                 .then(response => {
