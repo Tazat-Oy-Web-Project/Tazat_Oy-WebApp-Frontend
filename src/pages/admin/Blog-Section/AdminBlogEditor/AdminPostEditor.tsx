@@ -112,11 +112,12 @@ export default function AdminPostEditor() {
                                 onChange={(e)=> setPostForm({...postForm, categoryId: e.target.value})}
                                 className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
                             >
-                                <option value="">Select a Category</option>
+                                <option value="">Select a Category</option>                                
+                                <option value="cleaning-tips">Cleaning Tips</option>
+                                <option value="company-news">Company News</option>
+                                <option value="sustainability">Sustainability</option>
                                 <option value="home-cleaning">Home Cleaning</option>
                                 <option value="office-cleaning">Office Cleaning</option>
-                                <option value="carpet-cleaning">Carpet Cleaning</option>
-                                <option value="window-cleaning">Window Cleaning</option>
                             </select>
                         </div>
 
