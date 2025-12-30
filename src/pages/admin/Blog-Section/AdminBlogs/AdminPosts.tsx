@@ -18,6 +18,10 @@ export default function AdminPosts() {
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 6; // 2 rows × 3 columns
 
+    // ===============  Filter State
+    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
+
 
     // ===============  1) When Page Loads, fetch all blog posts from backend
 
@@ -58,24 +62,47 @@ export default function AdminPosts() {
 
 
 
-    // ===============  2) Search Functionality
+    // ===============  2) Search and Filter Functionality
 
-    const handleSearch = (event: any) => {
-        const searchValue = event.target.value.toLowerCase();
+    const applyFilters = () => {
+        let filtered = [...allPosts];
 
-        if (!searchValue) {
-            setFetchedPostList(allPosts);
-            return;
+        // Apply search filter
+        if (searchQuery) {
+            const searchLower = searchQuery.toLowerCase();
+            filtered = filtered.filter((post: any) => 
+                post.title?.toLowerCase().includes(searchLower) || 
+                post.categoryId?.toLowerCase().includes(searchLower) ||
+                post.content?.toLowerCase().includes(searchLower)
+            );
         }
 
-        const filtered = allPosts.filter((post: any) => 
-            post.title?.toLowerCase().includes(searchValue) || 
-            post.categoryId?.toLowerCase().includes(searchValue) ||
-            post.content?.toLowerCase().includes(searchValue)
-        );
-        
+        // Apply category filter
+        if (selectedCategory !== 'all') {
+            filtered = filtered.filter((post: any) => 
+                post.categoryId?.toLowerCase() === selectedCategory.toLowerCase()
+            );
+        }
+
         setFetchedPostList(filtered);
+        setCurrentPage(1); // Reset to first page when filtering
+    };
+
+    // Apply filters whenever search or filter values change
+    useEffect(() => {
+        applyFilters();
+    }, [searchQuery, selectedCategory, allPosts]);
+
+    const handleSearch = (event: any) => {
+        setSearchQuery(event.target.value);
     }
+
+    const handleCategoryFilter = (event: any) => {
+        setSelectedCategory(event.target.value);
+    }
+
+    // Get unique categories from all posts
+    const uniqueCategories = Array.from(new Set(allPosts.map((post: any) => post.categoryId).filter(Boolean)));
 
 
     // ===============  3) Delete Post Functionality
@@ -164,29 +191,88 @@ export default function AdminPosts() {
                 
                 <main className="flex-1 px-4 py-8 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* =============   HEADER SECTION ============= */}
-                    <div className="mb-8">
-                        <h1 className="text-4xl font-extrabold text-slate-900">Blog Posts</h1>
-                        <p className="mt-2 text-lg text-slate-600">Manage public blog posts and cleaning tips</p>
+                    <div className="mb-8 flex items-center justify-between">
+                        <div>
+                            <h1 className="text-4xl font-extrabold text-slate-900">Blog Posts</h1>
+                            <p className="mt-2 text-lg text-slate-600">Manage public blog posts and cleaning tips</p>
+                        </div>
+                        <div className="bg-blue-50 border-2 border-blue-200 rounded-xl px-6 py-3">
+                            <p className="text-sm font-semibold text-blue-600">Total Posts</p>
+                            <p className="text-3xl font-extrabold text-blue-700">{allPosts.length}</p>
+                        </div>
                     </div>
 
-                    {/* =============   SEARCH BAR ============= */}
+                    {/* =============   SEARCH & FILTER BAR ============= */}
                     <div className="mb-8 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col gap-4">
+                            {/* Search Bar */}
                             <div className="flex-1 relative">
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                                 <input 
                                     type="text"
                                     placeholder="Search for posts..."
+                                    value={searchQuery}
                                     className="w-full pl-10 pr-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                                     onChange={handleSearch}
                                 />
                             </div>
-                            <button
-                                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-2"
-                                onClick={() => navigate('/staff/admin/posts/new')}
-                            >
-                                <FaPlus /> Create Post
-                            </button>
+
+                            {/* Filters Row */}
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                {/* Category Filter */}
+                                <div className="flex-1 relative">
+                                    <FaTag className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                                    <select
+                                        value={selectedCategory}
+                                        onChange={handleCategoryFilter}
+                                        className="w-full pl-10 pr-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none bg-white"
+                                    >
+                                        <option value="all">All Categories</option>
+                                        {uniqueCategories.map((category: any) => (
+                                            <option key={category} value={category}>
+                                                {category.replace('-', ' ').toUpperCase()}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Create Button */}
+                                <button
+                                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-2"
+                                    onClick={() => navigate('/staff/admin/posts/new')}
+                                >
+                                    <FaPlus /> Create Post
+                                </button>
+                            </div>
+
+                            {/* Active Filters Display */}
+                            {(selectedCategory !== 'all' || searchQuery) && (
+                                <div className="flex flex-wrap gap-2 items-center pt-2 border-t border-slate-200">
+                                    <span className="text-sm font-semibold text-slate-600">Active Filters:</span>
+                                    {searchQuery && (
+                                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                                            Search: "{searchQuery}"
+                                        </span>
+                                    )}
+                                    {selectedCategory !== 'all' && (
+                                        <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
+                                            Category: {selectedCategory.replace('-', ' ').toUpperCase()}
+                                        </span>
+                                    )}
+                                    <button
+                                        onClick={() => {
+                                            setSearchQuery('');
+                                            setSelectedCategory('all');
+                                        }}
+                                        className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium hover:bg-red-200 transition-colors"
+                                    >
+                                        Clear All
+                                    </button>
+                                    <span className="text-sm text-slate-500 ml-auto">
+                                        Showing {fetchedPostList.length} of {allPosts.length} posts
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </div>
 

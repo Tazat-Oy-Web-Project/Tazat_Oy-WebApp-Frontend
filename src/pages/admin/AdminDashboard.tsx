@@ -1,72 +1,79 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import AdminNavbar from "./components/AdminNavbar";
 import AdminSidebar from "./components/AdminSidebar";
 import AdminFooter from "./components/AdminFooter";
+import { FaBriefcase, FaNewspaper } from "react-icons/fa";
+import { MdArticle } from "react-icons/md";
 
-const stats = [
-    {
-        label: "New quote requests",
-        value: "12",
-        change: "+4 this week",
-        icon: (
-            <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
-        ),
-    },
-    {
-        label: "Active job posts",
-        value: "6",
-        change: "2 drafts",
-        icon: (
-            <svg className="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-        ),
-    },
-    {
-        label: "Pending applications",
-        value: "18",
-        change: "5 new",
-        icon: (
-            <svg className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-            </svg>
-        ),
-    },
-    {
-        label: "Published posts",
-        value: "24",
-        change: "3 scheduled",
-        icon: (
-            <svg className="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-            </svg>
-        ),
-    },
-];
-
-const quickActions = [
-    { label: "Create blog post", path: "/admin/posts", color: "bg-blue-600 hover:bg-blue-700" },
-    { label: "Review applications", path: "/admin/applications", color: "bg-emerald-600 hover:bg-emerald-700" },
-    { label: "Post announcement", path: "/admin/announcements", color: "bg-indigo-600 hover:bg-indigo-700" },
-    { label: "View quotes", path: "/admin/quotes", color: "bg-amber-600 hover:bg-amber-700" },
-];
-
-const activity = [
-    { title: "New quote request from M. Kallio", time: "15 minutes ago" },
-    { title: "Job post edited: Weekend Cleaner", time: "1 hour ago" },
-    { title: "Announcement published: Winter schedule", time: "Yesterday" },
-    { title: "Application received: J. Niemi", time: "Yesterday" },
-];
-
-const reminders = [
-    "Review 5 pending applications.",
-    "Update staff news for December.",
-    "Confirm training schedule with supervisors.",
-];
 
 export default function AdminDashboard() {
+
+    const [loading, setLoading] = useState(true);
+    const [stats, setStats] = useState({
+        totalBlogPosts: 0,
+        totalJobPosts: 0,
+    });
+
+
+    // ===============  1) Fetch stats from backend
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                setLoading(true);
+
+                // Fetch blog posts count
+                const blogResponse = await fetch('http://localhost:3000/blogPosts');
+                const blogPosts = await blogResponse.json();
+
+                // Fetch job posts count
+                const jobResponse = await fetch('http://localhost:3000/jobPosts');
+                const jobPosts = await jobResponse.json();
+
+                setStats({
+                    totalBlogPosts: blogPosts.length,
+                    totalJobPosts: jobPosts.length,
+                });
+
+            } catch (error) {
+                console.error('Error fetching dashboard stats:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStats();
+    }, []);
+
+
+    const quickActions = [
+        { 
+            label: "Create Blog Post", 
+            path: "/staff/admin/posts/new", 
+            color: "bg-blue-600 hover:bg-blue-700",
+            icon: <MdArticle className="text-xl" />
+        },
+        { 
+            label: "Create Job Post", 
+            path: "/staff/admin/jobs/new", 
+            color: "bg-emerald-600 hover:bg-emerald-700",
+            icon: <FaBriefcase className="text-xl" />
+        },
+        { 
+            label: "View All Blog Posts", 
+            path: "/staff/admin/posts", 
+            color: "bg-indigo-600 hover:bg-indigo-700",
+            icon: <FaNewspaper className="text-xl" />
+        },
+        { 
+            label: "View All Job Posts", 
+            path: "/staff/admin/jobs", 
+            color: "bg-amber-600 hover:bg-amber-700",
+            icon: <FaBriefcase className="text-xl" />
+        },
+    ];
+
     return (
         <div className="flex min-h-screen bg-slate-50">
             <AdminSidebar />
@@ -75,82 +82,75 @@ export default function AdminDashboard() {
                 <AdminNavbar />
 
                 <main className="flex-1 px-4 py-8 lg:px-6">
-                    <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div>
-                            <h1 className="text-3xl font-extrabold text-slate-900">Dashboard</h1>
-                            <p className="mt-2 text-slate-600">Snapshot of admin activity and quick actions.</p>
-                        </div>
-                        <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-600 shadow-sm">
-                            Next staff meeting: Tue 09:00
-                        </div>
+                    {/* =============   HEADER SECTION ============= */}
+                    <div className="mb-8">
+                        <h1 className="text-4xl font-extrabold text-slate-900">Dashboard</h1>
+                        <p className="mt-2 text-lg text-slate-600">Overview of blog posts and job postings</p>
                     </div>
 
-                    <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                        {stats.map((stat) => (
-                            <div
-                                key={stat.label}
-                                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                    {/* =============   STATS SECTION ============= */}
+                    {loading ? (
+                        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center mb-8">
+                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                            <p className="text-slate-500">Loading statistics...</p>
+                        </div>
+                    ) : (
+                        <section className="grid gap-6 sm:grid-cols-2 mb-8">
+                            {/* Blog Posts Stats */}
+                            <Link 
+                                to="/staff/admin/posts"
+                                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
                             >
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-sm font-semibold text-slate-500">{stat.label}</p>
-                                        <p className="mt-2 text-3xl font-extrabold text-slate-900">{stat.value}</p>
+                                        <p className="text-sm font-semibold text-slate-500">Total Blog Posts</p>
+                                        <p className="mt-2 text-4xl font-extrabold text-slate-900">{stats.totalBlogPosts}</p>
+                                        <p className="mt-3 text-sm font-medium text-blue-600 group-hover:text-blue-700">
+                                            View all posts →
+                                        </p>
                                     </div>
-                                    <div className="rounded-xl bg-slate-50 p-3">{stat.icon}</div>
+                                    <div className="rounded-xl bg-blue-50 p-4 group-hover:bg-blue-100 transition-colors">
+                                        <MdArticle className="text-4xl text-blue-600" />
+                                    </div>
                                 </div>
-                                <p className="mt-4 text-xs font-semibold text-slate-500">{stat.change}</p>
-                            </div>
-                        ))}
-                    </section>
+                            </Link>
 
-                    <section className="mt-8 grid gap-6 lg:grid-cols-3">
-                        <div className="lg:col-span-2">
-                            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                                <div className="mb-4 flex items-center justify-between">
-                                    <h2 className="text-lg font-bold text-slate-900">Recent activity</h2>
-                                    <span className="text-sm font-semibold text-slate-500">Last 24 hours</span>
+                            {/* Job Posts Stats */}
+                            <Link 
+                                to="/staff/admin/jobs"
+                                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm font-semibold text-slate-500">Total Job Posts</p>
+                                        <p className="mt-2 text-4xl font-extrabold text-slate-900">{stats.totalJobPosts}</p>
+                                        <p className="mt-3 text-sm font-medium text-emerald-600 group-hover:text-emerald-700">
+                                            View all jobs →
+                                        </p>
+                                    </div>
+                                    <div className="rounded-xl bg-emerald-50 p-4 group-hover:bg-emerald-100 transition-colors">
+                                        <FaBriefcase className="text-4xl text-emerald-600" />
+                                    </div>
                                 </div>
-                                <div className="space-y-4">
-                                    {activity.map((item) => (
-                                        <div
-                                            key={item.title}
-                                            className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
-                                        >
-                                            <p className="text-sm font-semibold text-slate-700">{item.title}</p>
-                                            <span className="text-xs font-semibold text-slate-400">{item.time}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                            </Link>
+                        </section>
+                    )}
 
-                        <div className="space-y-6">
-                            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                                <h2 className="text-lg font-bold text-slate-900">Quick actions</h2>
-                                <div className="mt-4 space-y-3">
-                                    {quickActions.map((action) => (
-                                        <Link
-                                            key={action.label}
-                                            to={action.path}
-                                            className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-white ${action.color}`}
-                                        >
-                                            {action.label}
-                                            <span aria-hidden="true">→</span>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                                <h2 className="text-lg font-bold text-slate-900">Reminders</h2>
-                                <ul className="mt-4 space-y-3 text-sm text-slate-600">
-                                    {reminders.map((item) => (
-                                        <li key={item} className="flex items-start gap-2">
-                                            <span className="mt-1 h-2 w-2 rounded-full bg-blue-600"></span>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                    {/* =============   QUICK ACTIONS SECTION ============= */}
+                    <section>
+                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">Quick Actions</h2>
+                            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                                {quickActions.map((action) => (
+                                    <Link
+                                        key={action.label}
+                                        to={action.path}
+                                        className={`flex flex-col items-center justify-center gap-3 rounded-xl px-6 py-5 text-sm font-semibold text-white ${action.color} shadow-md hover:shadow-lg transition-all duration-200`}
+                                    >
+                                        {action.icon}
+                                        <span className="text-center">{action.label}</span>
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </section>

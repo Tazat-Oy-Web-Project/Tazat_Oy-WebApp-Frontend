@@ -1,7 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { LanguageProvider } from './pages/context/LanguageContext'
+import { AuthProvider } from './pages/context/AuthContext'
 import ScrollToTop from './pages/public/components/ScrollToTop'
+import ProtectedAdminRoute from './pages/admin/components/ProtectedAdminRoute'
 // Importing public pages
 import Home from './pages/public/Home/Home'
 import About from './pages/public/About'
@@ -20,6 +22,7 @@ import StaffTraining from './pages/staff/StaffTraining'
 import StaffProfile from './pages/staff/StaffProfile'
 // Importing admin pages
 import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminLogin from './pages/admin/Login-Section/AdminLogin'
 import AdminPosts from './pages/admin/Blog-Section/AdminBlogs/AdminPosts'
 import AdminPostEditor from './pages/admin/Blog-Section/AdminBlogEditor/AdminPostEditor'
 import AdminBlogDetails from './pages/admin/Blog-Section/AdminBlogDetails/AdminBlogDetails'
@@ -39,9 +42,10 @@ import AdminContacts from './pages/admin/AdminContacts'
 function App() {
 
   return (
-    <LanguageProvider>
-      <ScrollToTop />
-      <Routes>
+    <AuthProvider>
+      <LanguageProvider>
+        <ScrollToTop />
+        <Routes>
         {/* Public routes here */}
         <Route path="/" element={<Home />} />        
         <Route path="/services" element={<Services />} />
@@ -61,27 +65,29 @@ function App() {
         <Route path="/staff/profile" element={<StaffProfile />} />
 
         {/* Admin routes here (now under /staff/admin/) */}
-        <Route path="/staff/admin" element={<AdminDashboard />} />
-        <Route path="/staff/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/staff/admin/posts" element={<AdminPosts />} />
-        <Route path="/staff/admin/posts/new" element={<AdminPostEditor />} />
-        <Route path="/staff/admin/posts/:id" element={<AdminPostEditor />} />
-        <Route path="/staff/admin/posts/details/:id" element={<AdminBlogDetails />} />
-        <Route path="/staff/admin/news" element={<AdminNews />} />
-        <Route path="/staff/admin/announcements" element={<AdminAnnouncements />} />
-        <Route path="/staff/admin/jobs" element={<AdminJobs />} />
-        <Route path="/staff/admin/jobs/new" element={<AdminJobEditor />} />
-        <Route path="/staff/admin/jobs/:id" element={<AdminJobEditor />} />
-        <Route path="/staff/admin/jobs/details/:id" element={<AdminJobDetails />} />
-        <Route path="/staff/admin/applications" element={<AdminApplications />} />
-        <Route path="/staff/admin/quotes" element={<AdminQuotes />} />
-        <Route path="/staff/admin/contacts" element={<AdminContacts />} />
-        <Route path="/staff/admin/training" element={<AdminTraining />} />
-        <Route path="/staff/admin/users" element={<AdminUsers />} />
-        <Route path="/staff/admin/profile" element={<AdminProfile />} />
+        <Route path="/staff/admin/login" element={<AdminLogin />} />
+        <Route path="/staff/admin" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/dashboard" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/posts" element={<ProtectedAdminRoute><AdminPosts /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/posts/new" element={<ProtectedAdminRoute><AdminPostEditor /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/posts/:id" element={<ProtectedAdminRoute><AdminPostEditor /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/posts/details/:id" element={<ProtectedAdminRoute><AdminBlogDetails /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/news" element={<ProtectedAdminRoute><AdminNews /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/announcements" element={<ProtectedAdminRoute><AdminAnnouncements /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/jobs" element={<ProtectedAdminRoute><AdminJobs /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/jobs/new" element={<ProtectedAdminRoute><AdminJobEditor /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/jobs/:id" element={<ProtectedAdminRoute><AdminJobEditor /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/jobs/details/:id" element={<ProtectedAdminRoute><AdminJobDetails /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/applications" element={<ProtectedAdminRoute><AdminApplications /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/quotes" element={<ProtectedAdminRoute><AdminQuotes /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/contacts" element={<ProtectedAdminRoute><AdminContacts /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/training" element={<ProtectedAdminRoute><AdminTraining /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/users" element={<ProtectedAdminRoute><AdminUsers /></ProtectedAdminRoute>} />
+        <Route path="/staff/admin/profile" element={<ProtectedAdminRoute><AdminProfile /></ProtectedAdminRoute>} />
 
       </Routes>
     </LanguageProvider>
+  </AuthProvider>
   )
 }
 

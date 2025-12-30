@@ -1,6 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { FaSignOutAlt } from "react-icons/fa";
 
 export default function AdminNavbar() {
+
+    const { currentUser, signOut } = useAuth();
+    const navigate = useNavigate();
 
     // useLocation() gives information about the current URL extracted from App.tsx routes when user navigates
     const location = useLocation();
@@ -25,6 +30,18 @@ export default function AdminNavbar() {
         if (path.includes("users")) return "Users";
         if (path.includes("profile")) return "Profile";
         return "Admin Panel";
+    };
+
+    // Handle logout
+    const handleLogout = async () => {
+        if (window.confirm('Are you sure you want to sign out?')) {
+            try {
+                await signOut();
+                navigate('/staff/admin/login');
+            } catch (error) {
+                console.error('Error signing out:', error);
+            }
+        }
     };
 
     return (
@@ -58,16 +75,30 @@ export default function AdminNavbar() {
                         </svg>
                     </Link>
 
-                    {/* Profile Dropdown */}
-                    <Link
-                        to="/admin/profile"
-                        className="flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-100"
-                    >
-                        <div className="h-8 w-8 rounded-full bg-blue-600 grid place-items-center text-white font-bold text-sm">
-                            A
-                        </div>
-                        <span className="hidden text-sm font-semibold text-slate-700 sm:block">Admin</span>
-                    </Link>
+                    {/* Profile & Logout */}
+                    <div className="flex items-center gap-2">
+                        <Link
+                            to="/staff/admin/profile"
+                            className="flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-100 transition-colors"
+                        >
+                            <div className="h-8 w-8 rounded-full bg-blue-600 grid place-items-center text-white font-bold text-sm">
+                                {currentUser?.email?.charAt(0).toUpperCase() || 'A'}
+                            </div>
+                            <span className="hidden text-sm font-semibold text-slate-700 sm:block">
+                                {currentUser?.email?.split('@')[0] || 'Admin'}
+                            </span>
+                        </Link>
+
+                        {/* Logout Button */}
+                        <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-2 rounded-xl border border-red-200 bg-white px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 transition-all"
+                            title="Sign Out"
+                        >
+                            <FaSignOutAlt />
+                            <span className="hidden sm:block">Logout</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>

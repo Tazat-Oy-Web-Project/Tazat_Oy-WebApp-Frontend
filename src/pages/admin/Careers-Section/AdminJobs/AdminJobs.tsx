@@ -3,7 +3,7 @@ import AdminSidebar from "../../components/AdminSidebar";
 import AdminFooter from "../../components/AdminFooter";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaPlus, FaSearch, FaTrash, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaEye } from "react-icons/fa";
+import { FaPlus, FaSearch, FaTrash, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaEye, FaFilter } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 
 export default function AdminJobs() {
@@ -18,6 +18,11 @@ export default function AdminJobs() {
     // ===============  Pagination State
     const [currentPage, setCurrentPage] = useState(1);
     const jobsPerPage = 12; // 2 rows × 6 columns on xl screens
+
+    // ===============  Filter State
+    const [selectedLocation, setSelectedLocation] = useState('all');
+    const [selectedType, setSelectedType] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
 
     
 
@@ -60,24 +65,59 @@ export default function AdminJobs() {
 
 
 
-    // ===============  2) Search Functionality
+    // ===============  2) Search and Filter Functionality
 
-    const handleSearch = (event: any) => {
-        const searchValue = event.target.value.toLowerCase();
+    const applyFilters = () => {
+        let filtered = [...allJobs];
 
-        if (!searchValue) {
-            setFetchedJobList(allJobs);
-            return;
+        // Apply search filter
+        if (searchQuery) {
+            const searchLower = searchQuery.toLowerCase();
+            filtered = filtered.filter((job: any) => 
+                job.jobTitle?.toLowerCase().includes(searchLower) || 
+                job.jobLocation?.toLowerCase().includes(searchLower) ||
+                job.jobDescription?.some((desc: any) => desc?.toLowerCase().includes(searchLower))
+            );
         }
 
-        const filtered = allJobs.filter((job: any) => 
-            job.jobTitle?.toLowerCase().includes(searchValue) || 
-            job.jobLocation?.toLowerCase().includes(searchValue) ||
-            job.jobDescription?.some((desc: any) => desc?.toLowerCase().includes(searchValue))
-        );
-        
+        // Apply location filter
+        if (selectedLocation !== 'all') {
+            filtered = filtered.filter((job: any) => 
+                job.jobLocation?.toLowerCase() === selectedLocation.toLowerCase()
+            );
+        }
+
+        // Apply type filter
+        if (selectedType !== 'all') {
+            filtered = filtered.filter((job: any) => 
+                job.jobType?.some((type: any) => type?.toLowerCase() === selectedType.toLowerCase())
+            );
+        }
+
         setFetchedJobList(filtered);
+        setCurrentPage(1); // Reset to first page when filtering
+    };
+
+    // Apply filters whenever search or filter values change
+    useEffect(() => {
+        applyFilters();
+    }, [searchQuery, selectedLocation, selectedType, allJobs]);
+
+    const handleSearch = (event: any) => {
+        setSearchQuery(event.target.value);
     }
+
+    const handleLocationFilter = (event: any) => {
+        setSelectedLocation(event.target.value);
+    }
+
+    const handleTypeFilter = (event: any) => {
+        setSelectedType(event.target.value);
+    }
+
+    // Get unique locations and types from all jobs
+    const uniqueLocations = Array.from(new Set(allJobs.map((job: any) => job.jobLocation).filter(Boolean)));
+    const uniqueTypes = Array.from(new Set(allJobs.flatMap((job: any) => job.jobType || []))).filter(Boolean);
 
 
     // ===============  3) Delete Job Functionality
@@ -150,30 +190,108 @@ export default function AdminJobs() {
                 <AdminNavbar />
 
                 <main className="flex-1 px-4 py-8 lg:px-8 max-w-7xl mx-auto w-full">
-                    {/* Header Section */}
-                    <div className="mb-8">
-                        <h1 className="text-4xl font-extrabold text-slate-900">Job Postings</h1>
-                        <p className="mt-2 text-lg text-slate-600">Manage career opportunities and job listings</p>
+                    {/* =============   HEADER SECTION ============= */}
+                    <div className="mb-8 flex items-center justify-between">
+                        <div>
+                            <h1 className="text-4xl font-extrabold text-slate-900">Job Postings</h1>
+                            <p className="mt-2 text-lg text-slate-600">Manage career opportunities and job listings</p>
+                        </div>
+                        <div className="bg-blue-50 border-2 border-blue-200 rounded-xl px-6 py-3">
+                            <p className="text-sm font-semibold text-blue-600">Total Jobs</p>
+                            <p className="text-3xl font-extrabold text-blue-700">{allJobs.length}</p>
+                        </div>
                     </div>
 
-                    {/* =============   SEARCH BAR ============= */}
+                    {/* =============   SEARCH & FILTER BAR ============= */}
                     <div className="mb-8 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col gap-4">
+                            {/* Search Bar */}
                             <div className="flex-1 relative">
                                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                                 <input
                                     type="text"
                                     placeholder="Search job postings..."
+                                    value={searchQuery}
                                     className="w-full pl-10 pr-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                                     onChange={handleSearch}
                                 />
                             </div>
-                            <button
-                                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-2"
-                                onClick={() => navigate('/staff/admin/jobs/new')}
-                            >
-                                <FaPlus /> Create New Job
-                            </button>
+                            
+                            {/* Filters Row */}
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                {/* Location Filter */}
+                                <div className="flex-1 relative">
+                                    <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                                    <select
+                                        value={selectedLocation}
+                                        onChange={handleLocationFilter}
+                                        className="w-full pl-10 pr-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none bg-white"
+                                    >
+                                        <option value="all">All Locations</option>
+                                        {uniqueLocations.map((location: any) => (
+                                            <option key={location} value={location}>{location}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Type Filter */}
+                                <div className="flex-1 relative">
+                                    <FaFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                                    <select
+                                        value={selectedType}
+                                        onChange={handleTypeFilter}
+                                        className="w-full pl-10 pr-4 py-3 border-2 border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none bg-white"
+                                    >
+                                        <option value="all">All Types</option>
+                                        {uniqueTypes.map((type: any) => (
+                                            <option key={type} value={type}>{type}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Create Button */}
+                                <button
+                                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-2"
+                                    onClick={() => navigate('/staff/admin/jobs/new')}
+                                >
+                                    <FaPlus /> Create New Job
+                                </button>
+                            </div>
+
+                            {/* Active Filters Display */}
+                            {(selectedLocation !== 'all' || selectedType !== 'all' || searchQuery) && (
+                                <div className="flex flex-wrap gap-2 items-center pt-2 border-t border-slate-200">
+                                    <span className="text-sm font-semibold text-slate-600">Active Filters:</span>
+                                    {searchQuery && (
+                                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                                            Search: "{searchQuery}"
+                                        </span>
+                                    )}
+                                    {selectedLocation !== 'all' && (
+                                        <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                                            Location: {selectedLocation}
+                                        </span>
+                                    )}
+                                    {selectedType !== 'all' && (
+                                        <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
+                                            Type: {selectedType}
+                                        </span>
+                                    )}
+                                    <button
+                                        onClick={() => {
+                                            setSearchQuery('');
+                                            setSelectedLocation('all');
+                                            setSelectedType('all');
+                                        }}
+                                        className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium hover:bg-red-200 transition-colors"
+                                    >
+                                        Clear All
+                                    </button>
+                                    <span className="text-sm text-slate-500 ml-auto">
+                                        Showing {fetchedJobList.length} of {allJobs.length} jobs
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </div>
 
