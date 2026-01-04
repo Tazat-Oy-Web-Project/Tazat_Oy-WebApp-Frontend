@@ -1,9 +1,12 @@
 import NavbarComponent from "../components/Navbar";
 import { FooterComponent } from "../components/Footer";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
 import officeImage from "./Cleaning-Images/Cleaning Services 3.jpeg";
 
 export default function ServiceThree() {
+  const { language } = useLanguage();
+  
   return (
     <div className="bg-white min-h-screen">
       {/* Navbar */}
@@ -14,11 +17,12 @@ export default function ServiceThree() {
         <div className="container mx-auto max-w-4xl text-center md:text-left">
           <div className="text-6xl mb-4">🏢</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Office Cleaning Services
+            {language === "en" ? "Office Cleaning Services" : "Toimiston Siivouspalvelut"}
           </h1>
           <p className="text-lg md:text-xl max-w-2xl">
-            Complete office cleaning and maintenance for businesses of all sizes. Create a productive and
-            healthy work environment for your team with our professional cleaning services.
+            {language === "en"
+              ? "Complete office cleaning and maintenance for businesses of all sizes. Create a productive and healthy work environment for your team with our professional cleaning services."
+              : "Täydellinen toimiston siivous ja huolto kaikenkokoisille yrityksille. Luo tuottava ja terveellinen työympäristö tiimillesi ammattimaisilla siivouspalveluillamme."}
           </p>
         </div>
       </section>
@@ -43,62 +47,62 @@ export default function ServiceThree() {
             
             {/* What We Offer */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">What We Offer</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">{language === "en" ? "What We Offer" : "Mitä Tarjoamme"}</h2>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Daily office maintenance and cleaning</span>
+                  <span className="text-gray-700">{language === "en" ? "Daily office maintenance and cleaning" : "Päivittäinen toimiston huolto ja siivous"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Desk and workspace sanitization</span>
+                  <span className="text-gray-700">{language === "en" ? "Desk and workspace sanitization" : "Pöydän ja työpaikan desinfiointi"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Meeting room and conference area cleaning</span>
+                  <span className="text-gray-700">{language === "en" ? "Meeting room and conference area cleaning" : "Kokoushuoneen ja konferenssialueen siivous"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Kitchen and break room cleaning</span>
+                  <span className="text-gray-700">{language === "en" ? "Kitchen and break room cleaning" : "Keittiön ja taukohuoneen siivous"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Restroom deep cleaning and sanitization</span>
+                  <span className="text-gray-700">{language === "en" ? "Restroom deep cleaning and sanitization" : "Vessojen perussiivous ja desinfiointi"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Floor cleaning (vacuuming, mopping)</span>
+                  <span className="text-gray-700">{language === "en" ? "Floor cleaning (vacuuming, mopping)" : "Lattian siivous (imurointi, moppaus)"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Window and glass cleaning</span>
+                  <span className="text-gray-700">{language === "en" ? "Window and glass cleaning" : "Ikkunoiden ja lasien puhdistus"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Trash removal and recycling</span>
+                  <span className="text-gray-700">{language === "en" ? "Trash removal and recycling" : "Roskienpoisto ja kierrätys"}</span>
                 </li>
               </ul>
             </div>
 
             {/* Why Choose Us */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Choose Us?</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">{language === "en" ? "Why Choose Us?" : "Miksi Valita Meidät?"}</h2>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Flexible scheduling to fit your business hours</span>
+                  <span className="text-gray-700">{language === "en" ? "Flexible scheduling to fit your business hours" : "Joustava aikataulutus yrityksesi aukioloaikoihin"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Professional and reliable staff</span>
+                  <span className="text-gray-700">{language === "en" ? "Professional and reliable staff" : "Ammattimainen ja luotettava henkilöstö"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Quality control and inspection</span>
+                  <span className="text-gray-700">{language === "en" ? "Quality control and inspection" : "Laadunvalvonta ja tarkastus"}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-gray-700">Eco-friendly cleaning products available</span>
+                  <span className="text-gray-700">{language === "en" ? "Eco-friendly cleaning products available" : "Ympäristöystävälliset siivoustuotteet saatavilla"}</span>
                 </li>
               </ul>
             </div>
@@ -107,23 +111,26 @@ export default function ServiceThree() {
 
         {/* Pricing Section */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Pricing</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">{language === "en" ? "Pricing" : "Hinnoittelu"}</h2>
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-600 text-center mb-6">
-              Prices vary depending on the size of your office, frequency of service, and specific cleaning requirements.
-              Contact us for a customized quote tailored to your business needs.
+              {language === "en"
+                ? "Prices vary depending on the size of your office, frequency of service, and specific cleaning requirements. Contact us for a customized quote tailored to your business needs."
+                : "Hinnat vaihtelevat toimistosi koon, palvelun tiheyden ja erityisten siivousvaatimusten mukaan. Ota yhteyttä saadaksesi räätälöidyn tarjouksen liiketoimintatarpeisiisi."}
             </p>
 
             <div className="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-6 text-center">
-              <p className="text-gray-800 font-semibold text-xl mb-4">Starting from €30/hour</p>
+              <p className="text-gray-800 font-semibold text-xl mb-4">{language === "en" ? "Starting from €30/hour" : "Alkaen 30€/tunti"}</p>
               <p className="text-gray-600 mb-6">
-                Special rates available for weekly or monthly service contracts
+                {language === "en"
+                  ? "Special rates available for weekly or monthly service contracts"
+                  : "Erikoishinnat saatavilla viikoittaisille tai kuukausittaisille palvelusopimuksille"}
               </p>
               <Link
                 to="/quote"
                 className="inline-block px-8 py-3 bg-orange-500 text-white font-semibold rounded-full hover:bg-orange-600 transition shadow-md hover:shadow-lg"
               >
-                Get a Free Quote
+                {language === "en" ? "Get a Free Quote" : "Pyydä Ilmainen Tarjous"}
               </Link>
             </div>
           </div>
@@ -131,42 +138,50 @@ export default function ServiceThree() {
 
         {/* Additional Info Section */}
         <div className="mt-16 bg-gray-50 rounded-xl p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Approach to Office Cleaning</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">{language === "en" ? "Our Approach to Office Cleaning" : "Lähestymistapamme Toimiston Siivoukseen"}</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            At Tazat Cleaning, we understand that a clean office is essential for productivity and employee well-being.
-            Our professional team works efficiently to keep your workspace spotless without disrupting your operations.
+            {language === "en"
+              ? "At Tazat Cleaning, we understand that a clean office is essential for productivity and employee well-being. Our professional team works efficiently to keep your workspace spotless without disrupting your operations."
+              : "Tazat Siivouksessa ymmärrämme, että puhdas toimisto on olennaista tuottavuudelle ja työntekijöiden hyvinvoinnille. Ammattimainen tiimimme työskentelee tehokkaasti pitääkseen työtilasi moitteettomana häiritsemättä toimintaasi."}
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            We offer flexible scheduling options, including after-hours and weekend cleaning, to ensure minimal
-            interference with your business activities. Our team is trained to handle all types of office environments,
-            from small startups to large corporate offices.
+            {language === "en"
+              ? "We offer flexible scheduling options, including after-hours and weekend cleaning, to ensure minimal interference with your business activities. Our team is trained to handle all types of office environments, from small startups to large corporate offices."
+              : "Tarjoamme joustavia aikatauluvaihtoehtoja, mukaan lukien työajan jälkeinen ja viikonlopun siivous, varmistaaksemme minim aalisen häiriön liiketoiminnallesi. Tiimimme on koulutettu käsittelemään kaikenlaisia toimistoympäristöjä, pienistä start-upeista suuriin yritystoimistoihin."}
           </p>
           <p className="text-gray-700 leading-relaxed">
-            We use high-quality, eco-friendly cleaning products that are safe for your employees and the environment,
-            while delivering exceptional cleaning results every time.
+            {language === "en"
+              ? "We use high-quality, eco-friendly cleaning products that are safe for your employees and the environment, while delivering exceptional cleaning results every time."
+              : "Käytämme korkealaatuisia, ympäristöystävällisiä siivoustuotteita, jotka ovat turvallisia työntekijöillesi ja ympäristölle, samalla kun toimitamme poikkeuksellisia siivoustuloksia joka kerta."}
           </p>
         </div>
 
         {/* Service Frequency Options */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Service Frequency Options</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">{language === "en" ? "Service Frequency Options" : "Palvelun Tiheysvaih toehdot"}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:border-orange-500 transition">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Daily Cleaning</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{language === "en" ? "Daily Cleaning" : "Päivittäinen Siivous"}</h3>
               <p className="text-gray-600">
-                Perfect for high-traffic offices that need consistent maintenance
+                {language === "en"
+                  ? "Perfect for high-traffic offices that need consistent maintenance"
+                  : "Täydellinen vilkkaasti liikennöidyille toimistoille, jotka tarvitsevat jatkuvaa huoltoa"}
               </p>
             </div>
             <div className="bg-white border-2 border-orange-500 rounded-xl p-6 text-center shadow-md">
-              <h3 className="text-xl font-semibold text-orange-500 mb-2">Weekly Cleaning</h3>
+              <h3 className="text-xl font-semibold text-orange-500 mb-2">{language === "en" ? "Weekly Cleaning" : "Viikoittainen Siivous"}</h3>
               <p className="text-gray-600">
-                Most popular option for small to medium-sized offices
+                {language === "en"
+                  ? "Most popular option for small to medium-sized offices"
+                  : "Suosituin vaihtoehto pienille ja keskikokoisille toimistoille"}
               </p>
             </div>
             <div className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:border-orange-500 transition">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Bi-Weekly Cleaning</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{language === "en" ? "Bi-Weekly Cleaning" : "Joka Toinen Viikko Siivous"}</h3>
               <p className="text-gray-600">
-                Ideal for smaller offices with lighter cleaning needs
+                {language === "en"
+                  ? "Ideal for smaller offices with lighter cleaning needs"
+                  : "Ihanteellinen pienemmille toimistoille, joilla on kevyemmät siivoust arpeet"}
               </p>
             </div>
           </div>
@@ -174,22 +189,24 @@ export default function ServiceThree() {
 
         {/* CTA Section */}
         <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Create a Healthier Workplace</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">{language === "en" ? "Create a Healthier Workplace" : "Luo Terveellisempi Työpaikka"}</h2>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Contact us today to discuss your office cleaning needs and receive a customized cleaning plan.
+            {language === "en"
+              ? "Contact us today to discuss your office cleaning needs and receive a customized cleaning plan."
+              : "Ota yhteyttä tänään keskustellaksesi toimistosi siivostarpeista ja saadaksesi räätälöidyn siivoussuunnitelman."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
               className="inline-block bg-orange-500 text-white font-semibold px-8 py-3 rounded-full hover:bg-orange-600 transition shadow-md hover:shadow-lg"
             >
-              Contact Us
+              {language === "en" ? "Contact Us" : "Ota Yhteyttä"}
             </Link>
             <Link
               to="/services"
               className="inline-block border-2 border-orange-500 text-orange-500 font-semibold px-8 py-3 rounded-full hover:bg-orange-500 hover:text-white transition"
             >
-              View All Services
+              {language === "en" ? "View All Services" : "Näytä Kaikki Palvelut"}
             </Link>
           </div>
         </div>
