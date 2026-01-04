@@ -2,7 +2,7 @@ import NavbarComponent from "../components/Navbar";
 import { FooterComponent } from "../components/Footer";
 import { Link } from "react-router-dom";
 
-function Services() {
+export default function Services() {
   const services = [
     {
       id: 1,
@@ -203,5 +203,3 @@ function Services() {
     </div>
   );
 }
-
-export default Services;

@@ -1,4 +1,49 @@
 import { Link } from "react-router-dom";
+import {
+  FaBuilding,
+  FaBroom,
+  FaStore,
+  FaUtensils,
+  FaCheckCircle,
+} from "react-icons/fa";
+
+const services = [
+  {
+    title: "Supermarket Cleaning",
+    desc:
+      "Clean, hygienic shopping spaces — safe floors, spotless shelves, and fresh environments for customers.",
+    features: ["Floors & aisles", "Shelves & counters", "Hygiene-focused cleaning"],
+    href: "/services/supermarket-cleaning",
+    Icon: FaStore,
+    tag: "High traffic",
+  },
+  {
+    title: "Office Cleaning",
+    desc:
+      "Professional cleaning for workplaces — a healthier and more productive environment.",
+    features: ["Desks & common areas", "Trash removal", "Flexible schedule"],
+    href: "/services/office-cleaning",
+    Icon: FaBuilding,
+    tag: "Available",
+  },
+  {
+    title: "Deep Cleaning",
+    desc:
+      "Top-to-bottom intensive cleaning for kitchens, bathrooms, and hard-to-reach areas.",
+    features: ["Appliances", "Tiles & grout", "Deep sanitation"],
+    href: "/services/deep-cleaning",
+    Icon: FaBroom,
+  },
+  {
+    title: "Restaurant Cleaning",
+    desc:
+      "Kitchen and dining area cleaning with strong attention to hygiene, grease removal, and food-safe standards.",
+    features: ["Kitchen degreasing", "Dining area cleaning", "Sanitation focus"],
+    href: "/services/restaurant-cleaning",
+    Icon: FaUtensils,
+    tag: "Food-safe",
+  },
+];
 
 export default function ServicesGrid() {
   const services = [
