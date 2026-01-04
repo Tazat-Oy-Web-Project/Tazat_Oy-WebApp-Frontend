@@ -1,6 +1,7 @@
 import NavbarComponent from "./components/Navbar";
 import { FooterComponent } from "./components/Footer";
 import { Link } from "react-router-dom";
+import teamImage from "./Services/Cleaning-Images/Cleaning Services 5.jpeg";
 
 function About() {
   return (
@@ -41,7 +42,7 @@ function About() {
           </div>
           <div className="rounded-xl overflow-hidden shadow-lg">
             <img
-              src="/src/pages/public/Services/Cleaning-Images/Cleaning Services 5.jpeg"
+              src={teamImage}
               alt="Our Team"
               className="w-full h-96 object-cover"
             />

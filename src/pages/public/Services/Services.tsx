@@ -1,6 +1,10 @@
 import NavbarComponent from "../components/Navbar";
 import { FooterComponent } from "../components/Footer";
 import { Link } from "react-router-dom";
+import cleaningImage1 from "./Cleaning-Images/Cleaning Services 1.jpeg";
+import cleaningImage2 from "./Cleaning-Images/Cleaning Services 2.jpeg";
+import cleaningImage3 from "./Cleaning-Images/Cleaning Services 3.jpeg";
+import cleaningImage4 from "./Cleaning-Images/Cleaning Services 4.jpeg";
 
 export default function Services() {
   const services = [
@@ -16,7 +20,7 @@ export default function Services() {
         "Hallway and common area maintenance",
         "Eco-friendly products",
       ],
-      image: "/src/pages/public/Services/Cleaning-Images/Cleaning Services 1.jpeg"
+      image: cleaningImage1
     },
     {
       id: 2,
@@ -30,7 +34,7 @@ export default function Services() {
         "Equipment cleaning",
         "Compliance with health standards",
       ],
-      image: "/src/pages/public/Services/Cleaning-Images/Cleaning Services 2.jpeg"
+      image: cleaningImage2
     },
     {
       id: 3,
@@ -44,7 +48,7 @@ export default function Services() {
         "Meeting room sanitization",
         "Flexible scheduling",
       ],
-      image: "/src/pages/public/Services/Cleaning-Images/Cleaning Services 3.jpeg"
+      image: cleaningImage3
     },
     {
       id: 4,
@@ -58,7 +62,7 @@ export default function Services() {
         "Dusting and vacuuming",
         "Customized cleaning plans",
       ],
-      image: "/src/pages/public/Services/Cleaning-Images/Cleaning Services 4.jpeg"
+      image: cleaningImage4
     }
   ];
 
@@ -68,7 +72,7 @@ export default function Services() {
       <NavbarComponent />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16 px-6">
+      <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16 px-6">
         <div className="container mx-auto max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Our Professional Cleaning Services

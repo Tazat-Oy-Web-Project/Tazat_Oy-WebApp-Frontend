@@ -1,6 +1,7 @@
 import NavbarComponent from "../components/Navbar";
 import { FooterComponent } from "../components/Footer";
 import { Link } from "react-router-dom";
+import facultyImage from "./Cleaning-Images/Cleaning Services 1.jpeg";
 
 export default function ServiceOne() {
   return (
@@ -30,7 +31,7 @@ export default function ServiceOne() {
           <div className="space-y-6">
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="/src/pages/public/Services/Cleaning-Images/Cleaning Services 1.jpeg"
+                src={facultyImage}
                 alt="Faculty Cleaning"
                 className="w-full h-96 object-cover"
               />
