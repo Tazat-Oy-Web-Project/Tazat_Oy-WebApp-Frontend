@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HeroBanner() {
   return (
-    <section className="bg-gradient-to-r from-pink-500 to-red-500 text-white">
+    <section className="bg-linear-to-r from-pink-500 to-red-500 text-white">
       
       {/* Main Hero Section */}
       <div className="container mx-auto px-6 md:px-12 py-0 md:py-3 sm:py-6">
