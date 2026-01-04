@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "../../../assets/icons/hero-banner-5.png";
 
 export default function HeroBanner() {
   return (
@@ -44,7 +45,7 @@ export default function HeroBanner() {
           <div className="w-full md:w-1/2 flex justify-center md:justify-end items-stretch">
             <div className="h-full flex items-center justify-end">
               <img
-                src="/src/assets/icons/hero-banner-5.png"
+                src={heroImage}
                 alt="Professional Cleaning Team"
                 className="h-[140%] w-auto md:h-[130%] object-contain object-right"
               />
