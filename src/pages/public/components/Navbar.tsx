@@ -56,11 +56,13 @@ function NavbarComponent() {
                                 to="/" 
                                 className="flex items-center gap-2 md:gap-3 hover:scale-105 transition-transform duration-300"
                             >
+                                {/* Logo Image Part - Uncomment if logo image is available
                                 <img 
                                     src={BrandLogo} 
                                     className="h-8 sm:h-10 md:h-11 lg:h-12 xl:h-14 drop-shadow-md" 
                                     alt="Tazat Oy Logo" 
                                 />
+                                */}
                                 <span className="self-center whitespace-nowrap text-lg sm:text-md md:text-lg lg:text-xl font-extrabold bg-linear-to-r from-orange-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
                                     Tazat Oy
                                 </span>

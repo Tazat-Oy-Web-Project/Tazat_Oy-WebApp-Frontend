@@ -15,6 +15,10 @@ import Careers from './pages/public/Careers/Careers'
 import CareersJobs from './pages/public/Careers/CareersJobsList'
 import JobArticleDetailPage from './pages/public/Careers/JobArticleDetail/JobArticleDetailPage'
 import Quote from './pages/public/Quote/Quote'
+import ServiceOne from './pages/public/Services/service-1'
+import ServiceTwo from './pages/public/Services/service-2'
+import ServiceThree from './pages/public/Services/service-3'
+import ServiceFour from './pages/public/Services/service-4'
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'
 import StaffNews from './pages/staff/StaffNews'
@@ -49,6 +53,10 @@ function App() {
         {/* Public routes here */}
         <Route path="/" element={<Home />} />        
         <Route path="/services" element={<Services />} />
+        <Route path="/services/faculty-cleaning" element={<ServiceOne />} />
+        <Route path="/services/restaurant-cleaning" element={<ServiceTwo />} />
+        <Route path="/services/office-cleaning" element={<ServiceThree />} />
+        <Route path="/services/residential-cleaning" element={<ServiceFour />} />
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/careers/jobs" element={<CareersJobs />} />
