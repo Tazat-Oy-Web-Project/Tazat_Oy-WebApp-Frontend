@@ -8,6 +8,7 @@ import ProtectedAdminRoute from './pages/admin/components/ProtectedAdminRoute'
 import Home from './pages/public/Home/Home'
 import About from './pages/public/About'
 import Services from './pages/public/Services/Services'
+
 import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
 import Contact from './pages/public/Contact/Contact'
@@ -15,6 +16,14 @@ import Careers from './pages/public/Careers/Careers'
 import CareersJobs from './pages/public/Careers/CareersJobsList'
 import JobArticleDetailPage from './pages/public/Careers/JobArticleDetail/JobArticleDetailPage'
 import Quote from './pages/public/Quote/Quote'
+
+//service pages
+import RestaurantCleaning from './pages/public/Services/ResturantCleaning'
+import OfficeCleaning from './pages/public/Services/officeCleaning'
+import SupermarketCleaning from './pages/public/Services/kSupermarketCleaning'
+import DeepCleaning from './pages/public/Services/DeepCleaning'
+
+
 // Importing staff pages
 import StaffDashboard from './pages/staff/StaffDashboard'
 import StaffNews from './pages/staff/StaffNews'
@@ -57,6 +66,12 @@ function App() {
         <Route path="/blog/:id" element={<BlogArticleDetailPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/quote" element={<Quote />} />
+
+        {/* Service specific routes */}
+        <Route path="/services/restaurant-cleaning" element={<RestaurantCleaning />} />
+        <Route path="/services/office-cleaning" element={<OfficeCleaning />} />
+        <Route path="/services/supermarket-cleaning" element={<SupermarketCleaning />} />
+        <Route path="/services/deep-cleaning" element={<DeepCleaning />} />
 
         {/* Staff routes here */}
         <Route path="/staff/" element={<StaffDashboard />} />

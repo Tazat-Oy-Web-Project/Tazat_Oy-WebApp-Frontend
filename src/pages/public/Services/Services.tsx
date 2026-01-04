@@ -1,27 +1,13 @@
 import NavbarComponent from "../components/Navbar";
-//import { FooterComponent } from "../components/Footer";
+import { FooterComponent } from "../components/Footer";
+import ServicesGrid from "../Home/ServicesGrid"; // adjust path if needed
 
-function Services(){
-    return(
-        <div>
-            {/* Navbar component */}
-            <NavbarComponent />
-
-            <h1>Our Services</h1>
-
-
-            {/* Footer component */}
-            {/* <FooterComponent />*/}
-        
-
-       
-
-        
-
-         </div>
-
-        
-    )
+export default function Services() {
+  return (
+    <div className="bg-white min-h-screen">
+      <NavbarComponent />
+      <ServicesGrid />
+      <FooterComponent />
+    </div>
+  );
 }
-
-export default Services;
