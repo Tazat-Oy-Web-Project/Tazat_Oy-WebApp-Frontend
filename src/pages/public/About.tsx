@@ -1,7 +1,7 @@
 import NavbarComponent from "./components/Navbar";
 import { FooterComponent } from "./components/Footer";
 import { Link } from "react-router-dom";
-import teamImage from "./Services/Cleaning-Images/Cleaning Services 5.jpeg";
+import teamImage from "./Services/Cleaning-Images/Cleaning Services 4.jpeg";
 
 function About() {
   return (
