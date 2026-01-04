@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import heroImage from "../../../assets/icons/hero-banner-5.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function HeroBanner() {
+  const { language } = useLanguage();
+
   return (
     <section className="bg-linear-to-r from-orange-500 to-red-500 text-white">
       
@@ -12,16 +15,17 @@ export default function HeroBanner() {
           {/* Left Content - Text */}
           <div className="w-full md:w-1/2 space-y-4 text-center md:text-left flex flex-col justify-center">
             <p className="text-sm md:text-base uppercase tracking-wider font-semibold">
-              Trusted Cleaning Experts in Finland
+              {language === "en" ? "Professional Cleaning Services" : "Ammattimaiset Siivouspalvelut"}
             </p>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              Your Cleanliness, Our Priority
+              {language === "en" ? "Cleanliness You Can Trust, Service You Can Count On" : "Puhtaus Johon Voit Luottaa, Palvelu Johon Voit Laskea"}
             </h1>
             
             <p className="text-base md:text-lg text-white/90 max-w-lg">
-              Professional, reliable, and passionate about making every place shine — 
-              from offices to homes.
+              {language === "en" 
+                ? "From homes to offices, restaurants to schools - we deliver spotless results with eco-friendly solutions."
+                : "Kodeista toimistoihin, ravintoloista kouluihin - toimitamme moitteettomat tulokset ympäristöystävällisin ratkaisuin."}
             </p>
 
             {/* CTA Buttons */}
@@ -30,13 +34,13 @@ export default function HeroBanner() {
                 to="/contact"
                 className="bg-white text-orange-500 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition shadow-lg"
               >
-                Contact Us
+                {language === "en" ? "Contact Us" : "Ota Yhteyttä"}
               </Link>
               <Link
                 to="/careers"
                 className="border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-orange-500 transition"
               >
-                Work For Us
+                {language === "en" ? "Work With Us" : "Työskentele Kanssamme"}
               </Link>
             </div>
           </div>
@@ -64,10 +68,10 @@ export default function HeroBanner() {
             <div className="text-center py-4 md:py-0 md:px-6">
               <div className="text-4xl mb-2">🏠</div>
               <h3 className="text-base md:text-lg font-semibold">
-                Finnish Family Business
+                {language === "en" ? "1000+ Happy Clients" : "1000+ Tyytyväistä Asiakasta"}
               </h3>
               <p className="text-sm text-white/80 mt-1">
-                Locally owned and operated
+                {language === "en" ? "Trusted by homes and businesses" : "Kotien ja yritysten luottama"}
               </p>
             </div>
 
@@ -75,10 +79,10 @@ export default function HeroBanner() {
             <div className="text-center py-4 md:py-0 md:px-6">
               <div className="text-4xl mb-2">👷‍♂️</div>
               <h3 className="text-base md:text-lg font-semibold">
-                50+ Skilled Workers
+                {language === "en" ? "50+ Skilled Workers" : "50+ Ammattitaitoista Työntekijää"}
               </h3>
               <p className="text-sm text-white/80 mt-1">
-                Experienced professionals at work
+                {language === "en" ? "Experienced cleaning professionals" : "Kokeneita siivousammattilaisia"}
               </p>
             </div>
 
@@ -86,10 +90,10 @@ export default function HeroBanner() {
             <div className="text-center py-4 md:py-0 md:px-6">
               <div className="text-4xl mb-2">🌍</div>
               <h3 className="text-base md:text-lg font-semibold">
-                A Trailblazer in Responsibility
+                {language === "en" ? "Eco-Friendly Approach" : "Ympäristöystävällinen Lähestymistapa"}
               </h3>
               <p className="text-sm text-white/80 mt-1">
-                Eco-friendly and sustainable practices
+                {language === "en" ? "A trailblazer in environmental responsibility" : "Edelläkävijä ympäristövastuussa"}
               </p>
             </div>
 

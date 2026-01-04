@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function FooterComponent() {
+  const { language } = useLanguage();
+  
   return (
     <footer className="bg-linear-to-b from-gray-900 to-black text-white">
       <div className="container mx-auto px-6 md:px-12 py-12">
@@ -9,9 +12,9 @@ export function FooterComponent() {
           
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-orange-500">Tazat Cleaning</h3>
+            <h3 className="text-2xl font-bold text-orange-500">{language === "en" ? "Tazat Cleaning" : "Tazat Siivous"}</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Professional cleaning services across Finland. Your cleanliness, our priority.
+              {language === "en" ? "Professional cleaning services across Finland. Your cleanliness, our priority." : "Ammattimaiset siivouspalvelut ympäri Suomen. Sinun puhtautesi, meidän prioriteettimme."}
             </p>
             <div className="flex space-x-4">
               <a
@@ -51,26 +54,26 @@ export function FooterComponent() {
 
           {/* Services */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-orange-500">Our Services</h4>
+            <h4 className="text-lg font-semibold text-orange-500">{language === "en" ? "Our Services" : "Palvelumme"}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/services/faculty-cleaning" className="text-gray-400 hover:text-orange-500 transition">
-                  Faculty Cleaning
+                  {language === "en" ? "Faculty Cleaning" : "Oppilaitosten Siivous"}
                 </Link>
               </li>
               <li>
                 <Link to="/services/restaurant-cleaning" className="text-gray-400 hover:text-orange-500 transition">
-                  Restaurant Cleaning
+                  {language === "en" ? "Restaurant Cleaning" : "Ravintolan Siivous"}
                 </Link>
               </li>
               <li>
                 <Link to="/services/office-cleaning" className="text-gray-400 hover:text-orange-500 transition">
-                  Office Cleaning
+                  {language === "en" ? "Office Cleaning" : "Toimiston Siivous"}
                 </Link>
               </li>
               <li>
                 <Link to="/services/residential-cleaning" className="text-gray-400 hover:text-orange-500 transition">
-                  Residential Cleaning
+                  {language === "en" ? "Residential Cleaning" : "Kodin Siivous"}
                 </Link>
               </li>
             </ul>
@@ -78,31 +81,31 @@ export function FooterComponent() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-orange-500">Quick Links</h4>
+            <h4 className="text-lg font-semibold text-orange-500">{language === "en" ? "Quick Links" : "Pikalinkit"}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-orange-500 transition">
-                  Home
+                  {language === "en" ? "Home" : "Etusivu"}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-orange-500 transition">
-                  About Us
+                  {language === "en" ? "About Us" : "Meistä"}
                 </Link>
               </li>
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-orange-500 transition">
-                  Blog
+                  {language === "en" ? "Blog" : "Blogi"}
                 </Link>
               </li>
               <li>
                 <Link to="/careers" className="text-gray-400 hover:text-orange-500 transition">
-                  Careers
+                  {language === "en" ? "Careers" : "Urat"}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-400 hover:text-orange-500 transition">
-                  Contact Us
+                  {language === "en" ? "Contact Us" : "Ota Yhteyttä"}
                 </Link>
               </li>
             </ul>
@@ -110,7 +113,7 @@ export function FooterComponent() {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-orange-500">Contact Us</h4>
+            <h4 className="text-lg font-semibold text-orange-500">{language === "en" ? "Contact Us" : "Yhteystiedot"}</h4>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li className="flex items-start">
                 <span className="text-orange-500 mr-2">📍</span>
@@ -129,7 +132,7 @@ export function FooterComponent() {
               to="/quote"
               className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-full transition mt-4"
             >
-              Get a Quote
+              {language === "en" ? "Get a Quote" : "Pyydä Tarjous"}
             </Link>
           </div>
         </div>
@@ -138,14 +141,14 @@ export function FooterComponent() {
         <div className="border-t border-gray-800 mt-10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Tazat Cleaning Oy. All rights reserved.
+              © {new Date().getFullYear()} Tazat Cleaning Oy. {language === "en" ? "All rights reserved" : "Kaikki oikeudet pidätetään"}.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link to="/privacy" className="text-gray-500 hover:text-orange-500 transition">
-                Privacy Policy
+                {language === "en" ? "Privacy Policy" : "Tietosuojakäytäntö"}
               </Link>
               <Link to="/terms" className="text-gray-500 hover:text-orange-500 transition">
-                Terms & Conditions
+                {language === "en" ? "Terms & Conditions" : "Käyttöehdot"}
               </Link>
             </div>
           </div>
