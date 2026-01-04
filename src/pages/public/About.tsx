@@ -9,7 +9,7 @@ function About() {
       <NavbarComponent />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16 px-6">
+      <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16 px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Tazat Cleaning</h1>
           <p className="text-lg md:text-xl">
@@ -129,7 +129,7 @@ function About() {
           
           {/* Feature 1 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -147,7 +147,7 @@ function About() {
 
           {/* Feature 2 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -165,7 +165,7 @@ function About() {
 
           {/* Feature 3 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -183,7 +183,7 @@ function About() {
 
           {/* Feature 4 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -201,7 +201,7 @@ function About() {
 
           {/* Feature 5 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -219,7 +219,7 @@ function About() {
 
           {/* Feature 6 */}
           <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="bg-orange-100 rounded-full p-3">
                 <span className="text-2xl">✓</span>
               </div>
@@ -238,7 +238,7 @@ function About() {
       </section>
 
       {/* Team Stats Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16">
+      <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16">
         <div className="container mx-auto max-w-6xl px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">

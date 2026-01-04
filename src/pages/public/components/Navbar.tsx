@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import BrandLogo from "../../../assets/icons/brang-logo.jpg";
 import { useLanguage } from "../../context/LanguageContext";
 
 function NavbarComponent() {

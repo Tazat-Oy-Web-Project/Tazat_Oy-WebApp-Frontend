@@ -9,7 +9,7 @@ export default function ServiceFour() {
       <NavbarComponent />
 
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16 px-6">
+      <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16 px-6">
         <div className="container mx-auto max-w-4xl text-center md:text-left">
           <div className="text-6xl mb-4">🏠</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
