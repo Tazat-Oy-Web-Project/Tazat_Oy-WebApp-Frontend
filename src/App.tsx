@@ -6,12 +6,11 @@ import ScrollToTop from './pages/public/components/ScrollToTop'
 import ProtectedAdminRoute from './pages/admin/components/ProtectedAdminRoute'
 // Importing public pages
 import Home from './pages/public/Home/Home'
-import About from './pages/public/About'
-import Services from './pages/public/Services/Services'
-
+import AboutPage from './pages/public/AboutPage'
+import ServicesPage from './pages/public/Services/ServicesPage'
 import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
-import Contact from './pages/public/Contact/Contact'
+import ContactPage from './pages/public/Contact/ContactPage'
 import Careers from './pages/public/Careers/Careers'
 import CareersJobs from './pages/public/Careers/CareersJobsList'
 import JobArticleDetailPage from './pages/public/Careers/JobArticleDetail/JobArticleDetailPage'
@@ -53,18 +52,18 @@ function App() {
         <Routes>
         {/* Public routes here */}
         <Route path="/" element={<Home />} />        
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/faculty-cleaning" element={<ServiceOne />} />
         <Route path="/services/restaurant-cleaning" element={<ServiceTwo />} />
         <Route path="/services/office-cleaning" element={<ServiceThree />} />
         <Route path="/services/residential-cleaning" element={<ServiceFour />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/careers/jobs" element={<CareersJobs />} />
         <Route path="/careers/jobs/:id" element={<JobArticleDetailPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogArticleDetailPage />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/quote" element={<Quote />} />
 
         {/* Staff routes here */}

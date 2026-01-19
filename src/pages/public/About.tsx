@@ -1,5 +1,3 @@
-import NavbarComponent from "./components/Navbar";
-import { FooterComponent } from "./components/Footer";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import teamImage from "./Services/Cleaning-Images/Cleaning Services 4.jpeg";
@@ -8,10 +6,7 @@ function About() {
   const { language } = useLanguage();
   
   return (
-    <div className="bg-white min-h-screen">
-      {/* Navbar component */}
-      <NavbarComponent />
-
+    <>
       {/* Hero Section */}
       <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16 px-6">
         <div className="container mx-auto max-w-4xl text-center">
@@ -320,10 +315,7 @@ function About() {
           </Link>
         </div>
       </section>
-
-      {/* Footer component */}
-      <FooterComponent />
-    </div>
+    </>
   );
 }
 

@@ -1,5 +1,3 @@
-import NavbarComponent from "../components/Navbar";
-import { FooterComponent } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import cleaningImage1 from "./Cleaning-Images/Cleaning Services 1.jpeg";
@@ -106,10 +104,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Navbar component */}
-      <NavbarComponent />
-
+    <>
       {/* Hero Section */}
       <section className="bg-linear-to-r from-orange-500 to-red-500 text-white py-16 px-6">
         <div className="container mx-auto max-w-6xl text-center">
@@ -249,9 +244,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
-      {/* Footer component */}
-      <FooterComponent />
-    </div>
+    </>
   );
 }

@@ -1,15 +1,10 @@
-import NavbarComponent from "../components/Navbar";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Contact(){
     const { language } = useLanguage();
 
     return(
-        <div>
-            {/* Navbar component */}
-            <NavbarComponent />
-
-            <div className="flex flex-col justify-start items-center min-h-screen bg-linear-to-b from-gray-50 via-amber-50 to-orange-50 w-full">
+        <div className="flex flex-col justify-start items-center bg-linear-to-b from-gray-50 via-amber-50 to-orange-50 w-full">
 
                 {/** --------------------------------------------------------------------------------------- 
                     1.0 Header Part 
@@ -277,8 +272,6 @@ function Contact(){
                 
                 
             </div>
-
-        </div>
     )
 }
 
