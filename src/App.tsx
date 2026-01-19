@@ -6,7 +6,7 @@ import ScrollToTop from './pages/public/components/ScrollToTop'
 import ProtectedAdminRoute from './pages/admin/components/ProtectedAdminRoute'
 // Importing public pages
 import Home from './pages/public/Home/Home'
-import AboutPage from './pages/public/AboutPage'
+import AboutPage from './pages/public/About/AboutPage'
 import ServicesPage from './pages/public/Services/ServicesPage'
 import Blog from './pages/public/Blog/Blog'
 import BlogArticleDetailPage from './pages/public/BlogArticleDetail/BlogArticleDetailPage'
