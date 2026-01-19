@@ -66,10 +66,10 @@ export default function ContactInfoCards({ language, activeMethod = "call" }: Co
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
               whileHover={{ y: -6, scale: 1.02, opacity: 1, boxShadow: "0 20px 40px rgba(249, 115, 22, 0.2)" }}
-              className={`group flex flex-row gap-4 p-5 bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg border transition-all duration-300 ${
+              className={`group flex flex-row gap-4 p-5 bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/5 border transition-all duration-500 ${
                 isActive 
                   ? "border-orange-500 ring-2 ring-orange-500/30 shadow-orange-500/20" 
-                  : "border-gray-200/60 hover:border-orange-400/50"
+                  : "border-gray-100 hover:border-orange-400/50 hover:shadow-xl hover:shadow-orange-500/10"
               }`}
             >
               {/* Icon Badge with Pulse */}

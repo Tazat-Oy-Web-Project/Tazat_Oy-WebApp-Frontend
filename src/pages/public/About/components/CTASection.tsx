@@ -9,7 +9,7 @@ export default function CTASection({ language }: CTASectionProps) {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       {/* Light Premium Gradient Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-gray-50 via-orange-50/30 to-gray-100" />
+      <div className="absolute inset-0 bg-[#fafafa]" />
       
       {/* Decorative Orange Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px]" />
@@ -35,7 +35,7 @@ export default function CTASection({ language }: CTASectionProps) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-white/70 backdrop-blur-xl border border-white/60 rounded-3xl p-12 md:p-16 shadow-2xl text-center relative overflow-hidden"
+          className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-3xl p-12 md:p-16 shadow-2xl shadow-black/5 text-center relative overflow-hidden"
         >
           {/* Subtle Inner Glow */}
           <div className="absolute inset-0 bg-linear-to-b from-orange-500/5 to-transparent rounded-3xl" />
@@ -46,7 +46,7 @@ export default function CTASection({ language }: CTASectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-5xl font-bold text-[#0a0a0a] mb-6"
             >
               {language === "en" ? "Ready to Experience the Difference?" : "Valmis Kokemaan Eron?"}
             </motion.h2>

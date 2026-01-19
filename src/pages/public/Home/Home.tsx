@@ -21,7 +21,7 @@ function Home(){
     };
 
     return(
-        <div className="bg-white">
+        <div className="bg-[#fafafa]">
             {/* Navbar component */}
             <NavbarComponent />
             

@@ -77,7 +77,7 @@ export default function WhyChooseUs({ language }: WhyChooseUsProps) {
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
       {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-b from-white to-gray-50" />
+      <div className="absolute inset-0 bg-[#fafafa]" />
       
       <div className="container mx-auto max-w-7xl px-6 md:px-12 relative z-10">
         <motion.h2
@@ -85,7 +85,7 @@ export default function WhyChooseUs({ language }: WhyChooseUsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-bold text-gray-900 text-center mb-16"
+          className="text-3xl md:text-5xl font-bold text-[#0a0a0a] text-center mb-16"
         >
           {language === "en" ? "Why Choose Tazat Cleaning?" : "Miksi Valita Tazat Siivous?"}
         </motion.h2>
@@ -99,7 +99,7 @@ export default function WhyChooseUs({ language }: WhyChooseUsProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(249, 115, 22, 0.15)" }}
-              className="group bg-white/70 backdrop-blur-lg border border-gray-200/60 rounded-2xl p-8 shadow-lg hover:border-orange-400/50 transition-all duration-300"
+              className="group bg-white/95 backdrop-blur-lg border border-gray-100 rounded-2xl p-8 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/10 hover:border-orange-400/50 transition-all duration-500"
             >
               <div className="flex items-start gap-5">
                 {/* Icon Badge */}

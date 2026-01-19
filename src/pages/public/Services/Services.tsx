@@ -223,7 +223,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 min-h-[600px]"
+                className="bg-[#fafafa] border border-gray-100 rounded-3xl p-8 md:p-10 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 min-h-[600px]"
               >
                 {/* Icon Badge */}
                 <motion.div 
@@ -310,7 +310,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-[#fafafa] border border-gray-100 rounded-3xl overflow-hidden shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-500"
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
@@ -371,7 +371,7 @@ export default function Services() {
       {/* Why Choose Us Section with Glassmorphism */}
       <section className="relative overflow-hidden py-20 md:py-28">
         {/* Background */}
-        <div className="absolute inset-0 bg-linear-to-b from-gray-50 to-white" />
+        <div className="absolute inset-0 bg-[#fafafa]" />
         
         <div className="container mx-auto max-w-7xl px-6 md:px-12 relative z-10">
           <motion.h2
@@ -415,7 +415,7 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-white/60 backdrop-blur-lg border border-white/20 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all text-center"
+                className="bg-white/90 backdrop-blur-lg border border-gray-100 rounded-3xl p-8 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 text-center"
               >
                 <img src={item.icon} alt="" className="w-20 h-20 mx-auto mb-6 object-contain" />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">

@@ -49,10 +49,10 @@ function NavbarComponent() {
         <motion.nav 
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
                 scrolled 
-                    ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-                    : 'bg-white/80 backdrop-blur-sm shadow-sm'
+                    ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-lg shadow-black/10 border-b border-white/5' 
+                    : 'bg-white/90 backdrop-blur-md shadow-sm'
             }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,7 +62,11 @@ function NavbarComponent() {
                     <Link to="/" className="group flex items-center space-x-2">
                         <motion.span 
                             whileHover={{ scale: 1.05 }}
-                            className="text-2xl font-bold bg-linear-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent"
+                            className={`text-2xl font-bold transition-colors duration-300 ${
+                                scrolled 
+                                    ? 'text-orange-500' 
+                                    : 'bg-linear-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent'
+                            }`}
                         >
                             Tazat
                         </motion.span>
@@ -76,7 +80,11 @@ function NavbarComponent() {
                             <button
                                 onMouseEnter={() => setIsCompanyDropdownOpen(true)}
                                 onMouseLeave={() => setIsCompanyDropdownOpen(false)}
-                                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors flex items-center gap-1"
+                                className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${
+                                    scrolled 
+                                        ? 'text-gray-300 hover:text-orange-400' 
+                                        : 'text-gray-700 hover:text-orange-600'
+                                }`}
                             >
                                 {language === "en" ? "Company" : "Yritys"}
                                 <svg className={`w-4 h-4 transition-transform ${isCompanyDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +101,7 @@ function NavbarComponent() {
                                         transition={{ duration: 0.2 }}
                                         onMouseEnter={() => setIsCompanyDropdownOpen(true)}
                                         onMouseLeave={() => setIsCompanyDropdownOpen(false)}
-                                        className="absolute left-0 mt-1 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden"
+                                        className="absolute left-0 mt-1 w-48 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100/50 py-2 overflow-hidden"
                                     >
                                         {companyLinks.map((link, index) => (
                                             <motion.div
@@ -127,7 +135,11 @@ function NavbarComponent() {
                             <button
                                 onMouseEnter={() => setIsUpdatesDropdownOpen(true)}
                                 onMouseLeave={() => setIsUpdatesDropdownOpen(false)}
-                                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors flex items-center gap-1"
+                                className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${
+                                    scrolled 
+                                        ? 'text-gray-300 hover:text-orange-400' 
+                                        : 'text-gray-700 hover:text-orange-600'
+                                }`}
                             >
                                 {language === "en" ? "Updates" : "Päivitykset"}
                                 <svg className={`w-4 h-4 transition-transform ${isUpdatesDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,7 +156,7 @@ function NavbarComponent() {
                                         transition={{ duration: 0.2 }}
                                         onMouseEnter={() => setIsUpdatesDropdownOpen(true)}
                                         onMouseLeave={() => setIsUpdatesDropdownOpen(false)}
-                                        className="absolute left-0 mt-1 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden"
+                                        className="absolute left-0 mt-1 w-48 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100/50 py-2 overflow-hidden"
                                     >
                                         {updatesLinks.map((link, index) => (
                                             <motion.div
@@ -156,10 +168,10 @@ function NavbarComponent() {
                                                 <NavLink
                                                     to={link.to}
                                                     className={({ isActive }) =>
-                                                        `block px-4 py-2 text-sm transition-colors ${
+                                                        `block px-4 py-2.5 text-sm transition-all duration-200 ${
                                                             isActive
-                                                                ? 'text-orange-600 bg-orange-50 font-medium'
-                                                                : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                                                                ? 'text-orange-600 bg-orange-50/80 font-medium'
+                                                                : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50/80 hover:pl-5'
                                                         }`
                                                     }
                                                 >
@@ -180,7 +192,11 @@ function NavbarComponent() {
                         <div className="relative">
                             <button
                                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                                className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-700 hover:text-orange-600 transition-colors"
+                                className={`flex items-center gap-1 px-3 py-1.5 text-sm transition-colors ${
+                                    scrolled
+                                        ? 'text-gray-300 hover:text-orange-400'
+                                        : 'text-gray-700 hover:text-orange-600'
+                                }`}
                             >
                                 <span className="uppercase font-medium">{language}</span>
                                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,7 +210,7 @@ function NavbarComponent() {
                                         initial={{ opacity: 0, scale: 0.95 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.95 }}
-                                        className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden"
+                                        className="absolute right-0 mt-2 w-32 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden"
                                     >
                                         <button
                                             onClick={() => changeLanguage("en")}
@@ -222,9 +238,9 @@ function NavbarComponent() {
                         {/* Get Quote Button */}
                         <Link to="/quote">
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px -10px rgba(249, 115, 22, 0.5)" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="relative px-6 py-2 text-sm font-medium text-white bg-linear-to-r from-orange-600 to-orange-500 rounded-full overflow-hidden group"
+                                className="relative px-6 py-2.5 text-sm font-semibold text-white bg-linear-to-r from-orange-600 to-orange-500 rounded-full overflow-hidden group shadow-lg shadow-orange-500/25"
                             >
                                 <span className="relative z-10">{language === "en" ? "Get Quote" : "Tarjous"}</span>
                                 <div className="absolute inset-0 bg-linear-to-r from-orange-500 to-orange-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
@@ -234,7 +250,11 @@ function NavbarComponent() {
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 text-gray-700 hover:text-orange-600 transition-colors"
+                            className={`md:hidden p-2 transition-colors ${
+                                scrolled
+                                    ? 'text-gray-300 hover:text-orange-400'
+                                    : 'text-gray-700 hover:text-orange-600'
+                            }`}
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 {isMobileMenuOpen ? (
@@ -255,12 +275,18 @@ function NavbarComponent() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-t border-gray-100"
+                        className={`md:hidden border-t ${
+                            scrolled 
+                                ? 'bg-[#0a0a0a]/98 backdrop-blur-xl border-white/10' 
+                                : 'bg-white/98 backdrop-blur-xl border-gray-100'
+                        }`}
                     >
                         <div className="px-4 py-4 space-y-1">
                             {/* Company Section */}
                             <div className="py-2">
-                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                                <p className={`text-xs font-semibold uppercase tracking-wider mb-2 ${
+                                    scrolled ? 'text-gray-500' : 'text-gray-500'
+                                }`}>
                                     {language === "en" ? "Company" : "Yritys"}
                                 </p>
                                 {companyLinks.map(link => (
@@ -269,10 +295,12 @@ function NavbarComponent() {
                                         to={link.to}
                                         end={link.to === "/"}
                                         className={({ isActive }) =>
-                                            `block px-3 py-2 rounded-lg text-sm ${
+                                            `block px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ${
                                                 isActive
-                                                    ? 'text-orange-600 bg-orange-50 font-medium'
-                                                    : 'text-gray-700 hover:bg-gray-50'
+                                                    ? 'text-orange-500 bg-orange-500/10 font-medium'
+                                                    : scrolled 
+                                                        ? 'text-gray-300 hover:bg-white/5 hover:text-orange-400'
+                                                        : 'text-gray-700 hover:bg-gray-50'
                                             }`
                                         }
                                     >
@@ -283,7 +311,9 @@ function NavbarComponent() {
                             
                             {/* Updates Section */}
                             <div className="py-2">
-                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                                <p className={`text-xs font-semibold uppercase tracking-wider mb-2 ${
+                                    scrolled ? 'text-gray-500' : 'text-gray-500'
+                                }`}>
                                     {language === "en" ? "Updates" : "Päivitykset"}
                                 </p>
                                 {updatesLinks.map(link => (
@@ -291,10 +321,12 @@ function NavbarComponent() {
                                         key={link.to}
                                         to={link.to}
                                         className={({ isActive }) =>
-                                            `block px-3 py-2 rounded-lg text-sm ${
+                                            `block px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ${
                                                 isActive
-                                                    ? 'text-orange-600 bg-orange-50 font-medium'
-                                                    : 'text-gray-700 hover:bg-gray-50'
+                                                    ? 'text-orange-500 bg-orange-500/10 font-medium'
+                                                    : scrolled 
+                                                        ? 'text-gray-300 hover:bg-white/5 hover:text-orange-400'
+                                                        : 'text-gray-700 hover:bg-gray-50'
                                             }`
                                         }
                                     >

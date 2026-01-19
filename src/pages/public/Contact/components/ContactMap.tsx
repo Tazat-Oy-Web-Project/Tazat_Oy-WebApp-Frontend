@@ -43,10 +43,10 @@ export default function ContactMap({ language }: ContactMapProps) {
         viewport={{ once: true }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
         whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(249, 115, 22, 0.2)" }}
-        className="relative w-full bg-white border border-gray-200/60 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 group"
+        className="relative w-full bg-white border border-gray-100 rounded-2xl shadow-lg shadow-black/5 overflow-hidden transition-all duration-500 group hover:shadow-xl hover:shadow-orange-500/10"
       >
         {/* Glass Overlay Top Bar */}
-        <div className="absolute top-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-md border-b border-gray-200/60 px-4 py-3 shadow-sm">
+        <div className="absolute top-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-xl border-b border-gray-100 px-4 py-3 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="flex items-center justify-center w-10 h-10 bg-linear-to-br from-orange-500 to-orange-600 rounded-lg shadow-md shrink-0">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

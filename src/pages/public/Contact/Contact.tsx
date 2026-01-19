@@ -144,7 +144,7 @@ function Contact() {
       </section>
 
       {/* Data Section */}
-      <div ref={containerRef} className="w-full bg-linear-to-b from-gray-50 via-orange-50/20 to-white px-4 md:px-8 py-16 md:py-24">
+      <div ref={containerRef} className="w-full bg-[#fafafa] px-4 md:px-8 py-16 md:py-24">
         <div className="container mx-auto max-w-7xl">
           {/* Contact Method Switcher */}
           <motion.div
@@ -154,7 +154,7 @@ function Contact() {
             transition={{ type: "spring", stiffness: 120, damping: 15 }}
             className="flex justify-center mb-12"
           >
-            <div className="inline-flex bg-white/80 backdrop-blur-lg rounded-full p-1.5 shadow-lg border border-gray-200/60">
+            <div className="inline-flex bg-white/95 backdrop-blur-xl rounded-full p-1.5 shadow-lg shadow-black/5 border border-gray-100">
               {[
                 { id: "call" as ContactMethod, label: language === "en" ? "Call" : "Soita", icon: (
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

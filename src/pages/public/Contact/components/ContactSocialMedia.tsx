@@ -54,9 +54,9 @@ export default function ContactSocialMedia({ language }: ContactSocialMediaProps
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
-      className="flex flex-col gap-6 bg-white/70 backdrop-blur-lg border border-gray-200/60 rounded-2xl shadow-lg p-8 justify-center items-center hover:shadow-xl transition-all duration-300"
+      className="flex flex-col gap-6 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl shadow-lg shadow-black/5 p-8 justify-center items-center hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-500"
     >
-      <h3 className="text-lg font-bold text-gray-900">
+      <h3 className="text-lg font-bold text-[#0a0a0a]">
         {language === "en" ? "Follow Us" : "Seuraa Meitä"}
       </h3>
       
@@ -78,7 +78,7 @@ export default function ContactSocialMedia({ language }: ContactSocialMediaProps
               boxShadow: "0 0 20px rgba(249, 115, 22, 0.5)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center justify-center w-14 h-14 bg-white border-2 border-gray-200 rounded-full text-gray-700 hover:border-orange-500 hover:text-orange-600 transition-all duration-300 shadow-md hover:shadow-lg"
+            className="flex items-center justify-center w-14 h-14 bg-white border border-gray-100 rounded-full text-gray-700 hover:border-orange-500 hover:text-orange-600 transition-all duration-300 shadow-md shadow-black/5 hover:shadow-lg hover:shadow-orange-500/20"
           >
             {social.icon}
           </motion.a>

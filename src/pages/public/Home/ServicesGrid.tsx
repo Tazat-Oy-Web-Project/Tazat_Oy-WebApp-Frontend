@@ -162,7 +162,7 @@ export default function ServicesGrid() {
   const originalCount = services.length;
 
   return (
-    <section className="bg-linear-to-b from-white to-gray-50 py-16 md:py-24">
+    <section className="bg-[#fafafa] py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12">
         
         {/* Section Header */}
@@ -176,7 +176,7 @@ export default function ServicesGrid() {
             <p className="text-orange-500 uppercase tracking-widest text-sm font-semibold mb-2">
               {language === "en" ? "What We Offer" : "Mitä Tarjoamme"}
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-4">
               {language === "en" ? "Our Services" : "Palvelumme"}
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -212,7 +212,7 @@ export default function ServicesGrid() {
                     }}
                   >
                     <Link to={service.path} className="block group">
-                      <div className="relative h-72 md:h-80 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                      <div className="relative h-72 md:h-80 rounded-3xl overflow-hidden shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500">
                         {/* Image */}
                         <img
                           src={service.image}
@@ -259,7 +259,7 @@ export default function ServicesGrid() {
           <div className="hidden lg:block">
             <button
               onClick={scrollPrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-xl hover:shadow-2xl flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition-all duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-14 h-14 rounded-full bg-white/95 backdrop-blur-xl border border-gray-100/50 shadow-lg shadow-black/5 hover:shadow-xl flex items-center justify-center text-[#0a0a0a] hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
               aria-label="Previous slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,7 +268,7 @@ export default function ServicesGrid() {
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-14 h-14 rounded-full bg-white/90 backdrop-blur-md shadow-xl hover:shadow-2xl flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition-all duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-14 h-14 rounded-full bg-white/95 backdrop-blur-xl border border-gray-100/50 shadow-lg shadow-black/5 hover:shadow-xl flex items-center justify-center text-[#0a0a0a] hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
               aria-label="Next slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -285,8 +285,8 @@ export default function ServicesGrid() {
                 onClick={() => scrollTo(index)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
                   index === selectedIndex 
-                    ? 'w-10 bg-orange-500 shadow-md' 
-                    : 'w-2.5 bg-gray-300 hover:bg-orange-300 hover:w-6'
+                    ? 'w-10 bg-orange-500 shadow-lg shadow-orange-500/30' 
+                    : 'w-2.5 bg-gray-300 hover:bg-orange-400 hover:w-6'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -304,9 +304,9 @@ export default function ServicesGrid() {
         >
           <Link to="/services">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -15px rgba(249, 115, 22, 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-4 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden"
+              className="group relative px-10 py-4 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-xl shadow-orange-500/25 hover:shadow-2xl transition-all overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
                 {language === "en" ? "View All Services" : "Näytä Kaikki Palvelut"}

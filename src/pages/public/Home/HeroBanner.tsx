@@ -151,9 +151,9 @@ export default function HeroBanner() {
             >
               <Link to="/contact">
                 <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 40px -10px rgba(255, 255, 255, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-orange-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl text-sm"
+                  className="bg-white text-orange-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-50 transition-all shadow-xl text-sm"
                 >
                   {language === "en" ? "Contact Us" : "Ota Yhteyttä"}
                 </motion.button>

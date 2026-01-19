@@ -152,7 +152,7 @@ function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-3xl md:text-5xl font-bold text-gray-900"
+              className="text-3xl md:text-5xl font-bold text-[#0a0a0a]"
             >
               {language === "en" ? "Our Story" : "Tarinamme"}
             </motion.h2>
@@ -248,7 +248,7 @@ function About() {
       {/* Our Core Values Section - Glassmorphism Cards */}
       <section className="relative overflow-hidden py-20 md:py-28">
         {/* Background */}
-        <div className="absolute inset-0 bg-linear-to-b from-gray-50 to-white" />
+        <div className="absolute inset-0 bg-[#fafafa]" />
         
         <div className="container mx-auto max-w-7xl px-6 md:px-12 relative z-10">
           <motion.h2
@@ -256,7 +256,7 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold text-gray-900 text-center mb-16"
+            className="text-3xl md:text-5xl font-bold text-[#0a0a0a] text-center mb-16"
           >
             {language === "en" ? "Our Core Values" : "Ydinarvomme"}
           </motion.h2>
@@ -270,7 +270,7 @@ function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(249, 115, 22, 0.2)" }}
-                className="group bg-white/80 backdrop-blur-lg border border-gray-200/50 rounded-3xl p-8 shadow-lg hover:border-orange-400 transition-all duration-300"
+                className="group bg-white/90 backdrop-blur-lg border border-gray-100 rounded-3xl p-8 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/15 hover:border-orange-400/50 transition-all duration-500"
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}

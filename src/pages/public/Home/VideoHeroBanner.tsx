@@ -68,9 +68,9 @@ export default function VideoHeroBanner() {
             >
               <Link to="/quote">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -15px rgba(249, 115, 22, 0.5)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-orange-500 text-white font-semibold rounded-full hover:bg-orange-600 transition-colors shadow-lg"
+                  className="px-8 py-3.5 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full transition-all shadow-xl shadow-orange-500/30"
                 >
                   {language === "en" ? "Get Your Quote" : "Pyydä Tarjous"}
                 </motion.button>

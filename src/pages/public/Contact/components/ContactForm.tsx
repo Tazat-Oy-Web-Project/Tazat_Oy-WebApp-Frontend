@@ -102,7 +102,7 @@ export default function ContactForm({ language }: ContactFormProps) {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        className="relative bg-white/80 backdrop-blur-lg border border-gray-200/60 rounded-2xl shadow-2xl p-8 md:p-10 hover:shadow-3xl transition-all duration-500 overflow-hidden"
+        className="relative bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl shadow-lg shadow-black/5 p-8 md:p-10 hover:shadow-2xl hover:shadow-orange-500/5 transition-all duration-500 overflow-hidden"
       >
         {/* Pointer-follow glow effect */}
         {isHovering && !window.matchMedia("(pointer: coarse)").matches && (
