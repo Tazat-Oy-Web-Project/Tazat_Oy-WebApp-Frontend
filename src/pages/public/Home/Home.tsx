@@ -21,7 +21,7 @@ function Home(){
     };
 
     return(
-        <div className="bg-[#fafafa]">
+        <div className="bg-[#fafafa] overflow-x-hidden">
             {/* Navbar component */}
             <NavbarComponent />
             

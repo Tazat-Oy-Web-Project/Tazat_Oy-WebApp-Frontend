@@ -4,11 +4,11 @@
 
 /* Premium Theme - Orange + Black + White */
 :root {
-  /* Primary Orange Palette */
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
+  /* Primary Orange Palette - BRIGHT */
+  --color-accent: #fb923c;
+  --color-accent-hover: #f97316;
   --color-accent-light: #fed7aa;
-  --color-accent-dark: #c2410c;
+  --color-accent-dark: #ea580c;
   
   /* Neutral Palette */
   --color-surface-dark: #0a0a0a;
@@ -53,12 +53,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #f97316, #ea580c);
+  background: linear-gradient(180deg, #fb923c, #f97316);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ea580c, #c2410c);
+  background: linear-gradient(180deg, #f97316, #ea580c);
 }
 
 /* Focus ring for accessibility */
@@ -83,18 +83,18 @@ body {
 
 /* Premium button base */
 .btn-primary {
-  background: linear-gradient(135deg, #f97316, #ea580c);
+  background: linear-gradient(135deg, #fb923c, #f97316);
   color: white;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 15px rgba(251, 146, 60, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 8px 25px rgba(251, 146, 60, 0.45);
 }
 
 .btn-secondary {

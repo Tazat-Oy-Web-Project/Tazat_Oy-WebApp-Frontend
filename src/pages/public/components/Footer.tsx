@@ -16,7 +16,7 @@ export function FooterComponent() {
           
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-linear-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">{language === "en" ? "Tazat Cleaning" : "Tazat Siivous"}</h3>
+            <h3 className="text-2xl font-bold bg-linear-to-r from-orange-300 to-orange-400 bg-clip-text text-transparent">{language === "en" ? "Tazat Cleaning" : "Tazat Siivous"}</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               {language === "en" ? "Professional cleaning services across Finland. Your cleanliness, our priority." : "Ammattimaiset siivouspalvelut ympäri Suomen. Sinun puhtautesi, meidän prioriteettimme."}
             </p>
@@ -143,7 +143,7 @@ export function FooterComponent() {
             </ul>
             <Link
               to="/quote"
-              className="inline-block bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 mt-4"
+              className="inline-block bg-linear-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-orange-400/30 hover:shadow-xl hover:shadow-orange-400/40 mt-4"
             >
               {language === "en" ? "Get a Quote" : "Pyydä Tarjous"}
             </Link>

@@ -16,7 +16,7 @@ import homeGif from "../Home/hero-banner-images/home.gif";
 
 export default function Services() {
   const { language } = useLanguage();
-  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const [, setActiveServiceIndex] = useState(0);
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   const services = [
@@ -212,97 +212,105 @@ export default function Services() {
 
       {/* Scroll Storytelling Services Section - Desktop */}
       <section className="container mx-auto max-w-7xl px-6 md:px-12 py-20 md:py-32">
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16">
-          {/* Left Column - Service Details */}
-          <div className="space-y-16">
-            {services.map((service, index) => (
+        <div className="space-y-24">
+          {services.map((service, index) => {
+            const isEven = index % 2 === 0;
+            
+            return (
               <motion.div
                 key={service.id}
                 ref={(el) => { serviceRefs.current[index] = el; }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-[#fafafa] border border-gray-100 rounded-3xl p-8 md:p-10 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 min-h-[600px]"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
+                  isEven ? '' : 'lg:flex-row-reverse'
+                }`}
               >
-                {/* Icon Badge */}
-                <motion.div 
-                  className="inline-flex items-center gap-3 mb-6"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <img src={service.icon} alt="" className="w-12 h-12 object-contain" />
-                  <span className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
-                    {`0${index + 1}`}
-                  </span>
-                </motion.div>
-
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  {service.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed text-lg mb-8">
-                  {service.description}
-                </p>
-
-                {/* Features List with Pill Checkmarks */}
-                <motion.ul className="space-y-4 mb-8">
-                  {service.features.map((feature, idx) => (
-                    <motion.li 
-                      key={idx} 
-                      className="flex items-start gap-3"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
-                    >
-                      <span className="shrink-0 w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                        <svg className="w-3.5 h-3.5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-700 text-base">{feature}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-
-                {/* CTA Button with Arrow Animation */}
-                <Link to={service.path}>
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group w-full px-8 py-4 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                {/* Image Column */}
+                <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                    className="group relative rounded-3xl overflow-hidden shadow-xl shadow-black/10"
                   >
-                    {language === "en" ? `Learn More` : `Lue Lisää`}
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </motion.button>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-[400px] md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    {/* Dark gradient overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition-all duration-300" />
+                  </motion.div>
+                </div>
 
-          {/* Right Column - Sticky Changing Image */}
-          <div className="sticky top-24 h-fit">
-            <motion.div
-              key={activeServiceIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl"
-            >
-              <img
-                src={services[activeServiceIndex].image}
-                alt={services[activeServiceIndex].title}
-                className="w-full h-[700px] object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-            </motion.div>
-          </div>
+                {/* Content Column */}
+                <div className={`${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                  <div className="bg-[#fafafa] border border-gray-100 rounded-3xl p-8 md:p-10 shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500">
+                    {/* Icon Badge */}
+                    <motion.div 
+                      className="inline-flex items-center gap-3 mb-6"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white/50 backdrop-blur-sm p-2 shadow-md">
+                        <img src={service.icon} alt="" className="w-full h-full object-contain" />
+                      </div>
+                      <span className="text-sm font-semibold text-orange-400 uppercase tracking-wide">
+                        {`0${index + 1}`}
+                      </span>
+                    </motion.div>
+
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-4">
+                      {service.title}
+                    </h2>
+                    <p className="text-gray-600 leading-relaxed text-lg mb-8">
+                      {service.description}
+                    </p>
+
+                    {/* Features List with Pill Checkmarks */}
+                    <motion.ul className="space-y-4 mb-8">
+                      {service.features.map((feature, idx) => (
+                        <motion.li 
+                          key={idx} 
+                          className="flex items-start gap-3"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 }}
+                        >
+                          <span className="shrink-0 w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
+                            <svg className="w-3.5 h-3.5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span className="text-gray-700 text-base">{feature}</span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+
+                    {/* CTA Button with Arrow Animation */}
+                    <Link to={service.path}>
+                      <motion.button
+                        whileHover={{ scale: 1.02, y: -2, boxShadow: "0 20px 40px -15px rgba(251, 146, 60, 0.4)" }}
+                        whileTap={{ scale: 0.98 }}
+                        className="group w-full px-8 py-4 bg-linear-to-r from-orange-400 to-orange-500 text-white font-semibold rounded-full shadow-xl shadow-orange-400/25 hover:shadow-2xl transition-all flex items-center justify-center gap-2"
+                      >
+                        {language === "en" ? `Learn More` : `Lue Lisää`}
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </motion.button>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Mobile Layout - Stacked */}
-        <div className="lg:hidden space-y-12">
+        <div className="lg:hidden space-y-12 mt-12">
           {services.map((service, index) => (
             <motion.div
               key={service.id}

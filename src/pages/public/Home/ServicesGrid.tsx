@@ -162,7 +162,7 @@ export default function ServicesGrid() {
   const originalCount = services.length;
 
   return (
-    <section className="bg-[#fafafa] py-16 md:py-24">
+    <section className="bg-[#fafafa] py-16 md:py-24 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         
         {/* Section Header */}
@@ -173,7 +173,7 @@ export default function ServicesGrid() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-orange-500 uppercase tracking-widest text-sm font-semibold mb-2">
+            <p className="text-orange-400 uppercase tracking-widest text-sm font-semibold mb-2">
               {language === "en" ? "What We Offer" : "Mitä Tarjoamme"}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-4">
@@ -189,13 +189,13 @@ export default function ServicesGrid() {
 
         {/* Filmstrip Carousel */}
         <div 
-          className="relative py-8"
+          className="relative py-8 max-w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Carousel Container */}
-          <div className="overflow-visible" ref={emblaRef}>
-            <div className="flex -ml-3 md:-ml-4 lg:-ml-5">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -ml-2 sm:-ml-3 md:-ml-4 lg:-ml-5">
               {duplicatedServices.map((service, index) => {
                 // Calculate actual slide index for selection logic (modulo original count)
                 const actualIndex = index % originalCount;
@@ -204,15 +204,15 @@ export default function ServicesGrid() {
                 return (
                   <div 
                     key={`${service.id}-${index}`}
-                    className="flex-[0_0_80%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] pl-3 md:pl-4 lg:pl-5 transition-all duration-500 ease-out"
+                    className="flex-[0_0_240px] sm:flex-[0_0_280px] md:flex-[0_0_320px] lg:flex-[0_0_30%] pl-2 sm:pl-3 md:pl-4 lg:pl-5 transition-all duration-500 ease-out min-w-0"
                     style={{
                       transform: isSelected ? 'scale(1.08)' : 'scale(0.94)',
                       opacity: isSelected ? 1 : 0.65,
                       filter: isSelected ? 'blur(0px)' : 'blur(0.5px)',
                     }}
                   >
-                    <Link to={service.path} className="block group">
-                      <div className="relative h-72 md:h-80 rounded-3xl overflow-hidden shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500">
+                    <Link to={service.path} className="block group w-full">
+                      <div className="relative h-64 sm:h-72 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500">
                         {/* Image */}
                         <img
                           src={service.image}
@@ -285,7 +285,7 @@ export default function ServicesGrid() {
                 onClick={() => scrollTo(index)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
                   index === selectedIndex 
-                    ? 'w-10 bg-orange-500 shadow-lg shadow-orange-500/30' 
+                    ? 'w-10 bg-orange-400 shadow-lg shadow-orange-400/40' 
                     : 'w-2.5 bg-gray-300 hover:bg-orange-400 hover:w-6'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -304,9 +304,9 @@ export default function ServicesGrid() {
         >
           <Link to="/services">
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -15px rgba(249, 115, 22, 0.4)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -15px rgba(251, 146, 60, 0.5)" }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-4 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-xl shadow-orange-500/25 hover:shadow-2xl transition-all overflow-hidden"
+              className="group relative px-10 py-4 bg-linear-to-r from-orange-400 to-orange-500 text-white font-semibold rounded-full shadow-xl shadow-orange-400/30 hover:shadow-2xl transition-all overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
                 {language === "en" ? "View All Services" : "Näytä Kaikki Palvelut"}
@@ -314,7 +314,7 @@ export default function ServicesGrid() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
-              <div className="absolute inset-0 bg-linear-to-r from-orange-600 to-orange-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              <div className="absolute inset-0 bg-linear-to-r from-orange-500 to-orange-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </motion.button>
           </Link>
         </motion.div>

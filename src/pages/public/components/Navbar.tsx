@@ -64,8 +64,8 @@ function NavbarComponent() {
                             whileHover={{ scale: 1.05 }}
                             className={`text-2xl font-bold transition-colors duration-300 ${
                                 scrolled 
-                                    ? 'text-orange-500' 
-                                    : 'bg-linear-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent'
+                                    ? 'text-orange-400' 
+                                    : 'bg-linear-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent'
                             }`}
                         >
                             Tazat
