@@ -27,7 +27,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="bg-linear-to-r from-orange-500 to-red-500 text-white relative overflow-hidden mt-16">
+    <section className="bg-linear-to-r from-orange-500 to-red-500 text-white relative overflow-hidden">
       
       {/* Animated Background Shapes */}
       <motion.div
@@ -48,33 +48,33 @@ export default function HeroBanner() {
       />
 
       {/* Main Hero Section */}
-      <div className="container mx-auto px-6 md:px-12 py-0 md:py-3 sm:py-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-8 min-h-[400px] md:min-h-[450px]">
+      <div className="container mx-auto px-6 md:px-12 py-8 md:py-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-6 min-h-[300px] md:min-h-[350px]">
           
           {/* Left Content - Text */}
           <motion.div 
-            className="w-full md:w-1/2 space-y-4 text-center md:text-left flex flex-col justify-center"
+            className="w-full md:w-1/2 space-y-3 text-center md:text-left flex flex-col justify-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.p 
               variants={itemVariants}
-              className="text-sm md:text-base uppercase tracking-wider font-semibold"
+              className="text-xs md:text-sm uppercase tracking-wider font-semibold"
             >
               {language === "en" ? "Professional Cleaning Services" : "Ammattimaiset Siivouspalvelut"}
             </motion.p>
             
             <motion.h1 
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight"
             >
               {language === "en" ? "Cleanliness You Can Trust, Service You Can Count On" : "Puhtaus Johon Voit Luottaa, Palvelu Johon Voit Laskea"}
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
-              className="text-base md:text-lg text-white/90 max-w-lg"
+              className="text-sm md:text-base text-white/90 max-w-lg"
             >
               {language === "en" 
                 ? "From homes to offices, restaurants to schools - we deliver spotless results with eco-friendly solutions."
@@ -84,13 +84,13 @@ export default function HeroBanner() {
             {/* CTA Buttons */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start pt-2"
+              className="flex flex-col sm:flex-row gap-2 justify-center md:justify-start pt-1"
             >
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-orange-500 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition shadow-lg"
+                  className="bg-white text-orange-500 font-semibold px-5 py-2.5 rounded-full hover:bg-gray-100 transition shadow-lg text-sm"
                 >
                   {language === "en" ? "Contact Us" : "Ota Yhteyttä"}
                 </motion.button>
@@ -99,7 +99,7 @@ export default function HeroBanner() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-orange-500 transition"
+                  className="border-2 border-white text-white font-semibold px-5 py-2.5 rounded-full hover:bg-white hover:text-orange-500 transition text-sm"
                 >
                   {language === "en" ? "Work With Us" : "Työskentele Kanssamme"}
                 </motion.button>
@@ -129,13 +129,13 @@ export default function HeroBanner() {
       </div>
 
       {/* Stats Bar */}
-      <div className="bg-red-600 py-6 md:py-8 border-t border-red-700 relative z-10">
+      <div className="bg-red-600 py-4 md:py-6 border-t border-red-700 relative z-10">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 gap-6 md:gap-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 gap-4 md:gap-0">
             
             {/* Stat 1 */}
             <motion.div 
-              className="text-center py-4 md:py-0 md:px-6"
+              className="text-center py-3 md:py-0 md:px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -143,23 +143,23 @@ export default function HeroBanner() {
               whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-4xl mb-2"
+                className="text-3xl mb-1"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
               >
                 🏠
               </motion.div>
-              <h3 className="text-base md:text-lg font-semibold">
+              <h3 className="text-sm md:text-base font-semibold">
                 {language === "en" ? "1000+ Happy Clients" : "1000+ Tyytyväistä Asiakasta"}
               </h3>
-              <p className="text-sm text-white/80 mt-1">
+              <p className="text-xs text-white/80 mt-0.5">
                 {language === "en" ? "Trusted by homes and businesses" : "Kotien ja yritysten luottama"}
               </p>
             </motion.div>
 
             {/* Stat 2 */}
             <motion.div 
-              className="text-center py-4 md:py-0 md:px-6"
+              className="text-center py-3 md:py-0 md:px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -167,23 +167,23 @@ export default function HeroBanner() {
               whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-4xl mb-2"
+                className="text-3xl mb-1"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, delay: 0.5 }}
               >
                 👷‍♂️
               </motion.div>
-              <h3 className="text-base md:text-lg font-semibold">
+              <h3 className="text-sm md:text-base font-semibold">
                 {language === "en" ? "50+ Skilled Workers" : "50+ Ammattitaitoista Työntekijää"}
               </h3>
-              <p className="text-sm text-white/80 mt-1">
+              <p className="text-xs text-white/80 mt-0.5">
                 {language === "en" ? "Experienced cleaning professionals" : "Kokeneita siivousammattilaisia"}
               </p>
             </motion.div>
 
             {/* Stat 3 */}
             <motion.div 
-              className="text-center py-4 md:py-0 md:px-6"
+              className="text-center py-3 md:py-0 md:px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -191,16 +191,16 @@ export default function HeroBanner() {
               whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="text-4xl mb-2"
+                className="text-3xl mb-1"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, delay: 1 }}
               >
                 🌍
               </motion.div>
-              <h3 className="text-base md:text-lg font-semibold">
+              <h3 className="text-sm md:text-base font-semibold">
                 {language === "en" ? "Eco-Friendly Approach" : "Ympäristöystävällinen Lähestymistapa"}
               </h3>
-              <p className="text-sm text-white/80 mt-1">
+              <p className="text-xs text-white/80 mt-0.5">
                 {language === "en" ? "A trailblazer in environmental responsibility" : "Edelläkävijä ympäristövastuussa"}
               </p>
             </motion.div>

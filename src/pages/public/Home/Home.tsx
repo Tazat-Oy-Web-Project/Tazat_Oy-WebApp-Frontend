@@ -1,5 +1,6 @@
 import { FooterComponent } from "../components/Footer";
 import NavbarComponent from "../components/Navbar";
+import VideoHeroBanner from "./VideoHeroBanner";
 import HeroBanner from "./HeroBanner";
 import ServicesGrid from "./ServicesGrid";
 import Services from "../Services/Services";
@@ -23,11 +24,15 @@ function Home(){
             {/* Navbar component */}
             <NavbarComponent />
             
+            {/* Video Hero Banner component */}
+            <VideoHeroBanner />
+            
             {/* Hero Banner component */}
             <HeroBanner />
             
             {/* Services Grid component with animation */}
             <motion.div
+                id="services"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
