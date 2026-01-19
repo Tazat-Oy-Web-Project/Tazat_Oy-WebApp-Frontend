@@ -2,6 +2,7 @@ import { FooterComponent } from "../components/Footer";
 import NavbarComponent from "../components/Navbar";
 import VideoHeroBanner from "./VideoHeroBanner";
 import HeroBanner from "./HeroBanner";
+import ToolsShowcase3D from "./ToolsShowcase3D";
 import ServicesGrid from "./ServicesGrid";
 import Services from "../Services/Services";
 import About from "../About/About";
@@ -41,6 +42,16 @@ function Home(){
                 <ServicesGrid />
             </motion.div>
             
+             {/* Tools Showcase 3D component with animation */}
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+            >
+                <ToolsShowcase3D />
+            </motion.div>
+
             {/* Services page content with animation */}
             <motion.div
                 initial="hidden"
