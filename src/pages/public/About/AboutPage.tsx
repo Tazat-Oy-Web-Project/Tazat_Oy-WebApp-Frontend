@@ -1,5 +1,5 @@
-import NavbarComponent from "./components/Navbar";
-import { FooterComponent } from "./components/Footer";
+import NavbarComponent from "../components/Navbar";
+import { FooterComponent } from "../components/Footer";
 import About from "./About";
 
 export default function AboutPage() {

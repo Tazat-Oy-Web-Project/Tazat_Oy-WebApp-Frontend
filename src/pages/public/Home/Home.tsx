@@ -4,7 +4,7 @@ import VideoHeroBanner from "./VideoHeroBanner";
 import HeroBanner from "./HeroBanner";
 import ServicesGrid from "./ServicesGrid";
 import Services from "../Services/Services";
-import About from "../About";
+import About from "../About/About";
 import Contact from "../Contact/Contact";
 import { motion } from "framer-motion";
 
